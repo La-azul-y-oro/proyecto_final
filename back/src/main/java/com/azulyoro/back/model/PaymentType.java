@@ -13,7 +13,7 @@ public class PaymentType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, length = 50, unique = true)
+    @Column(nullable = false, length = 50)
     private String name;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
