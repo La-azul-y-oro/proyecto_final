@@ -34,3 +34,9 @@ insert into brand (name, category) values ('CSP2', 'CAR_AND_SPAREPART');
 insert into brand (name, category) values ('CSP3', 'CAR_AND_SPAREPART');
 insert into brand (name, category) values ('CSP4', 'CAR_AND_SPAREPART');
 insert into brand (name, category) values ('CSP5', 'CAR_AND_SPAREPART');
+
+insert into supplier (name, phone_number, email, street, number) values ('Accesorios Autocentro S.R.L.', '3414474715', 'autocentrosrl@gmail.com', 'Corrientes', 579);
+insert into supplier (name, phone_number, email, street, number) values ('Tedini Repuestos', '3416708513', 'tedinirepuestos@gmail.com', 'La Paz', 1071);
+insert into supplier (name, phone_number, email, street, number) values ('Brachetta Baterías', '3412984499', 'brachettabaterias@gmail.com', 'Blvd. 27 de Febrero', 2427);
+insert into supplier (name, phone_number, email, street, number) values ('Suspensión Norte', '3416126448', 'suspensionnorte@gmail.com', 'Bv. Avellaneda', 2028);
+insert into supplier (name, phone_number, email, street, number) values ('Auto Luxe', '3415023395', 'autoluxerosario@gmail.com', 'Av. Francia', 955);
