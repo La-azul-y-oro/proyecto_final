@@ -41,3 +41,23 @@ insert into supplier (name, phone_number, email, street, number) values ('Brache
 insert into supplier (name, phone_number, email, street, number) values ('Suspensión Norte', '3416126448', 'suspensionnorte@gmail.com', 'Bv. Avellaneda', 2028);
 insert into supplier (name, phone_number, email, street, number) values ('Auto Luxe', '3415023395', 'autoluxerosario@gmail.com', 'Av. Francia', 955);
 
+INSERT INTO type_service(name, description) VALUES ('Cambio de aceite', 'Sustitución del aceite del motor y del filtro para mantener el motor limpio y lubricado.');
+INSERT INTO type_service(name, description) VALUES ('Alineación y balanceo', 'Ajuste de los ángulos de las ruedas para asegurar una conducción recta y uniforme.');
+INSERT INTO type_service(name, description) VALUES ('Revisión de frenos', 'Inspección y mantenimiento del sistema de frenos, incluyendo pastillas, discos y líquido de frenos.');
+INSERT INTO type_service(name, description) VALUES ('Cambio de llantas', 'Reemplazo de llantas desgastadas o dañadas para garantizar una conducción segura.');
+INSERT INTO type_service(name, description) VALUES ('Reparación de motor', 'Diagnóstico y reparación de problemas mecánicos en el motor del vehículo.');
+INSERT INTO type_service(name, description) VALUES ('Diagnóstico de motor', 'Uso de herramientas de diagnóstico para identificar problemas en el motor y otros sistemas del vehículo.');
+INSERT INTO type_service(name, description) VALUES ('Cambio de filtros', 'Reemplazo de filtros de aire, aceite y combustible para mantener la eficiencia del motor.');
+INSERT INTO type_service(name, description) VALUES ('Mantenimiento de aire acondicionado', 'Revisión y reparación del sistema de aire acondicionado para asegurar su correcto funcionamiento.');
+INSERT INTO type_service(name, description) VALUES ('Revisión de suspensión', 'Inspección y reparación de los componentes de la suspensión para una conducción cómoda y segura.');
+INSERT INTO type_service(name, description) VALUES ('Reparación de transmisión', 'Mantenimiento y reparación del sistema de transmisión del vehículo.');
+INSERT INTO type_service(name, description) VALUES ('Reemplazo de baterías', 'Sustitución de baterías viejas o defectuosas para asegurar un arranque fiable del motor.');
+INSERT INTO type_service(name, description) VALUES ('Reparación de sistemas eléctricos', 'Diagnóstico y reparación de problemas en el sistema eléctrico del vehículo.');
+INSERT INTO type_service(name, description) VALUES ('Reparación de escapes', 'Reparación o reemplazo de componentes del sistema de escape para reducir emisiones y ruido.');
+INSERT INTO type_service(name, description) VALUES ('Inspección de seguridad', 'Revisión completa del vehículo para asegurar que cumple con los estándares de seguridad.');
+INSERT INTO type_service(name, description) VALUES ('Mantenimiento preventivo', 'Servicios regulares para prevenir problemas mayores, incluyendo cambios de aceite, revisiones y ajustes.');
+INSERT INTO type_service(name, description) VALUES ('Servicio de emergencia en carretera', 'Asistencia inmediata en caso de averías o emergencias mientras se está en carretera.');
+INSERT INTO type_service(name, description) VALUES ('Revisión de luces', 'Inspección y reemplazo de bombillas y componentes del sistema de iluminación.');
+INSERT INTO type_service(name, description) VALUES ('Diagnóstico computarizado', 'Uso de herramientas y software avanzados para identificar y solucionar problemas del vehículo.');
+INSERT INTO type_service(name, description) VALUES ('Reparación de sistemas de dirección', 'Reparación y mantenimiento del sistema de dirección para asegurar un control preciso del vehículo.');
+
