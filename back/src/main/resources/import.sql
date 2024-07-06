@@ -40,3 +40,4 @@ insert into supplier (name, phone_number, email, street, number) values ('Tedini
 insert into supplier (name, phone_number, email, street, number) values ('Brachetta Baterías', '3412984499', 'brachettabaterias@gmail.com', 'Blvd. 27 de Febrero', 2427);
 insert into supplier (name, phone_number, email, street, number) values ('Suspensión Norte', '3416126448', 'suspensionnorte@gmail.com', 'Bv. Avellaneda', 2028);
 insert into supplier (name, phone_number, email, street, number) values ('Auto Luxe', '3415023395', 'autoluxerosario@gmail.com', 'Av. Francia', 955);
+
