@@ -61,3 +61,27 @@ INSERT INTO type_service(name, description) VALUES ('Revisión de luces', 'Inspe
 INSERT INTO type_service(name, description) VALUES ('Diagnóstico computarizado', 'Uso de herramientas y software avanzados para identificar y solucionar problemas del vehículo.');
 INSERT INTO type_service(name, description) VALUES ('Reparación de sistemas de dirección', 'Reparación y mantenimiento del sistema de dirección para asegurar un control preciso del vehículo.');
 
+insert into client (name, last_name, category, identification_number, email) values ('Matías', 'Rodriguez', 'DNI', 20123456, 'niconicodinolfo@gmail.com');
+insert into client (name, last_name, category, identification_number, email) values ('Joaquin', 'Fernandez', 'DNI', 30987517, 'gabrielp1689@gmail.com');
+insert into client (name, last_name, category, identification_number, email) values ('Valentina', 'Gutierrez', 'DNI', 25312978, 'juanschiavoni713@gmail.com');
+insert into client (name, last_name, category, identification_number, email) values ('Lionel', 'Gomez', 'DNI', 39741852, 'ceronsanti@gmail.com');
+insert into client (name, last_name, category, identification_number, email) values ('Emiliano', 'Estevanez', 'DNI', 21369819, 'nicodinolfo1889@gmail.com');
+insert into client (name, last_name, category, identification_number, email) values ('Emiliano', 'Corinoto', 'DNI', 21475619, 'emilianolbdt@gmail.com');
+insert into client (name, last_name, category, identification_number, email) values ('Maria', 'Diaz', 'DNI', 28753159, 'mariadiaz13@gmail.com');
+insert into client (name, last_name, category, identification_number, email) values ('Luciano', 'Martínez', 'DNI', 30123456, 'lucianomartinez@gmail.com'); 
+insert into client (name, last_name, category, identification_number, email) values ('Federico', 'Pérez', 'DNI', 31567890, 'federicoperez@yahoo.com'); 
+insert into client (name, last_name, category, identification_number, email) values ('Santiago', 'Ramírez', 'DNI', 32654321, 'santiagoramirez@hotmail.com');
+
+insert into employee (name, last_name, category, identification_number, email, role, street, number, floor, departament, password)  values  ('Carlos', 'Acevedo', 'DNI', 34123478, 'carlosg@gmail.com', 'ROLE_MECHANIC', 'San Lorenzo', 1276, 1, 'A', 'mecanico154');
+insert into employee (name, last_name, category, identification_number, email, role, street, number, password)  values  ('Pedro', 'Cabrera', 'DNI', 28173464, 'pedritocabrera@gmail.com', 'ROLE_MECHANIC', 'José Ingenieros', 2547, 'ing464');
+insert into employee (name, last_name, category, identification_number, email, role, street, number, floor, departament, password)  values  ('Jesús', 'Olivos', 'DNI', 19765384, 'olivosjesus@gmail.com', 'ROLE_MECHANIC', 'Montevideo', 417, 8, 'C', 'fierrero46');
+insert into employee (name, last_name, category, identification_number, email, role, street, number, password)  values  ('Luis', 'Salinas', 'DNI', 21847033, 'salinasluismecanico@hotmail.com', 'ROLE_MECHANIC', 'Av. Pellegrini', 3126, 'password123');
+insert into employee (name, last_name, category, identification_number, email, role, street, number, floor, departament, password)  values  ('Miguel', 'Pedraza', 'DNI', 36482529, 'miguelped@gmail.com', 'ROLE_MECHANIC', 'Córdoba', 1295, 3, 'B', 'pedmig529');
+insert into employee (name, last_name, category, identification_number, email, role, street, number, floor, departament, password)  values  ('Andrés', 'López', 'DNI', 34127403, 'andreslopez23@gmail.com', 'ROLE_MECHANIC', 'Sarmiento', 4572, 7, 'C', 'andy123');
+insert into employee (name, last_name, category, identification_number, email, role, street, number, password)  values  ('Hernán', 'Valero', 'DNI', 22796284, 'hernanmartinvalero@gmail.com', 'ROLE_MECHANIC', 'San Juan', 648, 'rosariocentral1889');   
+insert into employee (name, last_name, category, identification_number, email, role, street, number, password)  values  ('Diego', 'Serra', 'DNI', 38741369, 'dieguito10serra@hotmail.com', 'ROLE_MECHANIC', 'Entre Ríos', 814, 'bpx843');
+insert into employee (name, last_name, category, identification_number, email, role, street, number, floor, departament, password)  values  ('Alberto', 'Torres', 'DNI', 20946273, 'torrestito@yahoo.com', 'ROLE_MECHANIC', 'Ocampos', 2248, 4, 'D', 'taller2248');  
+insert into employee (name, last_name, category, identification_number, email, role, street, number, floor, departament, password)  values  ('José', 'Giménez', 'DNI', 35852147, 'jose.gimenez@gmail.com', 'ROLE_MECHANIC', 'Urquiza', 3394, 5, 'E', 'josgim875');
+insert into employee (name, last_name, category, identification_number, email, role, street, number, floor, departament, password)  values  ('Jimena', 'Escudero', 'DNI', 40129402, 'jime.escudero7@gmail.com', 'ROLE_ADMINISTRATIVE', 'Balcarce', 1542, 2, 'A', 'jime_129402'); 
+insert into employee (name, last_name, category, identification_number, email, role, street, number, floor, departament, password)  values  ('Fernando', 'Bernal', 'DNI', 42673981, 'bernalfernando12@gmail.com', 'ROLE_ADMINISTRATIVE', 'Mitre', 2743, 1, 'B', 'cabj2743'); 
+insert into employee (name, last_name, category, identification_number, email, role, street, number, password)  values  ('admin', 'admin', 'DNI', 12123123, 'admin.user@gmail.com', 'ROLE_ADMIN', 'admin', 123, 'adminuser123');
