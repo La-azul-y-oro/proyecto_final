@@ -16,6 +16,11 @@ public class EmployeeService implements EntityService<Employee, Employee>{
     }
 
     @Override
+    public Employee update(Employee employee) {
+        return null;
+    }
+
+    @Override
     public Employee getById(Long id) {
         return null;
     }

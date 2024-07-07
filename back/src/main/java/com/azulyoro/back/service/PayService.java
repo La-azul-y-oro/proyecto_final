@@ -16,6 +16,11 @@ public class PayService implements EntityService<Pay, Pay>{
     }
 
     @Override
+    public Pay update(Pay pay) {
+        return null;
+    }
+
+    @Override
     public Pay getById(Long id) {
         return null;
     }

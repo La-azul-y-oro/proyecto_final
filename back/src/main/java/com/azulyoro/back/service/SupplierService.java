@@ -16,6 +16,11 @@ public class SupplierService implements EntityService<Supplier, Supplier> {
     }
 
     @Override
+    public Supplier update(Supplier supplier) {
+        return null;
+    }
+
+    @Override
     public Supplier getById(Long id) {
         return null;
     }

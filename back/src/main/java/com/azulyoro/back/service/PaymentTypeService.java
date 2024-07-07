@@ -15,6 +15,11 @@ public class PaymentTypeService implements EntityService<PaymentType, PaymentTyp
     }
 
     @Override
+    public PaymentType update(PaymentType paymentType) {
+        return null;
+    }
+
+    @Override
     public PaymentType getById(Long id) {
         return null;
     }
