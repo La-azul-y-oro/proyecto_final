@@ -16,6 +16,11 @@ public class ClientService implements EntityService<Client, Client> {
     }
 
     @Override
+    public Client update(Client client) {
+        return null;
+    }
+
+    @Override
     public Client getById(Long id) {
         return null;
     }

@@ -1,6 +1,6 @@
 package com.azulyoro.back.service;
 
-import com.azulyoro.back.model.Brand;
+import com.azulyoro.back.model.ServiceType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -8,30 +8,30 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BrandService implements EntityService<Brand, Brand> {
+public class ServiceTypeService implements EntityService<ServiceType, ServiceType>{
 
     @Override
-    public Brand create(Brand brand) {
+    public ServiceType create(ServiceType typeService) {
         return null;
     }
 
     @Override
-    public Brand update(Brand brand) {
+    public ServiceType update(ServiceType serviceType) {
         return null;
     }
 
     @Override
-    public Brand getById(Long id) {
+    public ServiceType getById(Long id) {
         return null;
     }
 
     @Override
-    public List<Brand> getAll() {
+    public List<ServiceType> getAll() {
         return List.of();
     }
 
     @Override
-    public Page<Brand> getByPage(Pageable pageable) {
+    public Page<ServiceType> getByPage(Pageable pageable) {
         return null;
     }
 
