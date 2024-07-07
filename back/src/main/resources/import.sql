@@ -85,3 +85,11 @@ insert into employee (name, last_name, category, identification_number, email, r
 insert into employee (name, last_name, category, identification_number, email, role, street, number, floor, departament, password)  values  ('Jimena', 'Escudero', 'DNI', 40129402, 'jime.escudero7@gmail.com', 'ROLE_ADMINISTRATIVE', 'Balcarce', 1542, 2, 'A', 'jime_129402'); 
 insert into employee (name, last_name, category, identification_number, email, role, street, number, floor, departament, password)  values  ('Fernando', 'Bernal', 'DNI', 42673981, 'bernalfernando12@gmail.com', 'ROLE_ADMINISTRATIVE', 'Mitre', 2743, 1, 'B', 'cabj2743'); 
 insert into employee (name, last_name, category, identification_number, email, role, street, number, password)  values  ('admin', 'admin', 'DNI', 12123123, 'admin.user@gmail.com', 'ROLE_ADMIN', 'admin', 123, 'adminuser123');
+
+INSERT INTO vehicle (brand_id, model, mileage, plate, observations) VALUES (1, 'Corolla', 15000, 'ABC123', 'Sedan en buen estado');
+INSERT INTO vehicle (brand_id, model, mileage, plate, observations) VALUES (3, 'Civic', 20000, 'DEF456', 'Amortiguadores en dudoso estado');
+INSERT INTO vehicle (brand_id, model, mileage, plate, observations) VALUES (2, 'Mustang', 30000, 'GHI789', 'Revisar filtro de aire en la proxima visita');
+INSERT INTO vehicle (brand_id, model, mileage, plate, observations) VALUES (4, 'Impala', 25000, 'JKL012', '');
+INSERT INTO vehicle (brand_id, model, mileage, plate, observations) VALUES (6, 'X5', 5000, 'MNO345', 'Se cambio aceite, filtro de aceite y cubiertas');
+INSERT INTO vehicle (brand_id, model, mileage, plate, observations) VALUES (9, 'A4', 10000, 'PQR678', '');
+INSERT INTO vehicle (brand_id, model, mileage, plate, observations) VALUES (7, 'C-Class', 15000, 'STU901', 'Velocimetro reparado');

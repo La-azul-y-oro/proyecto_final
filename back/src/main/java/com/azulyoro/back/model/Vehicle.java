@@ -17,7 +17,7 @@ public class Vehicle {
     private Long id;
 
     @Column(nullable = false)
-    private Brand brand;
+    private Long brandId;
 
     @Column(nullable = false)
     private String model;
