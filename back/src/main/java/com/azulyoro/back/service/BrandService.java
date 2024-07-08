@@ -1,7 +1,7 @@
 package com.azulyoro.back.service;
 
+import com.azulyoro.back.dto.CustomPage;
 import com.azulyoro.back.model.Brand;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class BrandService implements EntityService<Brand, Brand> {
     }
 
     @Override
-    public Brand update(Brand brand) {
+    public Brand update(Long id, Brand brand) {
         return null;
     }
 
@@ -31,12 +31,10 @@ public class BrandService implements EntityService<Brand, Brand> {
     }
 
     @Override
-    public Page<Brand> getByPage(Pageable pageable) {
+    public CustomPage<Brand> getByPage(Pageable pageable) {
         return null;
     }
 
     @Override
-    public Void delete(Long id) {
-        return null;
-    }
+    public void delete(Long id) {}
 }
