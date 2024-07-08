@@ -1,7 +1,7 @@
 package com.azulyoro.back.service;
 
+import com.azulyoro.back.dto.CustomPage;
 import com.azulyoro.back.model.PaymentType;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ public class PaymentTypeService implements EntityService<PaymentType, PaymentTyp
     }
 
     @Override
-    public PaymentType update(PaymentType paymentType) {
+    public PaymentType update(Long id, PaymentType paymentType) {
         return null;
     }
 
@@ -30,12 +30,10 @@ public class PaymentTypeService implements EntityService<PaymentType, PaymentTyp
     }
 
     @Override
-    public Page<PaymentType> getByPage(Pageable pageable) {
+    public CustomPage<PaymentType> getByPage(Pageable pageable) {
         return null;
     }
 
     @Override
-    public Void delete(Long id) {
-        return null;
-    }
+    public void delete(Long id) {}
 }

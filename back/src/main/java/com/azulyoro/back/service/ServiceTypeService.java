@@ -1,7 +1,7 @@
 package com.azulyoro.back.service;
 
+import com.azulyoro.back.dto.CustomPage;
 import com.azulyoro.back.model.ServiceType;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class ServiceTypeService implements EntityService<ServiceType, ServiceTyp
     }
 
     @Override
-    public ServiceType update(ServiceType serviceType) {
+    public ServiceType update(Long id, ServiceType serviceType) {
         return null;
     }
 
@@ -31,12 +31,10 @@ public class ServiceTypeService implements EntityService<ServiceType, ServiceTyp
     }
 
     @Override
-    public Page<ServiceType> getByPage(Pageable pageable) {
+    public CustomPage<ServiceType> getByPage(Pageable pageable) {
         return null;
     }
 
     @Override
-    public Void delete(Long id) {
-        return null;
-    }
+    public void delete(Long id) {}
 }

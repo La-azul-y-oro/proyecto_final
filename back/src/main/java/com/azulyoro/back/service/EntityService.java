@@ -1,15 +1,15 @@
 package com.azulyoro.back.service;
 
-import org.springframework.data.domain.Page;
+import com.azulyoro.back.dto.CustomPage;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-interface EntityService<T, R>{
+public interface EntityService<T, R>{
     R create(T t);
-    R update(T t);
+    R update(Long id, T t);
     R getById(Long id);
     List<R> getAll();
-    Page<R> getByPage(Pageable pageable);
-    Void delete(Long id);
+    CustomPage<R> getByPage(Pageable pageable);
+    void delete(Long id);
 }
