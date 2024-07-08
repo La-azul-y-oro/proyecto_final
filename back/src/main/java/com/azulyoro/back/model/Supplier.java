@@ -1,14 +1,16 @@
 package com.azulyoro.back.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +20,10 @@ public class Supplier {
     @Embedded
     private Address address;
     @Column(nullable = false, length = 50, unique = true)
-    private String phoneNumber;
+    private String phone;
     @Column(nullable = false, length = 50, unique = true)
     private String email;
-    @OneToMany
-    @JoinColumn(name = "supplier_id")
+    @OneToMany(mappedBy = "supplier")
     private List<Inventory> inventory;
+    private boolean isDeleted;
 }

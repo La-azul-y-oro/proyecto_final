@@ -2,6 +2,7 @@ package com.azulyoro.back.service;
 
 import java.util.List;
 
+import com.azulyoro.back.dto.CustomPage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class VehicleService implements EntityService<Vehicle, Vehicle> {
     }
 
     @Override
-    public Vehicle update(Vehicle vehicle) {
+    public Vehicle update(Long id, Vehicle vehicle) {
         return null;
     }
 
@@ -31,13 +32,11 @@ public class VehicleService implements EntityService<Vehicle, Vehicle> {
     }
 
     @Override
-    public Page<Vehicle> getByPage(Pageable pageable) {
+    public CustomPage<Vehicle> getByPage(Pageable pageable) {
         return null;
     }
 
     @Override
-    public Void delete(Long id) {
-        return null;
-    }
+    public void delete(Long id) {}
 
 }

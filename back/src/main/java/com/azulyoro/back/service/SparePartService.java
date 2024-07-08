@@ -2,6 +2,7 @@ package com.azulyoro.back.service;
 
 import java.util.List;
 
+import com.azulyoro.back.dto.CustomPage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class SparePartService implements EntityService<SparePart, SparePart> {
     }
 
     @Override
-    public SparePart update(SparePart sparePart) {
+    public SparePart update(Long id, SparePart sparePart) {
         return null;
     }
 
@@ -31,12 +32,10 @@ public class SparePartService implements EntityService<SparePart, SparePart> {
     }
 
     @Override
-    public Page<SparePart> getByPage(Pageable pageable) {
+    public CustomPage<SparePart> getByPage(Pageable pageable) {
         return null;
     }
 
     @Override
-    public Void delete(Long id) {
-        return null;
-    }
+    public void delete(Long id) {}
 }
