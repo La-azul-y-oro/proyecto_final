@@ -93,3 +93,14 @@ INSERT INTO vehicle (brand_id, model, mileage, plate, observations) VALUES (4, '
 INSERT INTO vehicle (brand_id, model, mileage, plate, observations) VALUES (6, 'X5', 5000, 'MNO345', 'Se cambio aceite, filtro de aceite y cubiertas');
 INSERT INTO vehicle (brand_id, model, mileage, plate, observations) VALUES (9, 'A4', 10000, 'PQR678', '');
 INSERT INTO vehicle (brand_id, model, mileage, plate, observations) VALUES (7, 'C-Class', 15000, 'STU901', 'Velocimetro reparado');
+
+INSERT INTO spare_part (name, brand_id, made_in) VALUES ('Filtro de Aceite', 12, 'Alemania'); -- Bosch
+INSERT INTO spare_part (name, brand_id, made_in) VALUES ('Bujía', 13, 'Japón'); -- Denso
+INSERT INTO spare_part (name, brand_id, made_in) VALUES ('Batería', 14, 'USA'); -- ACDelco
+INSERT INTO spare_part (name, brand_id, made_in) VALUES ('Amortiguador', 15, 'Canadá'); -- Magna International
+INSERT INTO spare_part (name, brand_id, made_in) VALUES ('Inyector', 16, 'USA'); -- Delphi
+INSERT INTO spare_part (name, brand_id, made_in) VALUES ('Alternador', 17, 'Francia'); -- Valeo
+INSERT INTO spare_part (name, brand_id, made_in) VALUES ('Frenos', 18, 'Alemania'); -- Continental
+INSERT INTO spare_part (name, brand_id, made_in) VALUES ('Discos de Freno', 19, 'Italia'); -- Brembo
+INSERT INTO spare_part (name, brand_id, made_in) VALUES ('Pastillas de Freno', 20, 'USA'); -- TRW Automotive
+INSERT INTO spare_part (name, brand_id, made_in) VALUES ('Rodamiento', 21, 'Suecia'); -- SKF
