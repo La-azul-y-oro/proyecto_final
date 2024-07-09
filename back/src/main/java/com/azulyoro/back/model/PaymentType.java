@@ -1,7 +1,10 @@
 package com.azulyoro.back.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -9,6 +12,9 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PaymentType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +27,5 @@ public class PaymentType {
     @OneToMany
     @JoinColumn(name = "payment_type_id")
     private List<Pay> payList;
+    private boolean isDeleted;
 }
