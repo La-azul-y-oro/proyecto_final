@@ -14,6 +14,9 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
+    private String plate;
+
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brand brand;
@@ -22,9 +25,6 @@ public class Vehicle {
     private String model;
 
     private Integer mileage;
-
-    @Column(nullable = false, unique = true)
-    private String plate;
 
     private String observations;
 
