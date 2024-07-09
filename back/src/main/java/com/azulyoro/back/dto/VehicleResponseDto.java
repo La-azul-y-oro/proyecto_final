@@ -22,4 +22,5 @@ public class VehicleResponseDto {
     private String model;
     private Number mileage;
     private String observations;
+    private boolean isDeleted;
 }
