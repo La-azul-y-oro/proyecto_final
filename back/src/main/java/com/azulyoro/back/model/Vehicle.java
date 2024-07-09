@@ -30,4 +30,5 @@ public class Vehicle {
 
     @OneToMany(mappedBy = "vehicle")
     private List<Service> services;
+    private boolean isDeleted;
 }
