@@ -1,6 +1,6 @@
 package com.azulyoro.back.dto;
 
-import com.azulyoro.back.model.PaymentCategory;
+import com.azulyoro.back.model.BrandCategory;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AllArgsConstructor;
@@ -11,13 +11,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class PaymentTypeResponseDto {
+public class BrandResponseDto {
     private Long id;
     private String name;
-    private PaymentCategory category;
+    private BrandCategory category;
     private boolean isDeleted;
 }
