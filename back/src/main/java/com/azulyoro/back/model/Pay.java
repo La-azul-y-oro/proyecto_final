@@ -20,6 +20,7 @@ public class Pay {
     private LocalDate date;
     @ManyToOne
     private PaymentType paymentType;
+
     @OneToMany(mappedBy = "pay")
     private List<Service> services;
 }
