@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,5 +18,6 @@ public class Pay {
     private Date date;
     @ManyToOne
     private PaymentType paymentType;
-
+    @OneToMany
+    private List<Service> services;
 }

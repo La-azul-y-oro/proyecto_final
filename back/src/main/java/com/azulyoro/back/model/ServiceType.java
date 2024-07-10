@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -16,4 +18,6 @@ public class ServiceType {
     @Column(nullable = false, length = 50)
     private String name;
     private String description;
+    @OneToMany
+    private List<Service> services;
 }
