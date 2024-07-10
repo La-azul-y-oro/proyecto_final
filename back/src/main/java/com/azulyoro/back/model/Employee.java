@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -16,6 +18,7 @@ public class Employee extends Person{
     private Address address;
     @Column(nullable = false)
     private String password;
-
+    @ManyToMany
+    private List<Service> services;
 
 }
