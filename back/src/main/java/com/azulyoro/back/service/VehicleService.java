@@ -3,40 +3,90 @@ package com.azulyoro.back.service;
 import java.util.List;
 
 import com.azulyoro.back.dto.CustomPage;
+import com.azulyoro.back.dto.VehicleRequestDto;
+import com.azulyoro.back.dto.VehicleResponseDto;
+import com.azulyoro.back.exception.CannotDeleteEntityException;
+import com.azulyoro.back.mapper.PageMapper;
+import com.azulyoro.back.mapper.VehicleMapper;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.azulyoro.back.model.Vehicle;
+import com.azulyoro.back.repository.VehicleRepository;
+import com.azulyoro.back.util.MessageUtil;
+
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 
 @Service
-public class VehicleService implements EntityService<Vehicle, Vehicle> {
+public class VehicleService implements EntityService<VehicleRequestDto, VehicleResponseDto> {
+
+    @Autowired
+    private VehicleRepository vehicleRepository;
+
+    @Autowired
+    private VehicleMapper vehicleMapper;
+
+    @Autowired
+    private PageMapper pageMapper;
 
     @Override
-    public Vehicle create(Vehicle vehicle) {
-        return null;
+    public VehicleResponseDto create(VehicleRequestDto vehicleDto) {
+        Vehicle vehicle = vehicleRepository.save(vehicleMapper.dtoToEntity(vehicleDto));
+        return vehicleMapper.entityToDto(vehicle);
     }
 
     @Override
-    public Vehicle update(Long id, Vehicle vehicle) {
-        return null;
+    public VehicleResponseDto update(Long id, VehicleRequestDto vehicleDto) {
+        if (vehicleRepository.existsById(id)) {
+            Vehicle vehicle = vehicleMapper.dtoToEntity(vehicleDto);
+            vehicle.setId(id);
+
+            Vehicle vehicleUpdated = vehicleRepository.save(vehicle);
+
+            return vehicleMapper.entityToDto(vehicleUpdated);
+        } else {
+            throw new EntityNotFoundException(MessageUtil.entityNotFound(id));
+        }
     }
 
     @Override
-    public Vehicle getById(Long id) {
-        return null;
+    public VehicleResponseDto getById(Long id) {
+        Vehicle vehicle = vehicleRepository
+                .findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(MessageUtil.entityNotFound(id)));
+
+        return vehicleMapper.entityToDto(vehicle);
     }
 
     @Override
-    public List<Vehicle> getAll() {
-        return List.of();
+    public List<VehicleResponseDto> getAll() {
+        return vehicleRepository
+                .findAll()
+                .stream()
+                .map(vehicleMapper::entityToDto)
+                .toList();
     }
 
     @Override
-    public CustomPage<Vehicle> getByPage(Pageable pageable) {
-        return null;
+    public CustomPage<VehicleResponseDto> getByPage(Pageable pageable) {
+        Page<VehicleResponseDto> page = vehicleRepository
+                .findAll(pageable)
+                .map(vehicleMapper::entityToDto);
+
+        return pageMapper.pageToCustomPage(page);
     }
 
     @Override
-    public void delete(Long id) {}
+    @Transactional
+    public void delete(Long id) {
+        try {
+            vehicleRepository.softDelete(id);
+        } catch (Exception e) {
+            throw new CannotDeleteEntityException(MessageUtil.entityCannotDelete(id, e.getMessage()));
+        }
+    }
 
 }
