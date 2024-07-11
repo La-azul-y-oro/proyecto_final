@@ -12,7 +12,7 @@ import lombok.*;
 public class SparePartRequestDto {
     @NotBlank(message = "{request.invalid.blank}")
     private String name;
-    @Min(value = 1, message = "{request.invalid.min}")
+    @Min(value = 1, message = "{request.invalid.id_min}")
     private Long brandId;
     @NotBlank(message = "{request.invalid.blank}")
     private String madeIn;

@@ -1,6 +1,5 @@
 package com.azulyoro.back.dto;
 
-import com.azulyoro.back.model.Brand;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AllArgsConstructor;
@@ -18,9 +17,9 @@ import lombok.Setter;
 public class VehicleResponseDto {
     private Long id;
     private String plate;
-    private Brand brand;
+    private BrandResponseDto brandDto;
     private String model;
-    private Number mileage;
+    private Integer mileage;
     private String observations;
     private boolean isDeleted;
 }

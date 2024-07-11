@@ -1,11 +1,13 @@
 package com.azulyoro.back.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.azulyoro.back.dto.CustomPage;
 import com.azulyoro.back.dto.VehicleRequestDto;
 import com.azulyoro.back.dto.VehicleResponseDto;
 import com.azulyoro.back.exception.CannotDeleteEntityException;
+import com.azulyoro.back.exception.EntityNotFoundOrInactiveException;
 import com.azulyoro.back.mapper.PageMapper;
 import com.azulyoro.back.mapper.VehicleMapper;
 
@@ -13,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import com.azulyoro.back.model.Brand;
 import com.azulyoro.back.model.Vehicle;
 import com.azulyoro.back.repository.VehicleRepository;
 import com.azulyoro.back.util.MessageUtil;
@@ -32,16 +36,38 @@ public class VehicleService implements EntityService<VehicleRequestDto, VehicleR
     @Autowired
     private PageMapper pageMapper;
 
+    @Autowired
+    private BrandService brandService;
+
     @Override
     public VehicleResponseDto create(VehicleRequestDto vehicleDto) {
-        Vehicle vehicle = vehicleRepository.save(vehicleMapper.dtoToEntity(vehicleDto));
+
+        Optional<Brand> brand = brandService.getBrandEntity(vehicleDto.getBrandId());
+
+        if (brand.isEmpty() || brand.get().isDeleted()) {
+            throw new EntityNotFoundOrInactiveException(MessageUtil.entityNotFoundOrInactive(vehicleDto.getBrandId()));
+        }
+
+        Vehicle vehicle = vehicleMapper.dtoToEntity(vehicleDto);
+        vehicle.setBrand(brand.get());
+
+        vehicle = vehicleRepository.save(vehicle);
+
         return vehicleMapper.entityToDto(vehicle);
     }
 
     @Override
     public VehicleResponseDto update(Long id, VehicleRequestDto vehicleDto) {
+
+        Optional<Brand> brand = brandService.getBrandEntity(vehicleDto.getBrandId());
+
+        if (brand.isEmpty() || brand.get().isDeleted()) {
+            throw new EntityNotFoundOrInactiveException(MessageUtil.entityNotFoundOrInactive(vehicleDto.getBrandId()));
+        }
+
         if (vehicleRepository.existsById(id)) {
             Vehicle vehicle = vehicleMapper.dtoToEntity(vehicleDto);
+            vehicle.setBrand(brand.get());
             vehicle.setId(id);
 
             Vehicle vehicleUpdated = vehicleRepository.save(vehicle);
