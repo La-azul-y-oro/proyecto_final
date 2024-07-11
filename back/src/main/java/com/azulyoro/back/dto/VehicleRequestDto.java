@@ -1,11 +1,7 @@
 package com.azulyoro.back.dto;
 
-import com.azulyoro.back.model.Brand;
-
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import com.azulyoro.back.util.RegexPatterns;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,19 +15,19 @@ import lombok.Setter;
 @AllArgsConstructor
 public class VehicleRequestDto {
 
-    @NotBlank(message = "{request.invalid.blank}")
+    @Pattern(regexp = RegexPatterns.VEHICLE_PLATE, message="{request.invalid.plate}")
     private String plate;
 
-    @NotNull(message = "{request.invalid.brand}")
-    private Brand brand;
+    @Min(value=1, message = "{request.invalid.id_min}")
+    private Long brandId;
 
-    @NotBlank(message = "{request.invalid.model}")
-    @Size(max = 50, message = "{request.invalid.model.size}")
+    @NotBlank(message = "{request.invalid.blank}")
+    @Size(max = 50, message = "{request.invalid.max_size}")
     private String model;
 
-    @Min(value = 0, message = "Mileage must be positive")
-    private Number mileage;
+    @Min(value = 0, message = "{request.invalid.mileage}")
+    private Integer mileage;
 
-    @Size(max = 300, message = "{request.invalid.observations.size}")
+    @Size(max = 300, message = "{request.invalid.max_size}")
     private String observations;
 }
