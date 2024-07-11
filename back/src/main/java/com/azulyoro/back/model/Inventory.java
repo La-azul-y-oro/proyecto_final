@@ -22,4 +22,6 @@ public class Inventory {
     private Double costPrice;
     @Column(nullable = false)
     private Double salePrice;
+    @ManyToOne
+    private SparePart sparePart;
 }
