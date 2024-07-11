@@ -29,8 +29,10 @@ public class SparePart {
     @JoinColumn(name = "brand_id")
     private Brand brand;
     private String madeIn;
-
-    @ManyToMany
+    @ManyToMany(mappedBy = "spareParts")
     private List<Service> services;
+    @OneToMany(mappedBy = "sparePart")
+    private List<Inventory> inventory;
+    @Column(nullable = false)
     private boolean isDeleted;
 }

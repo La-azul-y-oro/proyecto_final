@@ -24,8 +24,7 @@ public class PaymentType {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private PaymentCategory category;
-    @OneToMany
-    @JoinColumn(name = "payment_type_id")
+    @OneToMany(mappedBy = "paymentType")
     private List<Pay> payList;
     private boolean isDeleted;
 }

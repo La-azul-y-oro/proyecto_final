@@ -21,7 +21,7 @@ public class Vehicle {
     @Column(nullable = false)
     private String model;
 
-    private Number mileage;
+    private Integer mileage;
 
     @Column(nullable = false, unique = true)
     private String plate;

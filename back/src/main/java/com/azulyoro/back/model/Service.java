@@ -20,16 +20,26 @@ public class Service {
 
     @ManyToOne
     @JoinColumn(name = "client_id")
-    private  Client client;
+    private Client client;
 
     @ManyToOne
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
 
     @ManyToMany
+    @JoinTable(
+            name = "rel_service_spare_parts",
+            joinColumns = @JoinColumn(name = "FK_SERVICE", nullable = false),
+            inverseJoinColumns = @JoinColumn(name="FK_SPARE_PART", nullable = false)
+    )
     private List<SparePart> spareParts;
 
     @ManyToMany
+    @JoinTable(
+            name = "rel_service_employee",
+            joinColumns = @JoinColumn(name = "FK_SERVICE", nullable = false),
+            inverseJoinColumns = @JoinColumn(name="FK_EMPLOYEE", nullable = false)
+    )
     private List<Employee> employees;
 
     @ManyToOne
