@@ -32,6 +32,14 @@ public class GlobalExceptionHandler {
                 .body(exception.getMessage());
     }
 
+    @ExceptionHandler({EntityNotFoundOrInactiveException.class})
+    public ResponseEntity<String> handleEntityNotFoundOrInactiveException(EntityNotFoundOrInactiveException exception) {
+        log.error(exception.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(exception.getMessage());
+    }
+
     @ExceptionHandler({MethodArgumentNotValidException.class})
     public ResponseEntity<List<String>> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
         List<String> errors = exception

@@ -19,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BrandService implements EntityService<BrandRequestDto, BrandResponseDto> {
@@ -39,15 +40,15 @@ public class BrandService implements EntityService<BrandRequestDto, BrandRespons
 
     @Override
     public BrandResponseDto update(Long id, BrandRequestDto dto) {
-        if(brandRepository.existsById(id)) {
+        if (brandRepository.existsById(id)) {
             Brand brand = brandMapper.dtoToEntity(dto);
             brand.setId(id);
 
             Brand brandUpdated = brandRepository.save(brand);
 
             return brandMapper.entityToDto(brandUpdated);
-        } else{
-           throw new EntityNotFoundException(MessageUtil.entityNotFound(id));
+        } else {
+            throw new EntityNotFoundException(MessageUtil.entityNotFound(id));
         }
     }
 
@@ -55,7 +56,7 @@ public class BrandService implements EntityService<BrandRequestDto, BrandRespons
     public BrandResponseDto getById(Long id) {
         Brand brand = brandRepository
                 .findById(id)
-                .orElseThrow(()-> new EntityNotFoundException(MessageUtil.entityNotFound(id)));
+                .orElseThrow(() -> new EntityNotFoundException(MessageUtil.entityNotFound(id)));
 
         return brandMapper.entityToDto(brand);
     }
@@ -81,10 +82,16 @@ public class BrandService implements EntityService<BrandRequestDto, BrandRespons
     @Override
     @Transactional
     public void delete(Long id) {
-        try{
+        try {
             brandRepository.softDelete(id);
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new CannotDeleteEntityException(MessageUtil.entityCannotDelete(id, e.getMessage()));
         }
+    }
+
+    public Optional<Brand> getBrandEntity(Long id) {
+        Optional<Brand> brand = brandRepository.findById(id);
+
+        return brand;
     }
 }
