@@ -9,6 +9,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.List;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -31,11 +33,19 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler({MethodArgumentNotValidException.class})
-    public ResponseEntity<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
-        log.error(exception.getMessage());
+    public ResponseEntity<List<String>> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
+        List<String> errors = exception
+                .getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .map(e -> String.format("%s : %s", e.getField(), e.getDefaultMessage()))
+                .toList();
+
+        errors.forEach(log::error);
+
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(exception.getMessage());
+                .body(errors);
     }
 
 }
