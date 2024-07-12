@@ -1,7 +1,10 @@
 package com.azulyoro.back.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -9,6 +12,9 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "type_service")
 public class ServiceType {
 
@@ -20,4 +26,5 @@ public class ServiceType {
     private String description;
     @OneToMany(mappedBy = "serviceType")
     private List<Service> services;
+    private boolean isDeleted;
 }
