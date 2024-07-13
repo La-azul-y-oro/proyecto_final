@@ -2,8 +2,7 @@ package com.azulyoro.back.model;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,6 +10,9 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Pay {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,4 +24,5 @@ public class Pay {
 
     @OneToMany(mappedBy = "pay")
     private List<Services> services;
+    private boolean isDeleted;
 }

@@ -40,7 +40,8 @@ public class BrandService implements EntityService<BrandRequestDto, BrandRespons
 
     @Override
     public BrandResponseDto update(Long id, BrandRequestDto dto) {
-        if (brandRepository.existsById(id)) {
+
+        if(brandRepository.existsById(id)) {
             Brand brand = brandMapper.dtoToEntity(dto);
             brand.setId(id);
 
