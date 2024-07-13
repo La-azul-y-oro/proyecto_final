@@ -56,4 +56,12 @@ public class GlobalExceptionHandler {
                 .body(errors);
     }
 
+    @ExceptionHandler({CannotDeleteActiveServicesException.class})
+    public ResponseEntity<String> handleCannotDeleteActiveServicesException(CannotDeleteActiveServicesException exception) {
+        log.error(exception.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(exception.getMessage());
+    }
+
 }
