@@ -1,13 +1,5 @@
-<div class="container my-4">
-  <div class="my-3">
-    <p-card header="Proyecto Final">
-      <p class="m-0">
-          Estos componentes fueron agregados para validar la correcta importación de las librerias
-      </p>
-    </p-card>
-  </div>
-  <div class="card flex justify-content-center">
-    <p-toast [life]="3500"/>
-    <p-button pRipple (click)="showToast()" label="Show" />
-</div>
+<app-header (toggleSidebar)="toggleSidebar()"></app-header>
+<app-sidebar [visible]="isSidebarVisible" (hide)="toggleSidebar()"></app-sidebar>
+<div>
+  <router-outlet></router-outlet>
 </div>
