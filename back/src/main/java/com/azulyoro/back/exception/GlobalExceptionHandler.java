@@ -1,8 +1,10 @@
 package com.azulyoro.back.exception;
 
+import com.azulyoro.back.util.MessageUtil;
 import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -46,7 +48,7 @@ public class GlobalExceptionHandler {
                 .getBindingResult()
                 .getFieldErrors()
                 .stream()
-                .map(e -> String.format("%s : %s", e.getField(), e.getDefaultMessage()))
+                .map(e -> String.format("%s: %s", e.getField(), e.getDefaultMessage()))
                 .toList();
 
         errors.forEach(log::error);
@@ -60,8 +62,15 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleCannotDeleteActiveServicesException(CannotDeleteActiveServicesException exception) {
         log.error(exception.getMessage());
         return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .status(HttpStatus.CONFLICT)
                 .body(exception.getMessage());
     }
 
+    @ExceptionHandler({DataIntegrityViolationException.class})
+    public ResponseEntity<String> handleDataIntegrityViolationException(DataIntegrityViolationException exception) {
+        log.error(exception.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(MessageUtil.databaseError());
+    }
 }

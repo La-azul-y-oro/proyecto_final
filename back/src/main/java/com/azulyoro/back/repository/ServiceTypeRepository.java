@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ServiceTypeRepository extends JpaRepository<ServiceType, Long> {
-    @Query("SELECT COUNT(s) FROM Service s WHERE s.serviceType.id = :serviceTypeId AND (s.status = 'TO_DO' OR s.status = 'IN_PROGRESS')")
+    @Query("SELECT COUNT(s) FROM Services s WHERE s.serviceType.id = :serviceTypeId AND (s.status = 'TO_DO' OR s.status = 'IN_PROGRESS')")
     long countActiveServices(@Param("serviceTypeId") Long serviceTypeId);
     
     @Modifying
