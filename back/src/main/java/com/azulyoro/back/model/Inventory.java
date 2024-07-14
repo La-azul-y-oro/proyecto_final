@@ -1,14 +1,14 @@
 package com.azulyoro.back.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
-import java.util.List;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Inventory {
 
     @Id
@@ -24,4 +24,5 @@ public class Inventory {
     private Double salePrice;
     @ManyToOne
     private SparePart sparePart;
+    private boolean isDeleted;
 }

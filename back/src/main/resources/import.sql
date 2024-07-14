@@ -105,23 +105,23 @@ INSERT INTO spare_part (name, brand_id, made_in, is_deleted) VALUES ('Discos de 
 INSERT INTO spare_part (name, brand_id, made_in, is_deleted) VALUES ('Pastillas de Freno', 20, 'USA', false); -- TRW Automotive
 INSERT INTO spare_part (name, brand_id, made_in, is_deleted) VALUES ('Rodamiento', 21, 'Suecia', false); -- SKF
 
-INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id) values (3, 1, 12000.00, 23990.00, 1);
-INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id) values (7, 2, 13540.45, 23990.00, 1);
-INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id) values (10, 3, 15004.39, 30000.00, 2);
-INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id) values (4, 4, 14200.78, 30000.00, 2);
-INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id) values (5, 5, 56254, 74800, 3);
-INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id) values (6, 1, 51247.44, 74800, 3);
-INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id) values (6, 2, 194500, 248926.4, 4);
-INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id) values (4, 3, 194500, 248926.4, 4);
-INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id) values (1, 4, 16745.99, 26759, 5);
-INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id) values (2, 5, 17541.00, 26759, 5);
-INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id) values (8, 1, 315000, 348900, 6);
-INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id) values (6, 2, 203478.44, 248926.4, 7);
-INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id) values (3, 3, 200478.44, 248926.4, 7);
-INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id) values (6, 4, 41050.78, 63857.00, 8);
-INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id) values (3, 5, 16742.13, 24708, 9);
-INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id) values (6, 1, 13542.24, 24708, 9);
-INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id) values (3, 2, 7456.65, 13300, 10);
+INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id, is_deleted) values (3, 1, 12000.00, 23990.00, 1, false);
+INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id, is_deleted) values (7, 2, 13540.45, 23990.00, 1, false);
+INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id, is_deleted) values (10, 3, 15004.39, 30000.00, 2, false);
+INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id, is_deleted) values (4, 4, 14200.78, 30000.00, 2, false);
+INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id, is_deleted) values (5, 5, 56254, 74800, 3, false);
+INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id, is_deleted) values (6, 1, 51247.44, 74800, 3, false);
+INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id, is_deleted) values (6, 2, 194500, 248926.4, 4, false);
+INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id, is_deleted) values (4, 3, 194500, 248926.4, 4, false);
+INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id, is_deleted) values (1, 4, 16745.99, 26759, 5, false);
+INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id, is_deleted) values (2, 5, 17541.00, 26759, 5, false);
+INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id, is_deleted) values (8, 1, 315000, 348900, 6, false);
+INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id, is_deleted) values (6, 2, 203478.44, 248926.4, 7, false);
+INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id, is_deleted) values (3, 3, 200478.44, 248926.4, 7, false);
+INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id, is_deleted) values (6, 4, 41050.78, 63857.00, 8, false);
+INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id, is_deleted) values (3, 5, 16742.13, 24708, 9, false);
+INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id, is_deleted) values (6, 1, 13542.24, 24708, 9, false);
+INSERT INTO inventory (amount, supplier_id, cost_price, sale_price, spare_part_id, is_deleted) values (3, 2, 7456.65, 13300, 10, false);
 
 INSERT INTO pay (date, payment_type_id) VALUES ('2024-05-04', 1);
 INSERT INTO pay (date, payment_type_id) VALUES ('2024-05-04', 2);

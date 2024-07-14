@@ -6,6 +6,7 @@ import com.azulyoro.back.dto.SupplierResponseDto;
 import com.azulyoro.back.exception.CannotDeleteEntityException;
 import com.azulyoro.back.mapper.PageMapper;
 import com.azulyoro.back.mapper.SupplierMapper;
+import com.azulyoro.back.model.Brand;
 import com.azulyoro.back.model.Supplier;
 import com.azulyoro.back.repository.SupplierRepository;
 import com.azulyoro.back.util.MessageUtil;
@@ -17,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SupplierService implements EntityService<SupplierRequestDto, SupplierResponseDto> {
@@ -84,5 +86,11 @@ public class SupplierService implements EntityService<SupplierRequestDto, Suppli
         }catch(Exception e){
             throw new CannotDeleteEntityException(MessageUtil.entityCannotDelete(id, e.getMessage()));
         }
+    }
+
+    public Optional<Supplier> getSupplierEntity(Long id) {
+        Optional<Supplier> supplier = supplierRepository.findById(id);
+
+        return supplier;
     }
 }
