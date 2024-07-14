@@ -21,6 +21,6 @@ public class ServiceType {
     private String name;
     private String description;
     @OneToMany(mappedBy = "serviceType")
-    private List<Service> services;
+    private List<Services> services;
     private boolean isDeleted;
 }

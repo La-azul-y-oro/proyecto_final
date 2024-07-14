@@ -19,5 +19,5 @@ public class Employee extends Person{
     @Column(nullable = false)
     private String password;
     @ManyToMany(mappedBy = "employees")
-    private List<Service> services;
+    private List<Services> services;
 }
