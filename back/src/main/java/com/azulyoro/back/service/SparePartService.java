@@ -1,6 +1,7 @@
 package com.azulyoro.back.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.azulyoro.back.dto.CustomPage;
 import com.azulyoro.back.dto.SparePartRequestDto;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.azulyoro.back.model.Brand;
 import com.azulyoro.back.model.SparePart;
+import com.azulyoro.back.model.Supplier;
 import com.azulyoro.back.repository.BrandRepository;
 import com.azulyoro.back.repository.SparePartRepository;
 import com.azulyoro.back.util.MessageUtil;
@@ -98,5 +100,11 @@ public class SparePartService implements EntityService<SparePartRequestDto, Spar
         }catch(Exception e){
             throw new CannotDeleteEntityException(MessageUtil.entityCannotDelete(id, e.getMessage()));
         }
+    }
+
+    public Optional<SparePart> getSparePartEntity(Long id) {
+        Optional<SparePart> sparePart = sparePartRepository.findById(id);
+
+        return sparePart;
     }
 }
