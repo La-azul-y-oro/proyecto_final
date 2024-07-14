@@ -30,7 +30,7 @@ public class SparePart {
     private Brand brand;
     private String madeIn;
     @ManyToMany(mappedBy = "spareParts")
-    private List<Service> services;
+    private List<Services> services;
     @OneToMany(mappedBy = "sparePart")
     private List<Inventory> inventory;
     @Column(nullable = false)

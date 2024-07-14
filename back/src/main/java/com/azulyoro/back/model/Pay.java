@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,5 +20,5 @@ public class Pay {
     @ManyToOne
     private PaymentType paymentType;
     @OneToMany(mappedBy = "pay")
-    private List<Service> services;
+    private List<Services> services;
 }

@@ -31,6 +31,6 @@ public class Vehicle {
     private String observations;
 
     @OneToMany(mappedBy = "vehicle")
-    private List<Service> services;
+    private List<Services> services;
     private boolean isDeleted;
 }

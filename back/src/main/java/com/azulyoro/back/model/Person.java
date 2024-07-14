@@ -1,8 +1,7 @@
 package com.azulyoro.back.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @MappedSuperclass
 @Getter
@@ -21,4 +20,5 @@ public abstract class Person {
     private Long identificationNumber;
     @Column(nullable = false, length = 50, unique = true)
     private String email;
+    private boolean isDeleted;
 }

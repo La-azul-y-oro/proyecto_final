@@ -1,8 +1,7 @@
 package com.azulyoro.back.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -14,5 +13,5 @@ public class Client extends Person{
     private String businessName;
 
     @OneToMany(mappedBy = "client")
-    private List<Service> services;
+    private List<Services> services;
 }
