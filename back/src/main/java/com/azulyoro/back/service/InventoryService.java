@@ -43,20 +43,12 @@ public class InventoryService implements EntityService <InventoryRequestDto, Inv
 
     @Override
     public InventoryResponseDto create(InventoryRequestDto inventoryDto) {
-        Optional<Supplier> supplier = supplierService.getSupplierEntity(inventoryDto.getSupplierId());
-        Optional<SparePart> sparePart = sparePartService.getSparePartEntity(inventoryDto.getSparePartId());
-
-        if (supplier.isEmpty() || supplier.get().isDeleted()) {
-            throw new EntityNotFoundOrInactiveException(MessageUtil.entityNotFoundOrInactive(inventoryDto.getSupplierId()));
-        }
-
-        if (sparePart.isEmpty() || sparePart.get().isDeleted()) {
-            throw new EntityNotFoundOrInactiveException(MessageUtil.entityNotFoundOrInactive(inventoryDto.getSparePartId()));
-        }
+        Supplier supplier = validateSupplier(inventoryDto.getSupplierId());
+        SparePart sparePart = validateSparePart(inventoryDto.getSparePartId());
 
         Inventory inventory = inventoryMapper.dtoToEntity(inventoryDto);
-        inventory.setSupplier(supplier.get());
-        inventory.setSparePart(sparePart.get());
+        inventory.setSupplier(supplier);
+        inventory.setSparePart(sparePart);
 
         inventory = inventoryRepository.save(inventory);
 
@@ -65,21 +57,13 @@ public class InventoryService implements EntityService <InventoryRequestDto, Inv
 
     @Override
     public InventoryResponseDto update(Long id, InventoryRequestDto inventoryDto) {
-        Optional<Supplier> supplier = supplierService.getSupplierEntity(inventoryDto.getSupplierId());
-        Optional<SparePart> sparePart = sparePartService.getSparePartEntity(inventoryDto.getSparePartId());
-
-        if (supplier.isEmpty() || supplier.get().isDeleted()) {
-            throw new EntityNotFoundOrInactiveException(MessageUtil.entityNotFoundOrInactive(inventoryDto.getSupplierId()));
-        }
-
-        if (sparePart.isEmpty() || sparePart.get().isDeleted()) {
-            throw new EntityNotFoundOrInactiveException(MessageUtil.entityNotFoundOrInactive(inventoryDto.getSparePartId()));
-        }
+        Supplier supplier = validateSupplier(inventoryDto.getSupplierId());
+        SparePart sparePart = validateSparePart(inventoryDto.getSparePartId());
 
         if (inventoryRepository.existsById(id)) {
             Inventory inventory = inventoryMapper.dtoToEntity(inventoryDto);
-            inventory.setSupplier(supplier.get());
-            inventory.setSparePart(sparePart.get());
+            inventory.setSupplier(supplier);
+            inventory.setSparePart(sparePart);
             inventory.setId(id);
 
             Inventory inventoryUpdated = inventoryRepository.save(inventory);
@@ -125,5 +109,21 @@ public class InventoryService implements EntityService <InventoryRequestDto, Inv
         } catch (Exception e) {
             throw new CannotDeleteEntityException(MessageUtil.entityCannotDelete(id, e.getMessage()));
         }
+    }
+
+    private Supplier validateSupplier(Long supplierId) {
+        Optional<Supplier> supplier = supplierService.getSupplierEntity(supplierId);
+        if (supplier.isEmpty() || supplier.get().isDeleted()) {
+            throw new EntityNotFoundOrInactiveException(MessageUtil.entityNotFoundOrInactive(supplierId));
+        }
+        return supplier.get();
+    }
+
+    private SparePart validateSparePart(Long sparePartId) {
+        Optional<SparePart> sparePart = sparePartService.getSparePartEntity(sparePartId);
+        if (sparePart.isEmpty() || sparePart.get().isDeleted()) {
+            throw new EntityNotFoundOrInactiveException(MessageUtil.entityNotFoundOrInactive(sparePartId));
+        }
+        return sparePart.get();
     }
 }
