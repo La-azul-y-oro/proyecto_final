@@ -1,6 +1,7 @@
 package com.azulyoro.back.dto;
 
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 @Getter
@@ -13,9 +14,9 @@ public class InventoryRequestDto {
     private Integer amount;
     @Min(value = 1, message = "{request.invalid.id_min}")
     private Long supplierId;
-    @Min(value = 0, message = "{request.invalid.price}")
+    @Positive(message = "{request.invalid.price}")
     private Double costPrice;
-    @Min(value = 0, message = "{request.invalid.price}")
+    @Positive(message = "{request.invalid.price}")
     private Double salePrice;
     @Min(value = 1, message = "{request.invalid.id_min}")
     private Long sparePartId;
