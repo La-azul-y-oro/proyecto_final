@@ -1,6 +1,17 @@
 <p-sidebar [(visible)]="visible" [style]="sidebarStyle" (onHide)="hideEmit()">
     <h3>Menú</h3>
-    <p-menu [model]="items" [style]="menubarStyle"/>
+
+    <p-menu [model]="items">
+        <ng-template pTemplate="item" let-item>
+            <ng-container>
+                <a [routerLink]="item.path" class="p-menuitem-link">
+                    <span [class]="item.icon"></span>
+                    <span class="ms-2">{{ item.label }}</span>
+                </a>
+            </ng-container>
+        </ng-template>
+    </p-menu>
+
     <div class="footer-text mt-auto">   
         <p>
             Made with 💕 by La Azul y Oro -&nbsp;{{year}} 

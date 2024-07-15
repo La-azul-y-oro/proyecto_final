@@ -3,3 +3,8 @@
   height: 65px;
   width: 100vw;
 }
+
+.main-content {
+  height: calc(100vh - 75px) !important;
+  overflow: hidden;
+}

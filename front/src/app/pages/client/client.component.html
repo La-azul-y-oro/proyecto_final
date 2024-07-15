@@ -1,0 +1,11 @@
+<app-page
+    [title]="title"
+    [labelButtonAdd]="labelButtonAdd"
+    [data]="clientList"
+    [cols]="columns"
+    (onCreate)="createClient()"
+    (onEdit)="editClient($event)"
+    (onDelete)="deleteClient($event)"
+    (onLink)="linkClient($event)"
+>
+</app-page>
