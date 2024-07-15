@@ -7,10 +7,14 @@ import org.springframework.stereotype.Service;
 
 import com.azulyoro.back.dto.AuthResponse;
 import com.azulyoro.back.dto.LoginRequest;
+import com.azulyoro.back.dto.RegisterRequest;
 import com.azulyoro.back.model.Employee;
 import com.azulyoro.back.repository.EmployeeRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class AuthService {
 
     @Autowired
@@ -34,6 +38,10 @@ public class AuthService {
                 .builder()
                 .token(token)
                 .build();
+    }
+
+    public AuthResponse register(RegisterRequest registerRequest) {
+        return AuthResponse.builder().build();
     }
 
 }
