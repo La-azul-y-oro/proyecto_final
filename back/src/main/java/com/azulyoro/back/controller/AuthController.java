@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.azulyoro.back.dto.AuthResponse;
 import com.azulyoro.back.dto.LoginRequest;
+import com.azulyoro.back.dto.RegisterRequest;
 import com.azulyoro.back.service.AuthService;
 
 @RestController
@@ -21,5 +22,10 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest) {
         return ResponseEntity.ok(service.login(loginRequest));
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest registerRequest) {
+        return ResponseEntity.ok(service.register(registerRequest));
     }
 }
