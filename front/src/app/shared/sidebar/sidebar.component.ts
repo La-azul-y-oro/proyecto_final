@@ -23,6 +23,7 @@ export class SidebarComponent {
   items: MenuItem[] = [{
     label: 'Clientes',
     icon: 'pi pi-users',
+    path: 'clientes'
   },
   {
     label: 'Pagos',

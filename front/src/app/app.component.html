@@ -1,5 +1,5 @@
 <app-header (toggleSidebar)="toggleSidebar()"></app-header>
 <app-sidebar [visible]="isSidebarVisible" (hide)="toggleSidebar()"></app-sidebar>
-<div>
+<div class="container main-content py-2">
   <router-outlet></router-outlet>
 </div>
