@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import com.azulyoro.back.dto.AuthResponse;
 import com.azulyoro.back.dto.LoginRequest;
 import com.azulyoro.back.dto.RegisterRequest;
+import com.azulyoro.back.exception.UserAlreadyRegistered;
 import com.azulyoro.back.model.Employee;
 import com.azulyoro.back.model.IdentificationType;
 import com.azulyoro.back.repository.EmployeeRepository;
+import com.azulyoro.back.util.MessageUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -49,11 +51,12 @@ public class AuthService {
 
         // si ya existe email y/o identificationNumber devolver email/DNI ya usado
         if (employeeRepository.existsByEmail(registerRequest.getEmail())) {
-            throw new IllegalArgumentException("Email already used");
+            throw new UserAlreadyRegistered(MessageUtil.emailAlreadyRegistered(registerRequest.getEmail()));
         }
 
         if (employeeRepository.existsByIdentificationNumber(registerRequest.getIdentificationNumber())) {
-            throw new IllegalArgumentException("DNI/CUIT already registered");
+            throw new UserAlreadyRegistered(
+                    MessageUtil.idNumberAlreadyRegistered(registerRequest.getIdentificationNumber()));
         }
 
         Employee employee = new Employee();
