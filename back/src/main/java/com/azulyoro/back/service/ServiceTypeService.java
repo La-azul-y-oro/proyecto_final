@@ -20,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ServiceTypeService implements EntityService<ServiceTypeRequestDto, ServiceTypeResponseDto> {
@@ -92,5 +93,9 @@ public class ServiceTypeService implements EntityService<ServiceTypeRequestDto, 
         } catch (Exception e) {
             throw new CannotDeleteEntityException(MessageUtil.entityCannotDelete(id, e.getMessage()));
         }
+    }
+
+    public Optional<ServiceType> findById(Long id) {
+        return serviceTypeRepository.findById(id);
     }
 }

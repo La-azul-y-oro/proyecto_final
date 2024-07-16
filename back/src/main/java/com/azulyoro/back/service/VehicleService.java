@@ -6,9 +6,12 @@ import java.util.Optional;
 import com.azulyoro.back.dto.CustomPage;
 import com.azulyoro.back.dto.VehicleRequestDto;
 import com.azulyoro.back.dto.VehicleResponseDto;
+import com.azulyoro.back.dto.response.ServicesForVehicleDto;
 import com.azulyoro.back.exception.CannotDeleteEntityException;
 import com.azulyoro.back.exception.EntityNotFoundOrInactiveException;
+import com.azulyoro.back.mapper.ClientMapper;
 import com.azulyoro.back.mapper.PageMapper;
+import com.azulyoro.back.mapper.ServicesMapper;
 import com.azulyoro.back.mapper.VehicleMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +35,10 @@ public class VehicleService implements EntityService<VehicleRequestDto, VehicleR
 
     @Autowired
     private VehicleMapper vehicleMapper;
-
+    @Autowired
+    private ServicesMapper servicesMapper;
+    @Autowired
+    private ClientMapper clientMapper;
     @Autowired
     private PageMapper pageMapper;
 
@@ -51,9 +57,7 @@ public class VehicleService implements EntityService<VehicleRequestDto, VehicleR
         Vehicle vehicle = vehicleMapper.dtoToEntity(vehicleDto);
         vehicle.setBrand(brand.get());
 
-        vehicle = vehicleRepository.save(vehicle);
-
-        return vehicleMapper.entityToDto(vehicle);
+        return setServicesAndGetResponseDto(vehicleRepository.save(vehicle));
     }
 
     @Override
@@ -70,9 +74,7 @@ public class VehicleService implements EntityService<VehicleRequestDto, VehicleR
             vehicle.setBrand(brand.get());
             vehicle.setId(id);
 
-            Vehicle vehicleUpdated = vehicleRepository.save(vehicle);
-
-            return vehicleMapper.entityToDto(vehicleUpdated);
+            return setServicesAndGetResponseDto(vehicleRepository.save(vehicle));
         } else {
             throw new EntityNotFoundException(MessageUtil.entityNotFound(id));
         }
@@ -84,7 +86,7 @@ public class VehicleService implements EntityService<VehicleRequestDto, VehicleR
                 .findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(MessageUtil.entityNotFound(id)));
 
-        return vehicleMapper.entityToDto(vehicle);
+        return setServicesAndGetResponseDto(vehicle);
     }
 
     @Override
@@ -92,7 +94,7 @@ public class VehicleService implements EntityService<VehicleRequestDto, VehicleR
         return vehicleRepository
                 .findAll()
                 .stream()
-                .map(vehicleMapper::entityToDto)
+                .map(this::setServicesAndGetResponseDto)
                 .toList();
     }
 
@@ -100,7 +102,7 @@ public class VehicleService implements EntityService<VehicleRequestDto, VehicleR
     public CustomPage<VehicleResponseDto> getByPage(Pageable pageable) {
         Page<VehicleResponseDto> page = vehicleRepository
                 .findAll(pageable)
-                .map(vehicleMapper::entityToDto);
+                .map(this::setServicesAndGetResponseDto);
 
         return pageMapper.pageToCustomPage(page);
     }
@@ -115,4 +117,24 @@ public class VehicleService implements EntityService<VehicleRequestDto, VehicleR
         }
     }
 
+    public Optional<Vehicle> findById(Long id) {
+        return vehicleRepository.findById(id);
+    }
+
+    private VehicleResponseDto setServicesAndGetResponseDto(Vehicle vehicle){
+        var response = vehicleMapper.entityToDto(vehicle);
+        response.setServices(getServicesForVehicle(vehicle));
+        return response;
+    }
+
+    private List<ServicesForVehicleDto> getServicesForVehicle(Vehicle vehicle) {
+        return vehicle.getServices()
+                .stream()
+                .map( e -> {
+                    ServicesForVehicleDto service = servicesMapper.entityToServiceForVehicleDto(e);
+                    service.setClient(clientMapper.entityToBasicDto(e.getClient()));
+                    return service;
+                })
+                .toList();
+    }
 }
