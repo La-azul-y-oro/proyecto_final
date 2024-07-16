@@ -102,9 +102,7 @@ public class SparePartService implements EntityService<SparePartRequestDto, Spar
         }
     }
 
-    public Optional<SparePart> getSparePartEntity(Long id) {
-        Optional<SparePart> sparePart = sparePartRepository.findById(id);
-
-        return sparePart;
+    public Optional<SparePart> findById(Long id) {
+        return sparePartRepository.findById(id);
     }
 }

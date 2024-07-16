@@ -20,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClientService implements EntityService<ClientRequestDto, ClientResponseDto> {
@@ -103,4 +104,7 @@ public class ClientService implements EntityService<ClientRequestDto, ClientResp
         if(hasRelatedIncomplete) throw new CannotDeleteActiveServicesException(MessageUtil.entityRelatedCannotDelete(id));
     }
 
+    public Optional<Client> findById(Long id) {
+        return clientRepository.findById(id);
+    }
 }

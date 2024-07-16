@@ -1,21 +1,18 @@
 package com.azulyoro.back.mapper;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.azulyoro.back.dto.VehicleRequestDto;
 import com.azulyoro.back.dto.VehicleResponseDto;
+import com.azulyoro.back.dto.response.VehicleBasicResponseDto;
 import com.azulyoro.back.model.Vehicle;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class VehicleMapper implements Mapper<Vehicle, VehicleRequestDto, VehicleResponseDto> {
-
     @Autowired
     private BrandMapper brandMapper;
-
     @Override
     public VehicleResponseDto entityToDto(Vehicle vehicle) {
-
         return VehicleResponseDto.builder()
                 .id(vehicle.getId())
                 .plate(vehicle.getPlate())
@@ -34,6 +31,16 @@ public class VehicleMapper implements Mapper<Vehicle, VehicleRequestDto, Vehicle
                 .model(vehicleRequestDto.getModel())
                 .mileage(vehicleRequestDto.getMileage())
                 .observations(vehicleRequestDto.getObservations())
+                .build();
+    }
+
+    public VehicleBasicResponseDto entityToBasicDto(Vehicle vehicle) {
+        return VehicleBasicResponseDto.builder()
+                .plate(vehicle.getPlate())
+                .brand(vehicle.getBrand().getName())
+                .model(vehicle.getModel())
+                .mileage(vehicle.getMileage())
+                .observations(vehicle.getObservations())
                 .build();
     }
 }
