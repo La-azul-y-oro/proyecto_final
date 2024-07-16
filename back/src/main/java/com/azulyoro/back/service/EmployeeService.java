@@ -2,13 +2,18 @@ package com.azulyoro.back.service;
 
 import com.azulyoro.back.dto.CustomPage;
 import com.azulyoro.back.model.Employee;
+import com.azulyoro.back.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeService implements EntityService<Employee, Employee>{
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     @Override
     public Employee create(Employee employee) {
@@ -37,4 +42,8 @@ public class EmployeeService implements EntityService<Employee, Employee>{
 
     @Override
     public void delete(Long id) {}
+
+    public Optional<Employee> findById(Long id) {
+        return employeeRepository.findById(id);
+    }
 }

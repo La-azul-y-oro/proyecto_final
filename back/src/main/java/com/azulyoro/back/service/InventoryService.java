@@ -120,7 +120,7 @@ public class InventoryService implements EntityService <InventoryRequestDto, Inv
     }
 
     private SparePart validateSparePart(Long sparePartId) {
-        Optional<SparePart> sparePart = sparePartService.getSparePartEntity(sparePartId);
+        Optional<SparePart> sparePart = sparePartService.findById(sparePartId);
         if (sparePart.isEmpty() || sparePart.get().isDeleted()) {
             throw new EntityNotFoundOrInactiveException(MessageUtil.entityNotFoundOrInactive(sparePartId));
         }

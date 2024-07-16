@@ -1,12 +1,20 @@
 package com.azulyoro.back.mapper;
 
 import com.azulyoro.back.dto.request.ClientRequestDto;
+import com.azulyoro.back.dto.response.ClientBasicResponseDto;
 import com.azulyoro.back.dto.response.ClientResponseDto;
+import com.azulyoro.back.dto.response.ServicesBasicResponseDto;
 import com.azulyoro.back.model.Client;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class ClientMapper implements Mapper<Client, ClientRequestDto, ClientResponseDto>{
+
+    @Autowired
+    private ServicesMapper servicesMapper;
 
     @Override
     public ClientResponseDto entityToDto(Client client) {
@@ -18,7 +26,7 @@ public class ClientMapper implements Mapper<Client, ClientRequestDto, ClientResp
         clientDto.setIdentificationNumber(client.getIdentificationNumber());
         clientDto.setEmail(client.getEmail());
         clientDto.setBusinessName(client.getBusinessName());
-        //TODO ajustar agregando servicesDTO cuando el mismo esta realizado
+        clientDto.setServices(getServicesBasicDto(client));
         return clientDto;
     }
 
@@ -32,5 +40,24 @@ public class ClientMapper implements Mapper<Client, ClientRequestDto, ClientResp
         client.setEmail(requestDto.getEmail());
         client.setBusinessName(requestDto.getBusinessName());
         return client;
+    }
+    private List<ServicesBasicResponseDto> getServicesBasicDto(Client client) {
+        return client.getServices()
+                .stream()
+                .map(servicesMapper::entityToBasicDto)
+                .toList();
+    }
+
+    public ClientBasicResponseDto entityToBasicDto(Client client) {
+        ClientBasicResponseDto clientDto = new ClientBasicResponseDto();
+        clientDto.setId(client.getId());
+        clientDto.setName(client.getName());
+        clientDto.setLastName(client.getLastName());
+        clientDto.setCategory(client.getCategory());
+        clientDto.setIdentificationNumber(client.getIdentificationNumber());
+        clientDto.setEmail(client.getEmail());
+        clientDto.setBusinessName(client.getBusinessName());
+
+        return clientDto;
     }
 }

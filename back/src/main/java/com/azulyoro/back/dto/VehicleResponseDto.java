@@ -1,5 +1,6 @@
 package com.azulyoro.back.dto;
 
+import com.azulyoro.back.dto.response.ServicesForVehicleDto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AllArgsConstructor;
@@ -7,6 +8,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,4 +25,5 @@ public class VehicleResponseDto {
     private Integer mileage;
     private String observations;
     private boolean isDeleted;
+    private List<ServicesForVehicleDto> services;
 }
