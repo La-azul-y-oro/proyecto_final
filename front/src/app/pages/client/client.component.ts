@@ -1,21 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
 import { ClientService } from '../../services/client.service';
 import { ClientResponse } from '../../interfaces/client';
 import { PageComponent } from '../../components/page/page.component';
 import { Column } from '../../interfaces/table.interface';
+import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
+import { ToastComponent } from '../../components/toast/toast.component';
 
 @Component({
   selector: 'app-client',
   standalone: true,
-  imports: [ButtonModule, TableModule, PageComponent],
+  imports: [
+    ButtonModule,
+    ConfirmDialogModule,
+    ConfirmDialogComponent,
+    ToastComponent,
+    PageComponent,
+    TableModule,
+    ToastModule],
   templateUrl: './client.component.html',
   styleUrl: './client.component.css'
 })
 export class ClientComponent {
+  @ViewChild('dialog') dialog!: ConfirmDialogComponent;
+  @ViewChild('toast') toast!: ToastComponent;
+
   title : string = "Clientes";
   labelButtonAdd : string = "Agregar cliente";
+  status! : boolean;
 
   clientList : ClientResponse[] = [];
 
@@ -62,7 +77,7 @@ export class ClientComponent {
 
   loadClients(){
     this.clientService.getAll().subscribe(response => {
-      this.clientList = response;
+      this.clientList = response.filter(e => !e.deleted);
     });
   }
 
@@ -74,8 +89,21 @@ export class ClientComponent {
     alert("TODO editar sin implementar");
   }
 
-  deleteClient(client : any){
-    alert("TODO borrar sin implementar");
+  openConfirmDialog(client : any){
+    this.dialog.openDialog(client.id);
+  }
+  
+  deleteClient(id : any){
+    this.clientService.deleteById(id).subscribe({
+      next: () => {
+        this.toast.showSuccessDelete();
+        this.clientList = this.clientList.filter(item => item.id !== id);
+      },
+      error: (error) => {
+        this.toast.showErrorDelete();
+        console.error(error);
+      }
+    }) 
   }
 
   linkClient(client : any){

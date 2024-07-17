@@ -27,6 +27,8 @@ public class ClientMapper implements Mapper<Client, ClientRequestDto, ClientResp
         clientDto.setEmail(client.getEmail());
         clientDto.setBusinessName(client.getBusinessName());
         clientDto.setServices(getServicesBasicDto(client));
+        clientDto.setDeleted(client.isDeleted());
+
         return clientDto;
     }
 
@@ -57,6 +59,7 @@ public class ClientMapper implements Mapper<Client, ClientRequestDto, ClientResp
         clientDto.setIdentificationNumber(client.getIdentificationNumber());
         clientDto.setEmail(client.getEmail());
         clientDto.setBusinessName(client.getBusinessName());
+        clientDto.setDeleted(client.isDeleted());
 
         return clientDto;
     }
