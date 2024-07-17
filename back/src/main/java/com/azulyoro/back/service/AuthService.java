@@ -1,5 +1,7 @@
 package com.azulyoro.back.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,6 +12,8 @@ import com.azulyoro.back.dto.AuthResponse;
 import com.azulyoro.back.dto.LoginRequest;
 import com.azulyoro.back.dto.RegisterRequest;
 import com.azulyoro.back.exception.UserAlreadyRegistered;
+import com.azulyoro.back.exception.UserInactive;
+import com.azulyoro.back.exception.UserNotFound;
 import com.azulyoro.back.model.Employee;
 import com.azulyoro.back.model.IdentificationType;
 import com.azulyoro.back.repository.EmployeeRepository;
@@ -37,7 +41,17 @@ public class AuthService {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
-        Employee employee = employeeRepository.findByEmail(loginRequest.getEmail()).orElseThrow();
+        Optional<Employee> employeeOptional = employeeRepository.findByEmail(loginRequest.getEmail());
+
+        if (employeeOptional.isEmpty()) {
+            throw new UserNotFound(MessageUtil.userNotFound(loginRequest.getEmail()));
+        }
+
+        if (employeeOptional.get().isDeleted()) {
+            throw new UserInactive(MessageUtil.userInactive(loginRequest.getEmail()));
+        }
+
+        Employee employee = employeeOptional.get();
 
         String token = jwtService.getToken(employee);
 
@@ -49,7 +63,6 @@ public class AuthService {
 
     public AuthResponse register(RegisterRequest registerRequest) {
 
-        // si ya existe email y/o identificationNumber devolver email/DNI ya usado
         if (employeeRepository.existsByEmail(registerRequest.getEmail())) {
             throw new UserAlreadyRegistered(MessageUtil.emailAlreadyRegistered(registerRequest.getEmail()));
         }
@@ -69,6 +82,7 @@ public class AuthService {
         employee.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         employee.setRole(registerRequest.getRole());
         employee.setAddress(registerRequest.getAddress());
+        employee.setDeleted(false);
 
         employeeRepository.save(employee);
 
