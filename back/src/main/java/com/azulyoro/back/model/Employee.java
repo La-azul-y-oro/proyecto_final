@@ -24,7 +24,7 @@ public class Employee extends Person implements UserDetails {
     @Column(nullable = false)
     private String password;
     @ManyToMany(mappedBy = "employees")
-    private List<Service> services;
+    private List<Services> services;
     private boolean isDeleted;
 
     @Override
