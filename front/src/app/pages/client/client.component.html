@@ -5,7 +5,8 @@
     [cols]="columns"
     (onCreate)="createClient()"
     (onEdit)="editClient($event)"
-    (onDelete)="deleteClient($event)"
+    (onDelete)="openConfirmDialog($event)"
     (onLink)="linkClient($event)"
->
-</app-page>
+/>
+<app-toast #toast />
+<app-confirm-dialog #dialog (onConfirm)="deleteClient($event)" />
