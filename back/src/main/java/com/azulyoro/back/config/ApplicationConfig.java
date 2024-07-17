@@ -45,6 +45,6 @@ public class ApplicationConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return email -> employeeRepository.findByEmail(email)
-                .orElseThrow(() -> new EntityNotFoundException(MessageUtil.emailNotFound(email)));
+                .orElseThrow(() -> new EntityNotFoundException(MessageUtil.userNotFound(email)));
     }
 }
