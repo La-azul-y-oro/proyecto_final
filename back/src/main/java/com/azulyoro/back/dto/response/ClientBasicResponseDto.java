@@ -16,4 +16,5 @@ public class ClientBasicResponseDto {
     private Long identificationNumber;
     private String email;
     private String businessName;
+    private boolean isDeleted;
 }

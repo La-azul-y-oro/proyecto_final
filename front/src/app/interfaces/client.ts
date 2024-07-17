@@ -15,6 +15,7 @@ export interface ClientResponse{
     identificationNumber: number;
     email: string;
     businessName?: string;
+    deleted?: boolean;
     //TODO agregar servicios vinculados, cuando esten disponibles
 }
 
