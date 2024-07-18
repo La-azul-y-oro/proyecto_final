@@ -5,7 +5,9 @@
     [cols]="columns"
     (onCreate)="createVehicle()"
     (onEdit)="editVehicle($event)"
-    (onDelete)="deleteVehicle($event)"
+    (onDelete)="openConfirmDialog($event)"
     (onLink)="linkVehicle($event)"
 >
 </app-page>
+<app-toast #toast />
+<app-confirm-dialog #dialog (onConfirm)="deleteVehicle($event)" />

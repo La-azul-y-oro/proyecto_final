@@ -1,21 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { PageComponent } from '../../components/page/page.component';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { VehicleResponse } from '../../interfaces/vehicle';
 import { Column } from '../../interfaces/table.interface';
 import { VehicleService } from '../../services/vehicle.service';
+import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
+import { ToastComponent } from '../../components/toast/toast.component';
 
 @Component({
   selector: 'app-vehicle',
   standalone: true,
-  imports: [ButtonModule, TableModule, PageComponent],
+  imports: [ButtonModule, TableModule, PageComponent, ConfirmDialogComponent, ToastComponent],
   templateUrl: './vehicle.component.html',
   styleUrl: './vehicle.component.css'
 })
 export class VehicleComponent {
+  @ViewChild('dialog') dialog!: ConfirmDialogComponent;
+  @ViewChild('toast') toast!: ToastComponent;
+  
   title : string = "Vehículos";
   labelButtonAdd : string = "Agregar vehículo";
+  status! : boolean;
 
   vehicleList : VehicleResponse[] = [];
 
@@ -58,7 +64,7 @@ export class VehicleComponent {
 
   loadVehicles(){
     this.vehicleService.getAll().subscribe(response => {
-      this.vehicleList = response;
+      this.vehicleList = response.filter(e => !e.deleted);
     });
   }
 
@@ -70,8 +76,21 @@ export class VehicleComponent {
     alert("TODO editar sin implementar");
   }
 
-  deleteVehicle(vehicle : any){
-    alert("TODO borrar sin implementar");
+  openConfirmDialog(vehicle : any){
+    this.dialog.openDialog(vehicle.id);
+  }
+
+  deleteVehicle(id : any){
+    this.vehicleService.deleteById(id).subscribe({
+      next: () => {
+        this.toast.showSuccessDelete();
+        this.vehicleList = this.vehicleList.filter(item => item.id !== id);
+      },
+      error: (error) => {
+        this.toast.showErrorDelete();
+        console.error(error);
+      }
+    })
   }
 
   linkVehicle(vehicle : any){
