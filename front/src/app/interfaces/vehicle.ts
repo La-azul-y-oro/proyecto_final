@@ -12,6 +12,6 @@ export interface VehicleResponse{
     model: string;
     mileage: number;
     observations: string;
-    isDeleted: boolean;
+    deleted: boolean;
     // TODO brandDto: BrandResponse
 }
