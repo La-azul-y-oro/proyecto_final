@@ -36,6 +36,7 @@ export class SidebarComponent {
   {
     label: 'Vehiculos',
     icon: 'pi pi-car',
+    path: 'vehicles'
   },
   {
     label: 'Inventario',

@@ -1,0 +1,11 @@
+<app-page
+    [title]="title"
+    [labelButtonAdd]="labelButtonAdd"
+    [data]="vehicleList"
+    [cols]="columns"
+    (onCreate)="createVehicle()"
+    (onEdit)="editVehicle($event)"
+    (onDelete)="deleteVehicle($event)"
+    (onLink)="linkVehicle($event)"
+>
+</app-page>
