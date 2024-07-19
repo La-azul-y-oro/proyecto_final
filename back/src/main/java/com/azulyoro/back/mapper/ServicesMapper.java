@@ -10,7 +10,9 @@ import com.azulyoro.back.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class ServicesMapper implements Mapper<Services, ServicesRequestDto, ServicesResponseDto> {
@@ -77,14 +79,16 @@ public class ServicesMapper implements Mapper<Services, ServicesRequestDto, Serv
     }
 
     private List<SparePartResponseDto> getSparePartsDto(Services service){
-        return service.getSpareParts()
+        return Optional.ofNullable(service.getSpareParts())
+                .orElse(Collections.emptyList())
                 .stream()
                 .map(spartPartMapper::entityToDto)
                 .toList();
     }
 
     private List<EmployeeBasicResponseDto> getEmployeesDto(Services service){
-        return service.getEmployees()
+        return Optional.ofNullable(service.getEmployees())
+                .orElse(Collections.emptyList())
                 .stream()
                 .map(employeeMapper::entityToBasicDto)
                 .toList();

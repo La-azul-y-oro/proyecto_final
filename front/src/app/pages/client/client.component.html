@@ -3,10 +3,19 @@
     [labelButtonAdd]="labelButtonAdd"
     [data]="clientList"
     [cols]="columns"
-    (onCreate)="createClient()"
-    (onEdit)="editClient($event)"
+    (onCreate)="openForm()"
+    (onEdit)="openFormEdit($event)"
     (onDelete)="openConfirmDialog($event)"
     (onLink)="linkClient($event)"
 />
 <app-toast #toast />
-<app-confirm-dialog #dialog (onConfirm)="deleteClient($event)" />
+<app-confirm-dialog 
+    #dialog
+    (onConfirm)="deleteClient($event)"
+/>
+<app-client-form
+    #form
+    [data]="dataClient"
+    (onSave)="save($event)"
+    (onUpdate)="update($event)"
+/>

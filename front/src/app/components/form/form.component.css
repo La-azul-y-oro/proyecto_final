@@ -1,0 +1,9 @@
+input,
+p-dialog .p-element.p-inputwrapper,
+::ng-deep input.p-inputtext.p-component.p-element.p-inputnumber-input{
+    width: 100%;
+}
+
+p-dialog .p-dialog-header {
+    padding-bottom: 0rem;
+}
