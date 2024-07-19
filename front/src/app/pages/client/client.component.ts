@@ -4,17 +4,19 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ClientService } from '../../services/client.service';
-import { ClientResponse } from '../../interfaces/client';
+import { ClientRequest, ClientResponse } from '../../interfaces/client';
 import { PageComponent } from '../../components/page/page.component';
 import { Column } from '../../interfaces/table.interface';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { ToastComponent } from '../../components/toast/toast.component';
+import { ClientFormComponent } from '../../components/client-form/client-form.component';
 
 @Component({
   selector: 'app-client',
   standalone: true,
   imports: [
     ButtonModule,
+    ClientFormComponent,
     ConfirmDialogModule,
     ConfirmDialogComponent,
     ToastComponent,
@@ -27,11 +29,12 @@ import { ToastComponent } from '../../components/toast/toast.component';
 export class ClientComponent {
   @ViewChild('dialog') dialog!: ConfirmDialogComponent;
   @ViewChild('toast') toast!: ToastComponent;
+  @ViewChild('form') form!: ClientFormComponent;
 
   title : string = "Clientes";
   labelButtonAdd : string = "Agregar cliente";
   status! : boolean;
-
+  idToUpdated : number | undefined = undefined;
   clientList : ClientResponse[] = [];
 
   columns : Column []= [
@@ -67,6 +70,8 @@ export class ClientComponent {
     }
   ];
 
+  dataClient? : ClientRequest;
+
   constructor(
     private clientService : ClientService
   ){}
@@ -81,12 +86,43 @@ export class ClientComponent {
     });
   }
 
-  createClient(){
-    alert("TODO crear sin implementar");
+  openForm(){
+    this.form.showForm();
   }
 
-  editClient(client : any){
-    alert("TODO editar sin implementar");
+  save(client : ClientRequest){
+    this.clientService.create(client).subscribe({
+      next: (client) => {
+        this.toast.showSuccessCreate();
+        this.clientList.push(client);
+
+        this.form.resetAndHideForm();
+
+      },
+      error: (error) => {
+        this.toast.showErrorCreate();
+        console.error(error);
+      }
+    }) 
+  }
+
+  openFormEdit(client : any){
+    this.idToUpdated = client.id;
+    this.dataClient = { ...client };
+    this.form.showForm();
+  }
+
+  update(client : ClientRequest){
+    this.clientService.update(this.idToUpdated!, client).subscribe({
+      next: (client) => {
+        this.toast.showSuccessUpdate();
+        this.handlePostUpdate(client);
+      },
+      error: (error) => {
+        this.toast.showErrorUpdate();
+        console.error(error);
+      }
+    }) 
   }
 
   openConfirmDialog(client : any){
@@ -108,5 +144,14 @@ export class ClientComponent {
 
   linkClient(client : any){
     alert("TODO relacionadas sin implementar");
+  }
+
+  handlePostUpdate(client : ClientResponse){
+    const index = this.clientList.findIndex(item => item.id === client.id);
+    this.clientList[index] = client;
+
+    this.form.resetAndHideForm();
+    this.idToUpdated = undefined;
+    this.dataClient = undefined;
   }
 }
