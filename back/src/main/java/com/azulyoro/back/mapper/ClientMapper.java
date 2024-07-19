@@ -8,7 +8,9 @@ import com.azulyoro.back.model.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class ClientMapper implements Mapper<Client, ClientRequestDto, ClientResponseDto>{
@@ -44,7 +46,8 @@ public class ClientMapper implements Mapper<Client, ClientRequestDto, ClientResp
         return client;
     }
     private List<ServicesBasicResponseDto> getServicesBasicDto(Client client) {
-        return client.getServices()
+        return Optional.ofNullable(client.getServices())
+                .orElse(Collections.emptyList())
                 .stream()
                 .map(servicesMapper::entityToBasicDto)
                 .toList();

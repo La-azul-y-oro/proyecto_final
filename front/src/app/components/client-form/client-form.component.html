@@ -1,0 +1,9 @@
+<app-form 
+    #form
+    [titleOnCreate]="'Crear cliente'"
+    [titleOnUpdate]="'Actualizar cliente'"
+    [fields]="fields"
+    (onSave)="saveData($event)"
+    (onUpdate)="updateData($event)"
+    [data]="data"
+/>

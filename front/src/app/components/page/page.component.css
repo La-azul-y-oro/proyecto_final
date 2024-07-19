@@ -1,4 +1,8 @@
 ::ng-deep .p-datatable-header{
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-} 
+}
+
+::ng-deep p-dropdown.p-element.p-inputwrapper{
+    width: inherit;
+}
