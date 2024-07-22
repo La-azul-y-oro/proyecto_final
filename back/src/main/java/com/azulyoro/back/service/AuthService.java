@@ -8,9 +8,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.azulyoro.back.dto.AuthResponse;
-import com.azulyoro.back.dto.LoginRequest;
-import com.azulyoro.back.dto.RegisterRequest;
+import com.azulyoro.back.dto.request.LoginRequest;
+import com.azulyoro.back.dto.request.RegisterRequest;
+import com.azulyoro.back.dto.response.AuthResponse;
 import com.azulyoro.back.exception.UserAlreadyRegistered;
 import com.azulyoro.back.exception.UserInactive;
 import com.azulyoro.back.exception.UserNotFound;

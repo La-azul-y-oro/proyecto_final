@@ -1,8 +1,8 @@
 package com.azulyoro.back.mapper;
 
-import com.azulyoro.back.dto.VehicleRequestDto;
-import com.azulyoro.back.dto.VehicleResponseDto;
+import com.azulyoro.back.dto.request.VehicleRequestDto;
 import com.azulyoro.back.dto.response.VehicleBasicResponseDto;
+import com.azulyoro.back.dto.response.VehicleResponseDto;
 import com.azulyoro.back.model.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

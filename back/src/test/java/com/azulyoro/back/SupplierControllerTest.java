@@ -1,8 +1,8 @@
 package com.azulyoro.back;
 
 import com.azulyoro.back.controller.SupplierController;
-import com.azulyoro.back.dto.SupplierRequestDto;
-import com.azulyoro.back.dto.SupplierResponseDto;
+import com.azulyoro.back.dto.request.SupplierRequestDto;
+import com.azulyoro.back.dto.response.SupplierResponseDto;
 import com.azulyoro.back.model.Address;
 import com.azulyoro.back.model.Supplier;
 import com.azulyoro.back.repository.SupplierRepository;

@@ -1,8 +1,7 @@
 package com.azulyoro.back.mapper;
 
-import com.azulyoro.back.dto.BrandResponseDto;
-import com.azulyoro.back.dto.PayRequestDto;
-import com.azulyoro.back.dto.PayResponseDto;
+import com.azulyoro.back.dto.request.PayRequestDto;
+import com.azulyoro.back.dto.response.PayResponseDto;
 import com.azulyoro.back.model.Pay;
 
 import org.springframework.beans.factory.annotation.Autowired;

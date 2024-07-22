@@ -2,8 +2,8 @@ package com.azulyoro.back.mapper;
 
 import org.springframework.stereotype.Component;
 
-import com.azulyoro.back.dto.BrandRequestDto;
-import com.azulyoro.back.dto.BrandResponseDto;
+import com.azulyoro.back.dto.request.BrandRequestDto;
+import com.azulyoro.back.dto.response.BrandResponseDto;
 import com.azulyoro.back.model.Brand;
 
 @Component

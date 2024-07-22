@@ -1,9 +1,7 @@
-package com.azulyoro.back.dto;
+package com.azulyoro.back.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
-
-import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -11,9 +9,10 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class PayResponseDto {
+public class SparePartResponseDto {
     private Long id;
-    private LocalDate date;
-    private PaymentTypeResponseDto paymentTypeResponseDto;
+    private String name;
+    private BrandResponseDto brand;
+    private String madeIn;
     private boolean isDeleted;
 }

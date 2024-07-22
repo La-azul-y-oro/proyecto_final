@@ -1,4 +1,4 @@
-package com.azulyoro.back.dto;
+package com.azulyoro.back.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

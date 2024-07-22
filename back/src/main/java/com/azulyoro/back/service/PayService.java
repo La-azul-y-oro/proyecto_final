@@ -13,8 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.azulyoro.back.dto.CustomPage;
-import com.azulyoro.back.dto.PayRequestDto;
-import com.azulyoro.back.dto.PayResponseDto;
+import com.azulyoro.back.dto.request.PayRequestDto;
+import com.azulyoro.back.dto.response.PayResponseDto;
 import com.azulyoro.back.exception.CannotDeleteEntityException;
 import com.azulyoro.back.exception.EntityNotFoundOrInactiveException;
 import com.azulyoro.back.mapper.PageMapper;

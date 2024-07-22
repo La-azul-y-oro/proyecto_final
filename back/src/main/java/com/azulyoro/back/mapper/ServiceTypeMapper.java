@@ -2,8 +2,8 @@ package com.azulyoro.back.mapper;
 
 import org.springframework.stereotype.Component;
 
-import com.azulyoro.back.dto.ServiceTypeRequestDto;
-import com.azulyoro.back.dto.ServiceTypeResponseDto;
+import com.azulyoro.back.dto.request.ServiceTypeRequestDto;
+import com.azulyoro.back.dto.response.ServiceTypeResponseDto;
 import com.azulyoro.back.model.ServiceType;
 
 @Component

@@ -1,6 +1,5 @@
 package com.azulyoro.back.dto.response;
 
-import com.azulyoro.back.dto.BrandResponseDto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 

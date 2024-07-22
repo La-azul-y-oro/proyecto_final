@@ -3,8 +3,8 @@ package com.azulyoro.back.mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.azulyoro.back.dto.InventoryRequestDto;
-import com.azulyoro.back.dto.InventoryResponseDto;
+import com.azulyoro.back.dto.request.InventoryRequestDto;
+import com.azulyoro.back.dto.response.InventoryResponseDto;
 import com.azulyoro.back.model.Inventory;
 
 @Component
