@@ -1,8 +1,8 @@
 package com.azulyoro.back.service;
 
 import com.azulyoro.back.dto.CustomPage;
-import com.azulyoro.back.dto.PaymentTypeRequestDto;
-import com.azulyoro.back.dto.PaymentTypeResponseDto;
+import com.azulyoro.back.dto.request.PaymentTypeRequestDto;
+import com.azulyoro.back.dto.response.PaymentTypeResponseDto;
 import com.azulyoro.back.exception.CannotDeleteEntityException;
 import com.azulyoro.back.mapper.PageMapper;
 import com.azulyoro.back.mapper.PaymentTypeMapper;

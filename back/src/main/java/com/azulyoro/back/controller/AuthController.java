@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.azulyoro.back.dto.AuthResponse;
-import com.azulyoro.back.dto.LoginRequest;
-import com.azulyoro.back.dto.RegisterRequest;
+import com.azulyoro.back.dto.request.LoginRequest;
+import com.azulyoro.back.dto.request.RegisterRequest;
+import com.azulyoro.back.dto.response.AuthResponse;
 import com.azulyoro.back.service.AuthService;
 
 @RestController

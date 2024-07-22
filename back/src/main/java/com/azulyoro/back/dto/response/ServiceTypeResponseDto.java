@@ -1,4 +1,4 @@
-package com.azulyoro.back.dto;
+package com.azulyoro.back.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
@@ -9,10 +9,9 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SparePartResponseDto {
+public class ServiceTypeResponseDto {
     private Long id;
     private String name;
-    private BrandResponseDto brand;
-    private String madeIn;
+    private String description;
     private boolean isDeleted;
 }

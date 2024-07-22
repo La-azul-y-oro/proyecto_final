@@ -2,8 +2,8 @@ package com.azulyoro.back.mapper;
 
 import org.springframework.stereotype.Component;
 
-import com.azulyoro.back.dto.PaymentTypeRequestDto;
-import com.azulyoro.back.dto.PaymentTypeResponseDto;
+import com.azulyoro.back.dto.request.PaymentTypeRequestDto;
+import com.azulyoro.back.dto.response.PaymentTypeResponseDto;
 import com.azulyoro.back.model.PaymentType;
 
 @Component

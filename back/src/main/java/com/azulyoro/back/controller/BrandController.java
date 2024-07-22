@@ -1,8 +1,8 @@
 package com.azulyoro.back.controller;
 
 import com.azulyoro.back.dto.CustomPage;
-import com.azulyoro.back.dto.BrandRequestDto;
-import com.azulyoro.back.dto.BrandResponseDto;
+import com.azulyoro.back.dto.request.BrandRequestDto;
+import com.azulyoro.back.dto.response.BrandResponseDto;
 import com.azulyoro.back.service.EntityService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -9,8 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.azulyoro.back.dto.CustomPage;
-import com.azulyoro.back.dto.PaymentTypeRequestDto;
-import com.azulyoro.back.dto.PaymentTypeResponseDto;
+import com.azulyoro.back.dto.request.PaymentTypeRequestDto;
+import com.azulyoro.back.dto.response.PaymentTypeResponseDto;
 import com.azulyoro.back.service.EntityService;
 
 import jakarta.validation.Valid;

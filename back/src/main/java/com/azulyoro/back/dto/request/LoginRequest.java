@@ -1,4 +1,4 @@
-package com.azulyoro.back.dto;
+package com.azulyoro.back.dto.request;
 
 import com.azulyoro.back.util.RegexPatterns;
 

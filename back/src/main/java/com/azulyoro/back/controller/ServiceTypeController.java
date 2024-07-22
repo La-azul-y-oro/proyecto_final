@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.azulyoro.back.dto.CustomPage;
-import com.azulyoro.back.dto.ServiceTypeRequestDto;
-import com.azulyoro.back.dto.ServiceTypeResponseDto;
+import com.azulyoro.back.dto.request.ServiceTypeRequestDto;
+import com.azulyoro.back.dto.response.ServiceTypeResponseDto;
 import com.azulyoro.back.service.EntityService;
 
 import jakarta.validation.Valid;

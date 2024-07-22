@@ -1,6 +1,5 @@
-package com.azulyoro.back.dto;
+package com.azulyoro.back.dto.response;
 
-import com.azulyoro.back.dto.response.ServicesForVehicleDto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AllArgsConstructor;

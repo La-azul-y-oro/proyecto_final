@@ -1,4 +1,4 @@
-package com.azulyoro.back.dto;
+package com.azulyoro.back.dto.response;
 
 import com.azulyoro.back.model.Address;
 import com.fasterxml.jackson.annotation.JsonInclude;

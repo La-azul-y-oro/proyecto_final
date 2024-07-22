@@ -1,8 +1,8 @@
 package com.azulyoro.back.controller;
 
 import com.azulyoro.back.dto.CustomPage;
-import com.azulyoro.back.dto.PayRequestDto;
-import com.azulyoro.back.dto.PayResponseDto;
+import com.azulyoro.back.dto.request.PayRequestDto;
+import com.azulyoro.back.dto.response.PayResponseDto;
 import com.azulyoro.back.service.EntityService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

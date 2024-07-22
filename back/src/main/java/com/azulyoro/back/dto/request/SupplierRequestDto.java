@@ -1,9 +1,8 @@
-package com.azulyoro.back.dto;
+package com.azulyoro.back.dto.request;
 
 import com.azulyoro.back.model.Address;
 import com.azulyoro.back.util.RegexPatterns;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
 

@@ -1,8 +1,8 @@
 package com.azulyoro.back.service;
 
 import com.azulyoro.back.dto.CustomPage;
-import com.azulyoro.back.dto.InventoryRequestDto;
-import com.azulyoro.back.dto.InventoryResponseDto;
+import com.azulyoro.back.dto.request.InventoryRequestDto;
+import com.azulyoro.back.dto.response.InventoryResponseDto;
 import com.azulyoro.back.exception.CannotDeleteEntityException;
 import com.azulyoro.back.exception.EntityNotFoundOrInactiveException;
 import com.azulyoro.back.mapper.InventoryMapper;

@@ -1,4 +1,4 @@
-package com.azulyoro.back.dto;
+package com.azulyoro.back.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

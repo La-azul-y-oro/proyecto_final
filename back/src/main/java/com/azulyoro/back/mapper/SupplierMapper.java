@@ -1,7 +1,7 @@
 package com.azulyoro.back.mapper;
 
-import com.azulyoro.back.dto.SupplierRequestDto;
-import com.azulyoro.back.dto.SupplierResponseDto;
+import com.azulyoro.back.dto.request.SupplierRequestDto;
+import com.azulyoro.back.dto.response.SupplierResponseDto;
 import com.azulyoro.back.model.Supplier;
 import org.springframework.stereotype.Component;
 

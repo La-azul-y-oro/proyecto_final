@@ -1,9 +1,6 @@
 package com.azulyoro.back.dto.request;
 
-import com.azulyoro.back.model.IdentificationType;
-import com.azulyoro.back.model.Pay;
 import com.azulyoro.back.model.ServiceStatus;
-import com.azulyoro.back.util.RegexPatterns;
 import jakarta.validation.constraints.*;
 import lombok.*;
 

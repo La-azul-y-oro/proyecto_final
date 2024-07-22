@@ -1,6 +1,6 @@
-package com.azulyoro.back.dto;
+package com.azulyoro.back.dto.request;
 
-import com.azulyoro.back.model.BrandCategory;
+import com.azulyoro.back.model.PaymentCategory;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -15,9 +15,9 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BrandRequestDto {
+public class PaymentTypeRequestDto {
     @NotBlank(message = "{request.invalid.blank}")
     private String name;
     @NotNull(message = "{request.invalid.null}")
-    private BrandCategory category;
+    private PaymentCategory category;
 }
