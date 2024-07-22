@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.azulyoro.back.dto.CustomPage;
-import com.azulyoro.back.dto.SparePartRequestDto;
-import com.azulyoro.back.dto.SparePartResponseDto;
+import com.azulyoro.back.dto.request.SparePartRequestDto;
+import com.azulyoro.back.dto.response.SparePartResponseDto;
 import com.azulyoro.back.exception.CannotDeleteEntityException;
 import com.azulyoro.back.mapper.PageMapper;
 import com.azulyoro.back.mapper.SparePartMapper;
@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import com.azulyoro.back.model.Brand;
 import com.azulyoro.back.model.SparePart;
-import com.azulyoro.back.model.Supplier;
 import com.azulyoro.back.repository.BrandRepository;
 import com.azulyoro.back.repository.SparePartRepository;
 import com.azulyoro.back.util.MessageUtil;

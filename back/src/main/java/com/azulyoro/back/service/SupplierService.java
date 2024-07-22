@@ -1,12 +1,11 @@
 package com.azulyoro.back.service;
 
 import com.azulyoro.back.dto.CustomPage;
-import com.azulyoro.back.dto.SupplierRequestDto;
-import com.azulyoro.back.dto.SupplierResponseDto;
+import com.azulyoro.back.dto.request.SupplierRequestDto;
+import com.azulyoro.back.dto.response.SupplierResponseDto;
 import com.azulyoro.back.exception.CannotDeleteEntityException;
 import com.azulyoro.back.mapper.PageMapper;
 import com.azulyoro.back.mapper.SupplierMapper;
-import com.azulyoro.back.model.Brand;
 import com.azulyoro.back.model.Supplier;
 import com.azulyoro.back.repository.SupplierRepository;
 import com.azulyoro.back.util.MessageUtil;

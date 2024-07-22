@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.azulyoro.back.dto.CustomPage;
-import com.azulyoro.back.dto.VehicleRequestDto;
-import com.azulyoro.back.dto.VehicleResponseDto;
+import com.azulyoro.back.dto.request.VehicleRequestDto;
 import com.azulyoro.back.dto.response.ServicesForVehicleDto;
+import com.azulyoro.back.dto.response.VehicleResponseDto;
 import com.azulyoro.back.exception.CannotDeleteEntityException;
 import com.azulyoro.back.exception.EntityNotFoundOrInactiveException;
 import com.azulyoro.back.mapper.ClientMapper;

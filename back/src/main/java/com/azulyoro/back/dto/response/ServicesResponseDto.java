@@ -1,7 +1,5 @@
 package com.azulyoro.back.dto.response;
 
-import com.azulyoro.back.dto.ServiceTypeResponseDto;
-import com.azulyoro.back.dto.SparePartResponseDto;
 import com.azulyoro.back.model.ServiceStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;

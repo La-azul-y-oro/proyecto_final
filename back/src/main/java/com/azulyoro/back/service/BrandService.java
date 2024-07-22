@@ -1,8 +1,8 @@
 package com.azulyoro.back.service;
 
-import com.azulyoro.back.dto.BrandRequestDto;
-import com.azulyoro.back.dto.BrandResponseDto;
 import com.azulyoro.back.dto.CustomPage;
+import com.azulyoro.back.dto.request.BrandRequestDto;
+import com.azulyoro.back.dto.response.BrandResponseDto;
 import com.azulyoro.back.exception.CannotDeleteEntityException;
 import com.azulyoro.back.mapper.BrandMapper;
 import com.azulyoro.back.mapper.PageMapper;

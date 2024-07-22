@@ -3,8 +3,8 @@ package com.azulyoro.back.mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.azulyoro.back.dto.SparePartRequestDto;
-import com.azulyoro.back.dto.SparePartResponseDto;
+import com.azulyoro.back.dto.request.SparePartRequestDto;
+import com.azulyoro.back.dto.response.SparePartResponseDto;
 import com.azulyoro.back.model.SparePart;
 
 @Component

@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.azulyoro.back.dto.CustomPage;
-import com.azulyoro.back.dto.InventoryRequestDto;
-import com.azulyoro.back.dto.InventoryResponseDto;
+import com.azulyoro.back.dto.request.InventoryRequestDto;
+import com.azulyoro.back.dto.response.InventoryResponseDto;
 import com.azulyoro.back.service.EntityService;
 
 import jakarta.validation.Valid;

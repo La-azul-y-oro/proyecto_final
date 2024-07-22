@@ -1,8 +1,8 @@
 package com.azulyoro.back.service;
 
 import com.azulyoro.back.dto.CustomPage;
-import com.azulyoro.back.dto.ServiceTypeRequestDto;
-import com.azulyoro.back.dto.ServiceTypeResponseDto;
+import com.azulyoro.back.dto.request.ServiceTypeRequestDto;
+import com.azulyoro.back.dto.response.ServiceTypeResponseDto;
 import com.azulyoro.back.exception.CannotDeleteActiveServicesException;
 import com.azulyoro.back.exception.CannotDeleteEntityException;
 import com.azulyoro.back.mapper.PageMapper;
