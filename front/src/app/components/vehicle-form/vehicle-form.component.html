@@ -1,0 +1,9 @@
+<app-form 
+    #form
+    [titleOnCreate]="'Crear vehículo'"
+    [titleOnUpdate]="'Actualizar vehículo'"
+    [fields]="fields"
+    (onSave)="saveData($event)"
+    (onUpdate)="updateData($event)"
+    [data]="data"
+/>
