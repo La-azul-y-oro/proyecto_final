@@ -4,12 +4,14 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ClientService } from '../../services/client.service';
-import { ClientRequest, ClientResponse } from '../../interfaces/client';
+import { ClientRequest, ClientResponse } from '../../interfaces/model.interfaces';
 import { PageComponent } from '../../components/page/page.component';
-import { Column } from '../../interfaces/table.interface';
+import { Column } from '../../interfaces/components.interface';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { ToastComponent } from '../../components/toast/toast.component';
 import { ClientFormComponent } from '../../components/client-form/client-form.component';
+import { TooltipModule } from 'primeng/tooltip';
+import { ActionButtonConfig } from '../../components/action-buttons/action-buttons.component';
 
 @Component({
   selector: 'app-client',
@@ -22,7 +24,8 @@ import { ClientFormComponent } from '../../components/client-form/client-form.co
     ToastComponent,
     PageComponent,
     TableModule,
-    ToastModule],
+    ToastModule,
+    TooltipModule],
   templateUrl: './client.component.html',
   styleUrl: './client.component.css'
 })
@@ -34,7 +37,7 @@ export class ClientComponent {
   title : string = "Clientes";
   labelButtonAdd : string = "Agregar cliente";
   status! : boolean;
-  idToUpdated : number | undefined = undefined;
+  idToUpdated? : number;
   clientList : ClientResponse[] = [];
 
   columns : Column []= [
@@ -67,6 +70,27 @@ export class ClientComponent {
       header: "E-mail",
       field: "email",
       sortable: true
+    }
+  ];
+
+  buttonConfig: ActionButtonConfig[] = [
+    { 
+      icon: 'pi pi-link', 
+      tooltip: 'Ver elementos relacionados', 
+      severity: 'info', 
+      action: (data: any) => this.linkClient(data) 
+    },
+    { 
+      icon: 'pi pi-pencil', 
+      tooltip: 'Editar registro', 
+      severity: 'success', 
+      action: (data: any) => this.openFormEdit(data) 
+    },
+    { 
+      icon: 'pi pi-trash', 
+      tooltip: 'Borrar registro', 
+      severity: 'danger', 
+      action: (data: any) => this.openConfirmDialog(data)
     }
   ];
 

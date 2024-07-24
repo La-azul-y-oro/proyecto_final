@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { VehicleRequest, VehicleResponse } from '../interfaces/vehicle';
-import { CustomPage, PageParams } from '../interfaces/page';
+import { VehicleRequest, VehicleResponse } from '../interfaces/model.interfaces';
+import { CustomPage, PageParams } from '../interfaces/components.interface';
 import { GenericService } from './generic-service.class';
 
 @Injectable({

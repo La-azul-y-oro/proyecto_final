@@ -2,11 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { PageComponent } from '../../components/page/page.component';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import { VehicleResponse } from '../../interfaces/vehicle';
-import { Column } from '../../interfaces/table.interface';
+import { VehicleResponse } from '../../interfaces/model.interfaces';
+import { Column } from '../../interfaces/components.interface';
 import { VehicleService } from '../../services/vehicle.service';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { ToastComponent } from '../../components/toast/toast.component';
+import { ActionButtonConfig } from '../../components/action-buttons/action-buttons.component';
 
 @Component({
   selector: 'app-vehicle',
@@ -33,9 +34,8 @@ export class VehicleComponent {
     },
     {
       header: "Marca",
-      field: "brandDto",
+      field: "brand.name",
       sortable: true
-      // TODO brandDto: BrandResponse
     },
     {
       header: "Modelo",
@@ -51,6 +51,27 @@ export class VehicleComponent {
       header: "Observaciones",
       field: "observations",
       sortable: true
+    }
+  ];
+
+  buttonConfig: ActionButtonConfig[] = [
+    { 
+      icon: 'pi pi-link', 
+      tooltip: 'Ver elementos relacionados', 
+      severity: 'info', 
+      action: (data: any) => this.linkVehicle(data) 
+    },
+    { 
+      icon: 'pi pi-pencil', 
+      tooltip: 'Editar registro', 
+      severity: 'success', 
+      action: (data: any) => this.editVehicle(data) 
+    },
+    { 
+      icon: 'pi pi-trash', 
+      tooltip: 'Borrar registro', 
+      severity: 'danger', 
+      action: (data: any) => this.openConfirmDialog(data)
     }
   ];
 

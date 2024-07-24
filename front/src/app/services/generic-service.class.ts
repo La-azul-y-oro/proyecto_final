@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CustomPage, PageParams } from '../interfaces/page';
+import { CustomPage, PageParams } from '../interfaces/components.interface';
 import { environment } from '../../enviroments/enviroments';
 
 /**

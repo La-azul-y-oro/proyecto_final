@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { Table, TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
@@ -6,12 +6,14 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { CommonModule } from '@angular/common';
-import { Column } from '../../interfaces/table.interface';
+import { Column } from '../../interfaces/components.interface';
+import { ActionButtonsComponent, ActionButtonConfig } from '../action-buttons/action-buttons.component';
 
 @Component({
   selector: 'app-page',
   standalone: true,
   imports: [
+    ActionButtonsComponent,
     CommonModule,
     ButtonModule,
     IconFieldModule, 
@@ -29,12 +31,10 @@ export class PageComponent {
   @Input() labelButtonAdd?: string = "";
   @Input() data? : any [] = [];
   @Input() cols!: Column[];
+  @Input() buttonConfig!: ActionButtonConfig[];
   
   @Output() onCreate = new EventEmitter;
-  @Output() onEdit = new EventEmitter;
-  @Output() onDelete = new EventEmitter;
-  @Output() onLink = new EventEmitter;
-  
+
   buttonStyle = {
     fontSize: '0.8rem'
   };
@@ -45,29 +45,15 @@ export class PageComponent {
     paddingBottom: '0.5rem',
   };
 
-  styleButtonAction = {
-    height: '30px',
-    width: '30px', 
-    padding: '0px',
-  };
-
   create(){
     this.onCreate.emit();
   }
 
-  link(item : any){
-    this.onLink.emit(item);
-  }
-
-  edit(item : any){
-    this.onEdit.emit(item);
-  }
-
-  remove(item : any){
-    this.onDelete.emit(item);
-  }
-
   filter(event : any){
     this.dt.filterGlobal(event.target.value, 'contains');
+  }
+
+  getNestedProperty(obj: any, path: string): any {
+    return path.split('.').reduce((o, p) => o && o[p], obj);
   }
 }

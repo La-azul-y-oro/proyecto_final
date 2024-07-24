@@ -4,9 +4,7 @@
     [data]="clientList"
     [cols]="columns"
     (onCreate)="openForm()"
-    (onEdit)="openFormEdit($event)"
-    (onDelete)="openConfirmDialog($event)"
-    (onLink)="linkClient($event)"
+    [buttonConfig]="buttonConfig"
 />
 <app-toast #toast />
 <app-confirm-dialog 
