@@ -7,7 +7,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
-import { FormField, TypeField } from '../../interfaces/field';
+import { FormField, TypeField } from '../../interfaces/components.interface';
 
 @Component({
   selector: 'app-form',

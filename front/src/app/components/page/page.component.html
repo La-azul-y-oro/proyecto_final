@@ -64,54 +64,11 @@
       <ng-template pTemplate="body" let-rowData let-columns="columns">
         <tr>
           <td *ngFor="let col of columns">
-            {{ rowData[col.field] }}
+            {{ getNestedProperty(rowData, col.field) }}
           </td>
           <td>
-            <div class="d-flex">
-              <p-button
-                icon="pi pi-link"
-                [pTooltip]="tooltipLink"
-                [rounded]="true"
-                [outlined]="true"
-                severity="info"
-                size="small"
-                [style]="styleButtonAction"
-                (onClick)="link(rowData)"
-              />
-              <ng-template #tooltipLink>
-                <span style="font-size: 13px">Ver elementos relacionados</span>
-              </ng-template>
-              <p-button
-                pRipple
-                icon="pi pi-pencil"
-                [pTooltip]="tooltipEdit"
-                class="mx-2"
-                [rounded]="true"
-                [outlined]="true"
-                severity="success"
-                size="small"
-                [style]="styleButtonAction"
-                (onClick)="edit(rowData)"
-              />
-              <ng-template #tooltipEdit>
-                <span style="font-size: 13px">Editar registro</span>
-              </ng-template>
-              <p-button
-                pRipple
-                icon="pi pi-trash"
-                severity="danger"
-                [pTooltip]="tooltipDelete"
-                [rounded]="true"
-                [outlined]="true"
-                size="small"
-                [style]="styleButtonAction"
-                (onClick)="remove(rowData)"
-              />
-              <ng-template #tooltipDelete>
-                <span style="font-size: 13px">Borrar registro</span>
-              </ng-template>
-            </div>
-          </td>
+            <app-action-buttons [buttons]="buttonConfig" [data]="rowData" />
+         </td>
         </tr>
       </ng-template>
     </p-table>

@@ -16,7 +16,7 @@ public class VehicleMapper implements Mapper<Vehicle, VehicleRequestDto, Vehicle
         return VehicleResponseDto.builder()
                 .id(vehicle.getId())
                 .plate(vehicle.getPlate())
-                .brandDto(brandMapper.entityToDto(vehicle.getBrand()))
+                .brand(brandMapper.entityToDto(vehicle.getBrand()))
                 .model(vehicle.getModel())
                 .mileage(vehicle.getMileage())
                 .observations(vehicle.getObservations())
