@@ -1,9 +1,50 @@
-<app-form 
-    #form
-    [titleOnCreate]="'Crear vehículo'"
-    [titleOnUpdate]="'Actualizar vehículo'"
-    [fields]="fields"
-    (onSave)="saveData($event)"
-    (onUpdate)="updateData($event)"
-    [data]="data"
-/>
+<p-dialog 
+  header={{title}}
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '65vw'}" 
+  focusOnShow='false' >
+    <form [formGroup]="form">
+        <div class="row pt-5">        
+          <div [ngClass]="field.classList ? field.classList : 'col-12 col-md-6 gap-1 mb-5'" *ngFor="let field of fields">
+            <p-floatLabel *ngIf="isText(field.type)">
+                <input 
+                    pInputText
+                    [id]="field.controlName"
+                    [formControlName]="field.controlName"
+                    [type]="field.type"
+                    [placeholder]="field.placeholder"
+                    [style]="{ width: '100%'}"/>
+                <label [for]="field.controlName"> {{ field.label }} </label>
+            </p-floatLabel>
+
+            <p-floatLabel *ngIf="isNumber(field.type)">
+                <p-inputNumber 
+                    [id]="field.controlName"
+                    [formControlName]="field.controlName"
+                    [useGrouping]="false"
+                    [style]="{ width: '100%'}"/> 
+                <label [for]="field.controlName"> {{ field.label }}</label>
+            </p-floatLabel>
+
+            <p-floatLabel *ngIf="isSelect(field.type)">
+                <p-dropdown 
+                    [options]="field.selectList"
+                    [showClear]="true" 
+                    [formControlName]="field.controlName"
+                    [style]="{ width: '100%'}">
+                </p-dropdown>
+                <label [for]="field.controlName">
+                  {{ field.label }}
+                </label>
+            </p-floatLabel>
+
+            <small *ngIf="hasError(field.controlName)" class="input-invalid"> {{ field.errorMessage }} </small>
+          </div>
+        </div>
+        <div class="text-end">
+            <p-button class="me-3" label="Cancelar" severity="secondary" (onClick)="visible = false" />
+            <p-button type="submit" label="Guardar" (onClick)="sendData()" />
+        </div>
+    </form>
+</p-dialog>
