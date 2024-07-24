@@ -45,10 +45,15 @@ export interface VehicleResponse{
 }
 
 //BRAND
+export interface BrandRequest{
+    name: string;
+    category: BrandCategory;
+}
+
 export interface BrandResponse{
     id: number;
     name: string;
-    categoty: string;
+    category: BrandCategory;
     deleted: boolean;
 }
 

@@ -1,5 +1,6 @@
 package com.azulyoro.back.service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -127,7 +128,10 @@ public class VehicleService implements EntityService<VehicleRequestDto, VehicleR
         return response;
     }
 
-    private List<ServicesForVehicleDto> getServicesForVehicle(Vehicle vehicle) {
+    public List<ServicesForVehicleDto> getServicesForVehicle(Vehicle vehicle) {
+        if (vehicle.getServices() == null) {
+            return Collections.emptyList();
+        }
         return vehicle.getServices()
                 .stream()
                 .map( e -> {

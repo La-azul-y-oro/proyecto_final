@@ -3,9 +3,15 @@
     [labelButtonAdd]="labelButtonAdd"
     [data]="vehicleList"
     [cols]="columns"
-    (onCreate)="createVehicle()"
+    (onCreate)="openForm()"
     [buttonConfig]="buttonConfig"
->
+> 
 </app-page>
 <app-toast #toast />
 <app-confirm-dialog #dialog (onConfirm)="deleteVehicle($event)" />
+<app-vehicle-form
+    #form
+    [data]="dataVehicle"
+    (onSave)="save($event)"
+    (onUpdate)="update($event)"
+/>

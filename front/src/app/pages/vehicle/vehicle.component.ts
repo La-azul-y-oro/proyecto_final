@@ -1,32 +1,39 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PageComponent } from '../../components/page/page.component';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import { VehicleResponse } from '../../interfaces/model.interfaces';
+import { BrandResponse, VehicleRequest, VehicleResponse } from '../../interfaces/model.interfaces';
 import { Column } from '../../interfaces/components.interface';
 import { VehicleService } from '../../services/vehicle.service';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { ToastComponent } from '../../components/toast/toast.component';
 import { ActionButtonConfig } from '../../components/action-buttons/action-buttons.component';
+import { CommonModule } from '@angular/common';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { VehicleFormComponent } from '../../components/vehicle-form/vehicle-form.component';
+import { BrandService } from '../../services/brand.service';
 
 @Component({
   selector: 'app-vehicle',
   standalone: true,
-  imports: [ButtonModule, TableModule, PageComponent, ConfirmDialogComponent, ToastComponent],
+  imports: [ButtonModule, TableModule, PageComponent, ConfirmDialogComponent, ConfirmDialogModule, ToastComponent, VehicleFormComponent, CommonModule],
   templateUrl: './vehicle.component.html',
   styleUrl: './vehicle.component.css'
 })
-export class VehicleComponent {
+export class VehicleComponent implements OnInit {
   @ViewChild('dialog') dialog!: ConfirmDialogComponent;
   @ViewChild('toast') toast!: ToastComponent;
-  
-  title : string = "Vehículos";
-  labelButtonAdd : string = "Agregar vehículo";
-  status! : boolean;
+  @ViewChild('form') form!: VehicleFormComponent;
 
-  vehicleList : VehicleResponse[] = [];
+  title: string = "Vehiculos";
+  labelButtonAdd: string = "Agregar vehiculo";
+  status!: boolean;
+  idToUpdated? : number;
+  vehicleList: VehicleResponse[] = [];
+  brandList: BrandResponse[] = [];
+  dataVehicle?: VehicleRequest;
 
-  columns : Column []= [
+  columns: Column[] = [
     {
       header: "Patente",
       field: "plate",
@@ -65,7 +72,7 @@ export class VehicleComponent {
       icon: 'pi pi-pencil', 
       tooltip: 'Editar registro', 
       severity: 'success', 
-      action: (data: any) => this.editVehicle(data) 
+      action: (data: any) => this.openFormEdit(data) 
     },
     { 
       icon: 'pi pi-trash', 
@@ -75,33 +82,74 @@ export class VehicleComponent {
     }
   ];
 
-  constructor(
-    private vehicleService : VehicleService
-  ){}
+  constructor(private vehicleService: VehicleService, private brandService: BrandService) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.loadVehicles();
+    this.loadBrands();
   }
 
-  loadVehicles(){
+  loadVehicles() {
     this.vehicleService.getAll().subscribe(response => {
       this.vehicleList = response.filter(e => !e.deleted);
     });
   }
 
-  createVehicle(){
-    alert("TODO crear sin implementar");
+  loadBrands() {
+    this.brandService.getAll().subscribe(response => {
+      this.brandList = response.filter(e => !e.deleted);
+    });
   }
 
-  editVehicle(vehicle : any){
-    alert("TODO editar sin implementar");
+  openForm() {
+    this.form.showForm();
   }
 
-  openConfirmDialog(vehicle : any){
+  save(vehicle: VehicleRequest) {
+    this.vehicleService.create(vehicle).subscribe({
+      next: (vehicle: VehicleResponse) => {
+        this.toast.showSuccessCreate();
+        this.vehicleList.push(vehicle);
+        this.form.resetAndHideForm();
+      },
+      error: (error) => {
+        this.toast.showErrorCreate();
+        console.error(error);
+      }
+    });
+  }
+
+  openFormEdit(vehicle: any) {
+    this.form.showFormEdit(vehicle);
+  }
+
+  update(event: { id: number, vehicle: VehicleRequest }) {
+    this.vehicleService.update(event.id, event.vehicle).subscribe({
+      next: (vehicle) => {
+        this.toast.showSuccessUpdate();
+        this.handlePostUpdate(vehicle);
+      },
+      error: (error) => {
+        this.toast.showErrorUpdate();
+        console.error(error);
+      }
+    }) 
+  }
+
+  handlePostUpdate(vehicle: VehicleResponse) {
+    const index = this.vehicleList.findIndex(item => item.id === vehicle.id);
+    this.vehicleList[index] = vehicle;
+
+    this.form.resetAndHideForm();
+    this.idToUpdated = undefined;
+    this.dataVehicle = undefined;
+  }
+
+  openConfirmDialog(vehicle: VehicleResponse) {
     this.dialog.openDialog(vehicle.id);
   }
 
-  deleteVehicle(id : any){
+  deleteVehicle(id: number) {
     this.vehicleService.deleteById(id).subscribe({
       next: () => {
         this.toast.showSuccessDelete();
@@ -111,11 +159,10 @@ export class VehicleComponent {
         this.toast.showErrorDelete();
         console.error(error);
       }
-    })
+    });
   }
 
-  linkVehicle(vehicle : any){
+  linkVehicle(vehicle: VehicleResponse) {
     alert("TODO relacionadas sin implementar");
-  }
+  }  
 }
-
