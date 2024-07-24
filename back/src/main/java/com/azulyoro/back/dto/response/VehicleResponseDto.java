@@ -19,7 +19,7 @@ import java.util.List;
 public class VehicleResponseDto {
     private Long id;
     private String plate;
-    private BrandResponseDto brandDto;
+    private BrandResponseDto brand;
     private String model;
     private Integer mileage;
     private String observations;

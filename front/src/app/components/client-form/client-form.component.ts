@@ -4,10 +4,10 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
-import { ClientRequest, DocumentType } from '../../interfaces/client';
-import { Form, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DocumentType } from '../../interfaces/model.interfaces';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FormField, TypeField } from '../../interfaces/field';
+import { FormField, TypeField } from '../../interfaces/components.interface';
 import { FormComponent } from '../form/form.component';
 import { emailCustomValidator, noWhitespaceValidator, nroDocumentValidator } from '../../util/customValidators';
 

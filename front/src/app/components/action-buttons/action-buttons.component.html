@@ -1,0 +1,15 @@
+<div class="d-flex">
+    <ng-container *ngFor="let button of buttons">
+      <p-button
+        pRipple
+        [icon]="button.icon"
+        [pTooltip]="button.tooltip"
+        [rounded]="true"
+        [outlined]="true"
+        [severity]="button.severity"
+        size="small"
+        [style]="actionButtons"
+        (onClick)="onClick(button.action, data)"
+      ></p-button>
+    </ng-container>
+  </div>

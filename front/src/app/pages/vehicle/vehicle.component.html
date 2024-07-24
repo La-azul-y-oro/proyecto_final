@@ -4,9 +4,7 @@
     [data]="vehicleList"
     [cols]="columns"
     (onCreate)="createVehicle()"
-    (onEdit)="editVehicle($event)"
-    (onDelete)="openConfirmDialog($event)"
-    (onLink)="linkVehicle($event)"
+    [buttonConfig]="buttonConfig"
 >
 </app-page>
 <app-toast #toast />
