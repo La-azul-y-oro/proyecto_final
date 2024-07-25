@@ -2,6 +2,7 @@ package com.azulyoro.back.service;
 
 import java.util.Optional;
 
+import com.azulyoro.back.mapper.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -36,6 +37,9 @@ public class AuthService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private EmployeeMapper employeeMapper;
 
     public AuthResponse login(LoginRequest loginRequest) {
         authenticationManager.authenticate(
@@ -72,17 +76,9 @@ public class AuthService {
                     MessageUtil.idNumberAlreadyRegistered(registerRequest.getIdentificationNumber()));
         }
 
-        Employee employee = new Employee();
+        Employee employee = employeeMapper.dtoToEntity(registerRequest);
 
-        employee.setName(registerRequest.getName());
-        employee.setLastName(registerRequest.getLastName());
-        employee.setCategory(IdentificationType.DNI);
-        employee.setIdentificationNumber(registerRequest.getIdentificationNumber());
-        employee.setEmail(registerRequest.getEmail());
         employee.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-        employee.setRole(registerRequest.getRole());
-        employee.setAddress(registerRequest.getAddress());
-        employee.setDeleted(false);
 
         employeeRepository.save(employee);
 

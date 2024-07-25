@@ -39,7 +39,7 @@ public class ServicesService implements EntityService<ServicesRequestDto, Servic
     private VehicleService vehicleService;
 
     @Autowired
-    private EmployeeService employeeService;
+    private IEmployeeService employeeService;
 
     @Autowired
     private SparePartService sparePartService;
