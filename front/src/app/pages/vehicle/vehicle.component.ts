@@ -109,8 +109,7 @@ export class VehicleComponent implements OnInit {
     this.vehicleService.create(vehicle).subscribe({
       next: (vehicle: VehicleResponse) => {
         this.toast.showSuccessCreate();
-        this.vehicleList.push(vehicle);
-        this.form.resetAndHideForm();
+        this.handlePostCreate(vehicle);
       },
       error: (error) => {
         this.toast.showErrorCreate();
@@ -143,6 +142,15 @@ export class VehicleComponent implements OnInit {
     this.form.resetAndHideForm();
     this.idToUpdated = undefined;
     this.dataVehicle = undefined;
+  }
+
+  handlePostCreate(vehicle : VehicleResponse){
+    let list = [...this.vehicleList];
+    list.push(vehicle);
+    
+    this.vehicleList = list;
+
+    this.form.resetAndHideForm();
   }
 
   openConfirmDialog(vehicle: VehicleResponse) {
