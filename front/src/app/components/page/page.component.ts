@@ -29,7 +29,7 @@ export class PageComponent {
 
   @Input() title?: string = "";
   @Input() labelButtonAdd?: string = "";
-  @Input() data? : any [] = [];
+  @Input() data : any [] = [];
   @Input() cols!: Column[];
   @Input() buttonConfig!: ActionButtonConfig[];
   
