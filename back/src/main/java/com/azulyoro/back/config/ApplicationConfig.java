@@ -1,5 +1,6 @@
 package com.azulyoro.back.config;
 
+import com.azulyoro.back.exception.UserNotFoundException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -45,6 +46,6 @@ public class ApplicationConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return email -> employeeRepository.findByEmail(email)
-                .orElseThrow(() -> new EntityNotFoundException(MessageUtil.userNotFound(email)));
+                .orElseThrow(() -> new UserNotFoundException(MessageUtil.userNotFound(email)));
     }
 }
