@@ -25,7 +25,6 @@ public class Employee extends Person implements UserDetails {
     private String password;
     @ManyToMany(mappedBy = "employees")
     private List<Services> services;
-    private boolean isDeleted;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

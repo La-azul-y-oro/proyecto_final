@@ -7,11 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -51,7 +53,7 @@ public class GlobalExceptionHandler {
                 .map(e -> String.format("%s: %s", e.getField(), e.getDefaultMessage()))
                 .toList();
 
-        errors.forEach(log::error);
+        log.error(String.join(" | ", errors));
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
@@ -72,5 +74,21 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(MessageUtil.databaseError());
+    }
+
+    @ExceptionHandler({BadCredentialsException.class, UserNotFoundException.class, UserInactiveException.class})
+    public ResponseEntity<String> handleAuthenticationExceptions(RuntimeException exception) {
+        log.error(exception.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(MessageUtil.badCredentials());
+    }
+
+    @ExceptionHandler({UserAlreadyRegistered.class})
+    public ResponseEntity<String> handleUserAlreadyRegistered(UserAlreadyRegistered exception) {
+        log.error(exception.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(exception.getMessage());
     }
 }

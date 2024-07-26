@@ -24,7 +24,13 @@ public class JwtService {
     private String SECRET_KEY;
 
     public String getToken(Employee employee) {
-        return getToken(new HashMap<>(), employee);
+        Map<String, Object> extraClaims = Map.of(
+                "name", employee.getName(),
+                "lastName", employee.getLastName(),
+                "role", employee.getRole()
+        );
+
+        return getToken(extraClaims, employee);
     }
 
     private String getToken(Map<String, Object> extraClaims, Employee employee) {

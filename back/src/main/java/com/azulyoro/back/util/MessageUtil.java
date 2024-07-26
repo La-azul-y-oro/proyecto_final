@@ -18,6 +18,7 @@ public class MessageUtil {
     private static final String IDNUMBER_ALREADY_REGISTERED_MESSAGE = "identificacion_number.already_registered";
     private static final String USER_NOT_FOUND = "user.not_found";
     private static final String USER_INACTIVE = "user.inactive";
+    private static final String BAD_CREDENTIALS = "login.bad_credentials";
 
     public static String getMessage(String key, Object... params) {
         String messageTemplate = messages.getString(key);
@@ -42,6 +43,10 @@ public class MessageUtil {
 
     public static String databaseError() {
         return getMessage(DATABASE_ERROR);
+    }
+
+    public static String badCredentials(){
+        return getMessage(BAD_CREDENTIALS);
     }
 
     public static String emailAlreadyRegistered(String email) {
