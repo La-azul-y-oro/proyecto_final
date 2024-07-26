@@ -118,10 +118,7 @@ export class ClientComponent {
     this.clientService.create(client).subscribe({
       next: (client) => {
         this.toast.showSuccessCreate();
-        this.clientList.push(client);
-
-        this.form.resetAndHideForm();
-
+        this.handlePostCreate(client);
       },
       error: (error) => {
         this.toast.showErrorCreate();
@@ -177,5 +174,14 @@ export class ClientComponent {
     this.form.resetAndHideForm();
     this.idToUpdated = undefined;
     this.dataClient = undefined;
+  }
+
+  handlePostCreate(client : ClientResponse){
+    let list = [...this.clientList];
+    list.push(client);
+    
+    this.clientList = list;
+
+    this.form.resetAndHideForm();
   }
 }

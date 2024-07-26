@@ -7,7 +7,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormField, TypeField } from '../../interfaces/components.interface';
-import { noWhitespaceValidator } from '../../util/customValidators';
+import { noWhitespaceValidator, vehiclePlateValidator } from '../../util/customValidators';
 import { FormComponent } from '../form/form.component';
 import { FormArray } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -18,7 +18,8 @@ import { BrandService } from '../../services/brand.service';
   selector: 'app-vehicle-form',
   standalone: true,
   imports: [ButtonModule, DialogModule, DropdownModule, FloatLabelModule, InputTextModule, InputNumberModule, CommonModule, ReactiveFormsModule, FormComponent],
-  templateUrl: './vehicle-form.component.html'
+  templateUrl: './vehicle-form.component.html',
+  styleUrl: './vehicle-form.component.css'
 })
 export class VehicleFormComponent implements OnInit, OnChanges {
   @ViewChild("form") vehicleForm!: FormComponent;
@@ -48,8 +49,8 @@ export class VehicleFormComponent implements OnInit, OnChanges {
         controlName: 'plate', 
         type: TypeField.TEXT, 
         placeholder: 'Ingrese la patente', 
-        errorMessage: 'Dato obligatorio. Máximo 7 caracteres.',
-        validators: [Validators.required, Validators.maxLength(7)]
+        errorMessage: 'Dato obligatorio. Formatos válidos: AAA111 / AA111BB',
+        validators: [Validators.required, vehiclePlateValidator]
       },
       {
         label: 'Marca', 
@@ -73,8 +74,8 @@ export class VehicleFormComponent implements OnInit, OnChanges {
         controlName: 'mileage', 
         type: TypeField.NUMBER, 
         placeholder: 'Ingrese el kilometraje', 
-        errorMessage: 'Dato obligatorio.',
-        validators: [Validators.required, noWhitespaceValidator]
+        errorMessage: 'Dato obligatorio. No puede ser negativo.',
+        validators: [Validators.required, Validators.min(0), Validators.max(999999)]
       },
       {
         label: 'Observaciones', 
