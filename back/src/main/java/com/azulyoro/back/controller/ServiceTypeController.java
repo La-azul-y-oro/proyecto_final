@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,32 +30,39 @@ public class ServiceTypeController {
     private EntityService<ServiceTypeRequestDto, ServiceTypeResponseDto> service;
 
     @GetMapping("/all")
-    public ResponseEntity<List<ServiceTypeResponseDto>> getAll(){
+    @PreAuthorize("hasAnyRole('ROLE_ADMINISTRATIVE', 'ROLE_MECHANIC', 'ROLE_ADMIN')")
+    public ResponseEntity<List<ServiceTypeResponseDto>> getAll() {
         return ResponseEntity.ok(service.getAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ServiceTypeResponseDto> getById(@PathVariable Long id){
+    @PreAuthorize("hasAnyRole('ROLE_ADMINISTRATIVE', 'ROLE_MECHANIC', 'ROLE_ADMIN')")
+    public ResponseEntity<ServiceTypeResponseDto> getById(@PathVariable Long id) {
         return ResponseEntity.ok(service.getById(id));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id){
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @PostMapping
-    public ResponseEntity<ServiceTypeResponseDto> create(@Valid @RequestBody ServiceTypeRequestDto dto){
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<ServiceTypeResponseDto> create(@Valid @RequestBody ServiceTypeRequestDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(dto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ServiceTypeResponseDto> update(@PathVariable Long id, @Valid @RequestBody ServiceTypeRequestDto dto){
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<ServiceTypeResponseDto> update(@PathVariable Long id,
+            @Valid @RequestBody ServiceTypeRequestDto dto) {
         return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMINISTRATIVE', 'ROLE_MECHANIC', 'ROLE_ADMIN')")
     public CustomPage<ServiceTypeResponseDto> getServiceTypes(Pageable pageable) {
         return service.getByPage(pageable);
     }
