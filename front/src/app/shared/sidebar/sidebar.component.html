@@ -4,7 +4,7 @@
     <p-menu [model]="items">
         <ng-template pTemplate="item" let-item>
             <ng-container>
-                <a [routerLink]="item.path" class="p-menuitem-link">
+                <a [routerLink]="item.path" class="p-menuitem-link" (click)="hideEmit()">
                     <span [class]="item.icon"></span>
                     <span class="ms-2">{{ item.label }}</span>
                 </a>
