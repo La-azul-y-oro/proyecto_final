@@ -27,11 +27,12 @@ export class SidebarComponent {
   },
   {
     label: 'Pagos',
-    icon: 'pi pi-wallet'
+    icon: 'pi pi-wallet',
+    disabled: true
   },
   {
     label: 'Servicios',
-    icon: 'pi pi-history',
+    icon: 'pi pi-history'
   },
   {
     label: 'Vehiculos',
@@ -40,19 +41,23 @@ export class SidebarComponent {
   },
   {
     label: 'Inventario',
-    icon: 'pi pi-objects-column'
+    icon: 'pi pi-objects-column',
+    disabled: true
   },
   {
     label: 'Marcas',
-    icon: 'pi pi-sparkles'
+    icon: 'pi pi-sparkles',
+    disabled: true
   },
   {
     label: 'Proveedores',
     icon: 'pi pi-warehouse',
+    disabled: true
   },
   {
     label: 'Repuestos',
     icon: 'pi pi-wrench',
+    disabled: true
   }];
 
   sidebarStyle = {
