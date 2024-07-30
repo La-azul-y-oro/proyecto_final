@@ -1,13 +1,15 @@
 package com.azulyoro.back.service;
 
+import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
 import javax.crypto.SecretKey;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import com.azulyoro.back.model.Employee;
@@ -27,8 +29,7 @@ public class JwtService {
         Map<String, Object> extraClaims = Map.of(
                 "name", employee.getName(),
                 "lastName", employee.getLastName(),
-                "role", employee.getRole()
-        );
+                "role", employee.getRole());
 
         return getToken(extraClaims, employee);
     }
@@ -56,6 +57,13 @@ public class JwtService {
     public boolean isTokenValid(String token, Employee employee) {
         final String email = getEmailFromToken(token);
         return (email.equals(employee.getEmail()) && !isTokenExpired(token));
+    }
+
+    // quizas innecesaria
+    public List<SimpleGrantedAuthority> getAuthoritiesFromToken(String token) {
+        Claims claims = getAllClaims(token);
+        String role = claims.get("role", String.class);
+        return Collections.singletonList(new SimpleGrantedAuthority(role));
     }
 
     private Claims getAllClaims(String token) {
