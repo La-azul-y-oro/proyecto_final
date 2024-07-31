@@ -13,4 +13,5 @@ public class EmployeeBasicResponseDto {
     private Long id;
     private String name;
     private String lastName;
+    private boolean isDeleted;
 }

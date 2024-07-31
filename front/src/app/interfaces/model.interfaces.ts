@@ -98,7 +98,6 @@ export interface ServiceResponse{
 }
 
 export interface ServiceTypeResponse{
-    id: number;
     name: string;
     description: string;
     isDeleted: boolean;
@@ -123,12 +122,6 @@ export interface ClientBasicResponse{
     deleted?: boolean;
 }
 
-export interface EmployeeBasicResponse {
-    id: number;
-    name: string;
-    lastName: string;
-}
-
 export interface SparePartResponse {
     id: number;
     name: string;
@@ -142,4 +135,61 @@ export interface BrandResponse{
     name: string;
     category: BrandCategory;
     isDeleted: boolean;
+}
+
+
+// EMPLOYEE
+export interface EmployeeBasicResponse {
+    id: number;
+    name: string;
+    lastName: string;
+    deleted?: boolean;
+}
+
+export interface EmployeeResponse {
+    id:                   number;
+    name:                 string;
+    lastName:             string;
+    services:             ServiceBasic[];
+    email:                string;
+    identificationNumber: number;
+    role:                 Role;
+    roleText:             string;
+    address:              Address;
+    deleted?:             boolean;
+    addressCompound:        string;
+}
+
+export interface EmployeeRequest {
+    name:                 string;
+    lastName:             string;
+    email:                string;
+    identificationNumber: number;
+    role:                 Role;
+    address:              Address;
+    password:             string;
+}
+
+export interface Address {
+    street:     string;
+    number:     number;
+    floor?:      number;
+    department?: string;
+}
+
+export interface ServiceBasic {
+    id:          number;
+    serviceType: string;
+    status:      string;
+    price:       number;
+    startDate:   Date;
+    vehicle:     VehicleBasicResponse;
+    payDate?:    Date;
+    finalDate?:  Date;
+}
+
+export enum Role {
+    ROLE_ADMINISTRATIVE = 'Administrativo',
+    ROLE_MECHANIC = 'Mecánico',
+    ROLE_ADMIN = 'Admin'
 }

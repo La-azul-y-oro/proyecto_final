@@ -6,13 +6,23 @@ export function emailCustomValidator(control: AbstractControl): ValidationErrors
   return valid ? null : { invalidEmail: true };
 }
 
-export function nroDocumentValidator(control: AbstractControl): ValidationErrors | null {
+export function nroDniValidator(control: AbstractControl): ValidationErrors | null {
   const value = control.value;
   if (!value) {
     return null;
   }
 
-  const isValid = /^\d{8}$/.test(value) || /^\d{11}$/.test(value);
+  const isValid = /^\d{8}$/.test(value);
+  return isValid ? null : { 'invalidDigits': { value: control.value } };
+}
+
+export function nroCuitValidator(control: AbstractControl): ValidationErrors | null {
+  const value = control.value;
+  if (!value) {
+    return null;
+  }
+
+  const isValid = /^\d{11}$/.test(value);
   return isValid ? null : { 'invalidDigits': { value: control.value } };
 }
 
