@@ -19,6 +19,7 @@ public class MessageUtil {
     private static final String USER_NOT_FOUND = "user.not_found";
     private static final String USER_INACTIVE = "user.inactive";
     private static final String BAD_CREDENTIALS = "login.bad_credentials";
+    private static final String FIELD_NOT_VALID = "error.field_not_valid";
 
     public static String getMessage(String key, Object... params) {
         String messageTemplate = messages.getString(key);
@@ -63,5 +64,9 @@ public class MessageUtil {
 
     public static String userInactive(String email) {
         return getMessage(USER_INACTIVE, email);
+    }
+
+    public static String fieldNotValid(String field, String reason) {
+        return getMessage(FIELD_NOT_VALID, field, reason);
     }
 }

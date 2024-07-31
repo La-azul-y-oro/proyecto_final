@@ -6,6 +6,7 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormField, TypeField } from '../../interfaces/components.interface';
 
@@ -20,7 +21,8 @@ import { FormField, TypeField } from '../../interfaces/components.interface';
     InputNumberModule,
     InputTextModule,
     CommonModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PasswordModule
   ],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css'
@@ -46,17 +48,29 @@ export class FormComponent implements OnChanges{
   ngOnInit(){
     this.form = this.fb.group({});
     this.fields?.forEach(f => {
+      // const disabledField : boolean = (this.isEditMode && f.disabledOnUpdate) ? f.disabledOnUpdate : false; 
+      // const control = new FormControl({value: null, disabled: disabledField }, f.validators);
+
       const control = new FormControl(null, f.validators);
+
       this.form.addControl(f.controlName, control);
     });
-  }
 
+    console.log(this.form);
+  }
 
   ngOnChanges(): void {
     if(this.data) {
-      this.form.patchValue(this.data)
+      this.ungroupFormFields(this.data)
+
       this.title = this.titleOnUpdate;
       this.isEditMode = true;
+
+      this.fields?.forEach(field => {
+        if (field.disabledOnUpdate) {
+          this.form.get(field.controlName)?.disable();
+        }
+      });
     }else{
       this.title = this.titleOnCreate;
       this.isEditMode = false;
@@ -67,7 +81,8 @@ export class FormComponent implements OnChanges{
     this.markAllAsTouched(this.form);
 
     if(this.form.valid){
-      (this.isEditMode) ? this.onUpdate.emit(this.form.value) : this.onSave.emit(this.form.value)
+      const form = this.groupFormFields();
+      (this.isEditMode) ? this.onUpdate.emit(form) : this.onSave.emit(form)
     }
   }
 
@@ -76,23 +91,27 @@ export class FormComponent implements OnChanges{
     return (field?.dirty || field?.touched) && field?.invalid;
   }
 
-  isText(field : TypeField){
-    return field === TypeField.TEXT;
-  }
-
-  isNumber(field : TypeField){
-    return field === TypeField.NUMBER;
-  }
-
-  isSelect(field : TypeField){
-    return field === TypeField.SELECT;
-  }
+  isFieldType(field: TypeField, type: string): boolean {
+    switch (type) {
+      case TypeField.TEXT:
+        return field === TypeField.TEXT;
+      case TypeField.NUMBER:
+        return field === TypeField.NUMBER;
+      case TypeField.SELECT:
+        return field === TypeField.SELECT;
+      case TypeField.PASSWORD:
+        return field === TypeField.PASSWORD;
+      default:
+        return false;
+    }
+  } 
 
   resetAll(){
     this.form.reset();
     this.data = undefined;
     this.isEditMode = false;
-    this.title = this.titleOnCreate;    
+    this.title = this.titleOnCreate;
+    this.form.enable();
   }
 
   markAllAsTouched(formGroup: FormGroup): void {
@@ -112,4 +131,38 @@ export class FormComponent implements OnChanges{
       }
     });
   }
+
+  private groupFormFields() {
+    const organizedData: any = {};
+  
+    this.fields.forEach(field => {
+      const controlValue = this.form.get(field.controlName)?.value;
+      
+      if (field.groupBy) {
+        if (!organizedData[field.groupBy]) {
+          organizedData[field.groupBy] = {};
+        }
+        organizedData[field.groupBy][field.controlName] = controlValue;
+      } else {
+        organizedData[field.controlName] = controlValue;
+      }
+    });
+  
+    return organizedData;
+  }
+
+  private ungroupFormFields(organizedData: any) {
+    Object.keys(organizedData).forEach(key => {
+      const value = organizedData[key];
+  
+      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        Object.keys(value).forEach(subKey => {
+          this.form.get(subKey)?.patchValue(value[subKey]);
+        });
+      } else {
+        this.form.get(key)?.patchValue(value);
+      }
+    });
+  }
+
 }

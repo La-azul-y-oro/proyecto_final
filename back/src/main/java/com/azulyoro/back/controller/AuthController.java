@@ -1,21 +1,18 @@
 package com.azulyoro.back.controller;
 
-import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.azulyoro.back.dto.request.LoginRequest;
 import com.azulyoro.back.dto.request.RegisterRequest;
 import com.azulyoro.back.dto.response.AuthResponse;
 import com.azulyoro.back.service.AuthService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin
 public class AuthController {
 
     @Autowired
@@ -27,7 +24,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    // @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest registerRequest) {
         return ResponseEntity.ok(service.register(registerRequest));
     }

@@ -3,7 +3,6 @@ package com.azulyoro.back.service;
 import com.azulyoro.back.dto.request.LoginRequest;
 import com.azulyoro.back.dto.request.RegisterRequest;
 import com.azulyoro.back.dto.response.AuthResponse;
-import com.azulyoro.back.exception.UserAlreadyRegistered;
 import com.azulyoro.back.exception.UserInactiveException;
 import com.azulyoro.back.exception.UserNotFoundException;
 import com.azulyoro.back.mapper.EmployeeMapper;
@@ -31,6 +30,9 @@ public class AuthService {
 
     @Autowired
     private JwtService jwtService;
+
+    @Autowired
+    private EmployeeService employeeService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -62,22 +64,8 @@ public class AuthService {
                 .build();
     }
 
-    public AuthResponse register(RegisterRequest registerRequest) {
-
-        if (employeeRepository.existsByEmail(registerRequest.getEmail())) {
-            throw new UserAlreadyRegistered(MessageUtil.emailAlreadyRegistered(registerRequest.getEmail()));
-        }
-
-        if (employeeRepository.existsByIdentificationNumber(registerRequest.getIdentificationNumber())) {
-            throw new UserAlreadyRegistered(
-                    MessageUtil.idNumberAlreadyRegistered(registerRequest.getIdentificationNumber()));
-        }
-
-        Employee employee = employeeMapper.dtoToEntity(registerRequest);
-
-        employee.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-
-        employeeRepository.save(employee);
+    public AuthResponse register(RegisterRequest registerRequest){
+        Employee employee = employeeService.createEmployee(registerRequest);
 
         String token = jwtService.getToken(employee);
 
@@ -85,5 +73,4 @@ public class AuthService {
                 .token(token)
                 .build();
     }
-
 }

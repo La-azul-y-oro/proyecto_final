@@ -31,6 +31,5 @@ public class RegisterRequest {
     private Role role;
     @NotNull(message = "{request.invalid.null}")
     private Address address;
-    @NotNull(message = "{request.invalid.null}")
     private String password;
 }

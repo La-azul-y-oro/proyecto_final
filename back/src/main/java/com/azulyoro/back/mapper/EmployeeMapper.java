@@ -20,6 +20,7 @@ public class EmployeeMapper implements Mapper<Employee, RegisterRequest, Employe
         employeeDto.setId(employee.getId());
         employeeDto.setName(employee.getName());
         employeeDto.setLastName(employee.getLastName());
+        employeeDto.setDeleted(employee.isDeleted());
 
         return employeeDto;
     }
@@ -35,6 +36,7 @@ public class EmployeeMapper implements Mapper<Employee, RegisterRequest, Employe
         dto.setEmail(employee.getEmail());
         dto.setRole(employee.getRole());
         dto.setAddress(employee.getAddress());
+        dto.setDeleted(employee.isDeleted());
 
         return dto;
     }

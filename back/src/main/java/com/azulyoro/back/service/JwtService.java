@@ -1,26 +1,29 @@
 package com.azulyoro.back.service;
 
+import com.azulyoro.back.dto.request.RegisterRequest;
+import com.azulyoro.back.dto.response.EmployeeResponseDto;
+import com.azulyoro.back.mapper.Mapper;
+import com.azulyoro.back.model.Employee;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.stereotype.Service;
+
+import javax.crypto.SecretKey;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import javax.crypto.SecretKey;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.stereotype.Service;
-
-import com.azulyoro.back.model.Employee;
-
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
-
 @Service
 public class JwtService {
+    @Autowired
+    private Mapper<Employee, RegisterRequest, EmployeeResponseDto> employeeMapper;
 
     @Value("${jwt.secret}")
     private String SECRET_KEY;
@@ -29,7 +32,8 @@ public class JwtService {
         Map<String, Object> extraClaims = Map.of(
                 "name", employee.getName(),
                 "lastName", employee.getLastName(),
-                "role", employee.getRole());
+                "role", employee.getRole()
+        );
 
         return getToken(extraClaims, employee);
     }
