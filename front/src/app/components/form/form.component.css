@@ -1,9 +1,15 @@
 input,
 p-dialog .p-element.p-inputwrapper,
-::ng-deep input.p-inputtext.p-component.p-element.p-inputnumber-input{
+::ng-deep input.p-inputtext.p-component.p-element.p-inputnumber-input,
+::ng-deep .p-password.p-component.p-inputwrapper.p-input-icon-right,
+::ng-deep .p-inputtext.p-component.p-element.p-password-input{
     width: 100%;
 }
 
 p-dialog .p-dialog-header {
     padding-bottom: 0rem;
+}
+
+.margin-bottom{
+    margin-bottom: 2rem !important;
 }

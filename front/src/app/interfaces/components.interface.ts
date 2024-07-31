@@ -8,17 +8,24 @@ export interface FormField{
     label: string; 
     controlName: string; 
     type: TypeField;
-    errorMessage: string;
+    errorMessage?: string;
     placeholder?: string;
     validators?: any[];
     selectList? : any[];
     classList?: string;
+    groupBy?: string;
+    disabledOnUpdate?: boolean;
+    min? : number;
+    max? : number;
+    maxLength? : number;
 }
 
 export enum TypeField{
     TEXT = 'text',
     NUMBER = 'number',
-    SELECT = 'select'
+    SELECT = 'select',
+    PASSWORD = 'password',
+    FORM = 'form'
 }
 
 export interface CustomPage<T> {

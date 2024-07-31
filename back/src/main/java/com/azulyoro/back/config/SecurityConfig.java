@@ -31,7 +31,6 @@ public class SecurityConfig {
                                 .headers(headers -> headers
                                                 .frameOptions(frameOptions -> frameOptions.sameOrigin()))
                                 .authorizeHttpRequests(authRequest -> authRequest
-                                                .requestMatchers("/").permitAll()
                                                 .requestMatchers("/auth/**").permitAll()
                                                 .requestMatchers("/h2-console/**").permitAll()
                                                 .anyRequest().authenticated())

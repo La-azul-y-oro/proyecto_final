@@ -58,6 +58,11 @@ export class SidebarComponent {
     label: 'Repuestos',
     icon: 'pi pi-wrench',
     disabled: true
+  },
+  {
+    label: 'Empleados',
+    icon: 'pi pi-briefcase',
+    path: 'employees'
   }];
 
   sidebarStyle = {

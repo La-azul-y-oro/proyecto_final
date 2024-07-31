@@ -7,8 +7,8 @@
   (onHide)="resetAll()">
     <form [formGroup]="form">
         <div class="row pt-5">        
-          <div [ngClass]="field.classList ? field.classList : 'col-12 col-md-6 gap-1 mb-5'" *ngFor="let field of fields">
-              <p-floatLabel *ngIf="isText(field.type)">
+          <div [ngClass]="field.classList ? field.classList : 'col-12 col-md-6 gap-1 margin-bottom'" *ngFor="let field of fields">
+              <p-floatLabel *ngIf="isFieldType(field.type, 'text')">
                 <input 
                   pInputText
                   [id]="field.controlName"
@@ -20,18 +20,21 @@
                 </label>
               </p-floatLabel>
 
-              <p-floatLabel *ngIf="isNumber(field.type)">
+              <p-floatLabel *ngIf="isFieldType(field.type, 'number')">
                 <p-inputNumber 
                   [id]="field.controlName"
                   [formControlName]="field.controlName"
                   [useGrouping]="false"
+                  [min]="field.min || null"
+                  [max]="field.max || null"
+                  [maxlength]="field.maxLength || null"
                   [style]="{ width: '100%'}"/> 
                 <label [for]="field.controlName">
                   {{ field.label }}
                 </label>
               </p-floatLabel>
 
-              <p-floatLabel *ngIf="isSelect(field.type)">
+              <p-floatLabel *ngIf="isFieldType(field.type, 'select')">
                 <p-dropdown 
                   [options]="field.selectList"
                   [showClear]="true" 
@@ -42,6 +45,21 @@
                   {{ field.label }}
                 </label>
                 </p-floatLabel>
+
+                <p-floatLabel *ngIf="isFieldType(field.type, 'password')">
+                  <p-password 
+                    [id]="field.controlName"
+                    [formControlName]="field.controlName"
+                    [placeholder]="field.placeholder"
+                    [toggleMask]="true"
+                    [feedback]="false"
+
+                  />
+                  <label [for]="field.controlName">
+                    {{ field.label }}
+                  </label>
+                </p-floatLabel>
+
                 <small *ngIf="hasError(field.controlName)" class="input-invalid">
                 {{ field.errorMessage }}
                 </small>

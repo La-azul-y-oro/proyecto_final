@@ -1,0 +1,19 @@
+<app-page
+    [title]="title"
+    [labelButtonAdd]="labelButtonAdd"
+    [data]="employeeList"
+    [cols]="columns"
+    (onCreate)="openForm()"
+    [buttonConfig]="buttonConfig"
+/>
+<app-toast #toast />
+<app-confirm-dialog 
+    #dialog
+    (onConfirm)="deleteEmployee($event)"
+/>
+<app-employee-form
+    #form
+    [data]="dataEmployee"
+    (onSave)="save($event)"
+    (onUpdate)="update($event)"
+/>
