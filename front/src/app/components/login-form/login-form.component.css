@@ -1,0 +1,11 @@
+.form-container {
+  max-width: 300px;
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 300px;
+}
