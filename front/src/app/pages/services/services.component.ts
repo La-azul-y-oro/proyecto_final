@@ -86,19 +86,3 @@ export class ServicesComponent implements OnInit {
     })
   }
 }
-
-/**
- export interface ServiceResponse{
-    id: number;
-    serviceType: ServiceTypeResponse;
-    status: StatusService;
-    payDate: Date;
-    price: number;
-    startDate: Date;
-    finalDate: Date;
-    vehicle: VehicleBasicResponse;
-    client: ClientBasicResponse;
-    employees: EmployeeBasicResponse;
-    spareParts: SparePartResponse;
-}
- */
