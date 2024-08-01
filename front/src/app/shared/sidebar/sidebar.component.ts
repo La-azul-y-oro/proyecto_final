@@ -32,7 +32,8 @@ export class SidebarComponent {
   },
   {
     label: 'Servicios',
-    icon: 'pi pi-history'
+    icon: 'pi pi-history',
+    path: 'services'
   },
   {
     label: 'Vehiculos',
