@@ -46,12 +46,6 @@ public class PayController {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(dto));
     }
 
-    // esto vuela?
-    @PutMapping("/{id}")
-    public ResponseEntity<PayResponseDto> update(@PathVariable Long id, @Valid @RequestBody PayRequestDto dto) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
-    }
-
     @GetMapping
     @PreAuthorize("hasAnyRole('ROLE_ADMINISTRATIVE', 'ROLE_MECHANIC', 'ROLE_ADMIN')")
     public CustomPage<PayResponseDto> getPays(Pageable pageable) {
