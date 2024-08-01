@@ -48,13 +48,6 @@ public class PaymentTypeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(dto));
     }
 
-    // esto vuela?
-    @PutMapping("/{id}")
-    public ResponseEntity<PaymentTypeResponseDto> update(@PathVariable Long id,
-            @RequestBody PaymentTypeRequestDto dto) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
-    }
-
     @GetMapping
     @PreAuthorize("hasAnyRole('ROLE_ADMINISTRATIVE', 'ROLE_MECHANIC', 'ROLE_ADMIN')")
     public CustomPage<PaymentTypeResponseDto> getPaymentTypes(Pageable pageable) {
