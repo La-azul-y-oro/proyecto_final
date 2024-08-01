@@ -80,7 +80,7 @@ export enum StatusService{
     TO_DO = 'TO_DO', 
     IN_PROGRESS = 'IN_PROGRESS', 
     FINISHED = 'FINISHED', 
-    CANCELLED = 'CANCELED'
+    CANCELLED = 'CANCELLED'
 }
 
 export interface ServiceResponse{
