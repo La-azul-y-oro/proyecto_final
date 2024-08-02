@@ -1,5 +1,5 @@
 <form [formGroup]="userForm" class="d-flex flex-column justify-content-center align-items-center vh-100">
-  <div class="form-container mb-5">
+  <div class="mb-5">
     <p-floatLabel>
       <input 
         pInputText
@@ -7,16 +7,15 @@
         formControlName="username"
         type="text"
         placeholder="Ingrese su email"
-        class="form-control"
       />
       <label for="username">Email</label>
     </p-floatLabel>
     <small *ngIf="hasError('username')" class="input-invalid">
-      Email incorrecto
+      Email inválido.
     </small>
   </div>
 
-  <div class="form-container mb-5">
+  <div class="mb-5">
     <p-floatLabel>
       <p-password 
         id="password"
@@ -24,16 +23,15 @@
         placeholder="Ingrese su contraseña"
         toggleMask="true"
         feedback="false"
-        class="form-control"
       />
       <label for="password">Contraseña</label>
     </p-floatLabel>
     <small *ngIf="hasError('password')" class="input-invalid">
-      Contraseña errónea
+      Contraseña obligatoria.
     </small>
   </div>
 
   <div class="button-container">
-    <p-button type="submit" label="Confirmar" (onClick)="sendData()" class="w-100"/>
+    <p-button type="submit" label="Ingresar" (onClick)="sendData()" class="w-100"/>
   </div>
 </form>

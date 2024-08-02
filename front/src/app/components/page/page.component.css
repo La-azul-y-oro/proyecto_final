@@ -6,3 +6,8 @@
 ::ng-deep p-dropdown.p-element.p-inputwrapper{
     width: inherit;
 }
+
+.table{
+    overflow: auto; 
+    max-height: 80vh;
+}
