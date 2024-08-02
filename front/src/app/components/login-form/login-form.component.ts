@@ -20,6 +20,7 @@ import { PasswordModule } from 'primeng/password';
     PasswordModule,
 ],
   templateUrl: './login-form.component.html',
+  styleUrl: './login-form.component.css'
 })
 export class LoginFormComponent {
   

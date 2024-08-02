@@ -13,12 +13,12 @@
       />
     </div>
   </div>
-  <div class="row" id="table" style="overflow: auto">
+  <div class="row table" id="table">
     <p-table
       #table
       [columns]="cols"
       [scrollable]="true"
-      scrollHeight="calc(100vh - 270px)"
+      scrollHeight="63vh"
       [value]="data"
       [rows]="10"
       [rowsPerPageOptions]="[10, 25, 50]"
