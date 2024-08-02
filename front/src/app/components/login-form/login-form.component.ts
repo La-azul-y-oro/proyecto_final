@@ -7,6 +7,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { Router } from '@angular/router';
 import { emailCustomValidator } from '../../util/customValidators';
 import { PasswordModule } from 'primeng/password';
+import { AuthService } from '../../auth/auth.service';
+import { EmployeeLogin } from '../../interfaces/model.interfaces';
 
 @Component({
   selector: 'app-login-form',
@@ -25,22 +27,30 @@ import { PasswordModule } from 'primeng/password';
 export class LoginFormComponent {
   
   constructor(
+    private authService : AuthService,
     private fb : FormBuilder,
     private router : Router
   ){}
 
-  userForm : FormGroup = this.fb.group({
-    username: ['', [Validators.required, emailCustomValidator]],
+  employeeForm : FormGroup = this.fb.group({
+    email: ['', [Validators.required, emailCustomValidator]],
     password: ['', [Validators.required]]
   })
 
  
   sendData(){
-    this.markAllAsTouched(this.userForm);
+    this.markAllAsTouched(this.employeeForm);
 
-    if(this.userForm.valid){
-      //TO_DO implementar seguridad del front 
-      //aca se dispara la peticion de logeo
+    if(this.employeeForm.valid){
+      let employee : EmployeeLogin = this.employeeForm.value;
+      this.authService.login(employee).subscribe({
+        next: (token) => {
+          this.router.navigate(['/clientes']); // TODO HomeComponent
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      })
     }
   }
 
@@ -63,7 +73,7 @@ export class LoginFormComponent {
   }
 
   hasError(nameField : any){
-    let field = this.userForm.get(nameField); 
+    let field = this.employeeForm.get(nameField); 
     return (field?.dirty || field?.touched) && field?.invalid;
   }
 

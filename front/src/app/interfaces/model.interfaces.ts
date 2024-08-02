@@ -193,3 +193,8 @@ export enum Role {
     ROLE_MECHANIC = 'Mecánico',
     ROLE_ADMIN = 'Admin'
 }
+
+export interface EmployeeLogin {
+    email:string,
+    password:string
+}
