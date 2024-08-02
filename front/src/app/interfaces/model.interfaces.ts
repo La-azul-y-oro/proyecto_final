@@ -93,8 +93,13 @@ export interface ServiceResponse{
     finalDate: Date;
     vehicle: VehicleBasicResponse;
     client: ClientBasicResponse;
-    employees: EmployeeBasicResponse;
-    spareParts: SparePartResponse;
+    employees: EmployeeBasicResponse[];
+    spareParts: SparePartResponse[];
+    vehicleCompound: string;
+    sparePartsCompound: string;
+    employeesCompound: string;
+    showedStatus: string,
+    clientName: string
 }
 
 export interface ServiceTypeResponse{
@@ -108,7 +113,7 @@ export interface VehicleBasicResponse{
     model: string;
     mileage: number;
     observations: string;
-    brand: BrandResponse;
+    brand: string;
 }
 
 export interface ClientBasicResponse{
