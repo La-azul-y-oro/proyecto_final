@@ -33,12 +33,12 @@ export class SidebarComponent {
   {
     label: 'Servicios',
     icon: 'pi pi-history',
-    path: 'services'
+    path: 'servicios'
   },
   {
     label: 'Vehiculos',
     icon: 'pi pi-car',
-    path: 'vehicles'
+    path: 'vehiculos'
   },
   {
     label: 'Inventario',
@@ -63,7 +63,7 @@ export class SidebarComponent {
   {
     label: 'Empleados',
     icon: 'pi pi-briefcase',
-    path: 'employees'
+    path: 'empleados'
   }];
 
   sidebarStyle = {

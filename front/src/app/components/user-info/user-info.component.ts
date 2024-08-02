@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-user-info',
@@ -10,6 +11,11 @@ import { MenubarModule } from 'primeng/menubar';
   styleUrl: './user-info.component.css'
 })
 export class UserInfoComponent {
+
+  constructor(
+    private authService : AuthService
+  ) {}
+  
   menubarStyle = {
     border: 'none',
     fontSize: '0.85rem'
@@ -21,7 +27,8 @@ export class UserInfoComponent {
     items:[
       {
         label: 'Cerrar sesión',
-        icon: 'pi pi-power-off'
+        icon: 'pi pi-power-off',
+        command: () => this.authService.logout()
       }
     ]
   }];

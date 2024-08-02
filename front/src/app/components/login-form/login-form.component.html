@@ -1,16 +1,16 @@
-<form [formGroup]="userForm" class="d-flex flex-column justify-content-center align-items-center vh-100">
+<form [formGroup]="employeeForm" class="d-flex flex-column justify-content-center align-items-center vh-100">
   <div class="mb-5">
     <p-floatLabel>
       <input 
         pInputText
-        id="username"
-        formControlName="username"
+        id="email"
+        formControlName="email"
         type="text"
         placeholder="Ingrese su email"
       />
-      <label for="username">Email</label>
+      <label for="email">Email</label>
     </p-floatLabel>
-    <small *ngIf="hasError('username')" class="input-invalid">
+    <small *ngIf="hasError('email')" class="input-invalid">
       Email inválido.
     </small>
   </div>
