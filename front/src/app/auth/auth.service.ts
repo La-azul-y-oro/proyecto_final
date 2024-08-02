@@ -19,7 +19,7 @@ export class AuthService {
     this.currentEmployeeLoginOn = new BehaviorSubject<boolean>(sessionStorage.getItem("token") != null);
     const token = sessionStorage.getItem("token");
     if (token) {
-      this.currentEmployeeData.next(this.decodeToken(token));
+      this.currentEmployeeData.next(token);
     }
   }
 
@@ -27,7 +27,7 @@ export class AuthService {
     return this.httpClient.post<any>(this.url + "/login", credentials).pipe(
       tap((employeeData) => {
         sessionStorage.setItem("token", employeeData.token);
-        this.currentEmployeeData.next(this.decodeToken(employeeData.token));
+        this.currentEmployeeData.next(employeeData.token);
         this.currentEmployeeLoginOn.next(true);
       }),
       map((employeeData) => employeeData.token),
