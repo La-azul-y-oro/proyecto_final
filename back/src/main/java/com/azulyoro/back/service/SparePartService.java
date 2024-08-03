@@ -7,6 +7,7 @@ import com.azulyoro.back.dto.CustomPage;
 import com.azulyoro.back.dto.request.SparePartRequestDto;
 import com.azulyoro.back.dto.response.SparePartResponseDto;
 import com.azulyoro.back.exception.CannotDeleteEntityException;
+import com.azulyoro.back.exception.EntityNotFoundOrInactiveException;
 import com.azulyoro.back.mapper.PageMapper;
 import com.azulyoro.back.mapper.SparePartMapper;
 
@@ -40,7 +41,7 @@ public class SparePartService implements EntityService<SparePartRequestDto, Spar
     @Override
     public SparePartResponseDto create(SparePartRequestDto sparePartDto) {
         Brand brand = brandRepository.findById(sparePartDto.getBrandId())
-                .orElseThrow(() -> new EntityNotFoundException(MessageUtil.entityNotFound(sparePartDto.getBrandId())));
+                .orElseThrow(() -> new EntityNotFoundOrInactiveException(MessageUtil.entityNotFoundOrInactive(sparePartDto.getBrandId())));
 
         SparePart sparePart = sparePartMapper.dtoToEntity(sparePartDto);
         sparePart.setBrand(brand);
@@ -51,7 +52,7 @@ public class SparePartService implements EntityService<SparePartRequestDto, Spar
     @Override
     public SparePartResponseDto update(Long id, SparePartRequestDto dto) {
         Brand brand = brandRepository.findById(dto.getBrandId())
-                .orElseThrow(() -> new EntityNotFoundException(MessageUtil.entityNotFound(dto.getBrandId())));
+                .orElseThrow(() -> new EntityNotFoundOrInactiveException(MessageUtil.entityNotFoundOrInactive(dto.getBrandId())));
                 
         if(sparePartRepository.existsById(id)) {
             SparePart sparePart = sparePartMapper.dtoToEntity(dto);
