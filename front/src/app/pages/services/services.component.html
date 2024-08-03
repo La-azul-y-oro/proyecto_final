@@ -3,5 +3,16 @@
     [labelButtonAdd]="labelButtonAdd"
     [data]="serviceList"
     [cols]="columns"
+    (onCreate)="openForm()"
+    [buttonConfig]="buttonConfig"
+    [canCreate]="canCreate"
 >
 </app-page> 
+<app-toast #toast/>
+<app-confirm-dialog #dialog (onConfirm)="deleteService($event)" />
+<app-service-form
+    #form
+    [data]="dataService"
+    (onSave)="save($event)"
+    (onUpdate)="update($event)"
+/>

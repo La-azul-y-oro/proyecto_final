@@ -1,0 +1,4 @@
+::ng-deep .p-inputtext.p-component.p-element.p-inputnumber-input,
+p-inputnumber.p-element.p-inputwrapper{
+    width: 100%;
+}

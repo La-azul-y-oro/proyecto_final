@@ -10,6 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class VehicleBasicResponseDto {
+    private Long id;
     private String plate;
     private String brand;
     private String model;

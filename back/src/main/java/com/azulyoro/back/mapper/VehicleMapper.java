@@ -36,6 +36,7 @@ public class VehicleMapper implements Mapper<Vehicle, VehicleRequestDto, Vehicle
 
     public VehicleBasicResponseDto entityToBasicDto(Vehicle vehicle) {
         return VehicleBasicResponseDto.builder()
+                .id(vehicle.getId())
                 .plate(vehicle.getPlate())
                 .brand(vehicle.getBrand().getName())
                 .model(vehicle.getModel())

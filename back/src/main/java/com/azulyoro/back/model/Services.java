@@ -2,6 +2,7 @@ package com.azulyoro.back.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -48,6 +49,7 @@ public class Services {
 
     private Double price;
 
+    @CreationTimestamp
     private LocalDate startDate;
 
     private LocalDate finalDate;
