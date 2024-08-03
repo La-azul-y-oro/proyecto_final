@@ -18,7 +18,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ServicesService implements EntityService<ServicesRequestDto, ServicesResponseDto> {
@@ -57,12 +60,12 @@ public class ServicesService implements EntityService<ServicesRequestDto, Servic
 
     @Override
     public ServicesResponseDto create(ServicesRequestDto requestDto) {
+        if(requestDto.getStatus() == null) requestDto.setStatus(ServiceStatus.TO_DO);
         return saveAndGetResponseDto(null, requestDto);
     }
 
     @Override
     public ServicesResponseDto update(Long id, ServicesRequestDto requestDto) {
-
         if(servicesRepository.existsById(id)) {
             return saveAndGetResponseDto(id, requestDto);
         }else{
@@ -128,14 +131,16 @@ public class ServicesService implements EntityService<ServicesRequestDto, Servic
     }
 
     private List<Employee> validateAndGetEmployees(List<Long> listIds) {
-        return listIds
+        return Optional.ofNullable(listIds)
+                .orElse(Collections.emptyList())
                 .stream()
                 .map(this::validateAndGetEmployee)
                 .toList();
     }
 
     private List<SparePart> validateAndGetSpareParts(List<Long> listIds) {
-        return listIds
+        return Optional.ofNullable(listIds)
+                .orElse(Collections.emptyList())
                 .stream()
                 .map(this::validateAndGetSparePart)
                 .toList();
@@ -187,6 +192,11 @@ public class ServicesService implements EntityService<ServicesRequestDto, Servic
     private ServicesResponseDto saveAndGetResponseDto(Long id, ServicesRequestDto requestDto){
         Services service = servicesMapper.dtoToEntity(requestDto);
         service.setId(id);
+        LocalDate startDate = servicesRepository.findStartDateById(id);
+        service.setStartDate(startDate);
+
+        if(requestDto.getStatus() == ServiceStatus.FINISHED)
+            service.setFinalDate(LocalDate.now());
 
         RelatedEntites relatedEntites = validateRelatedEntities(requestDto);
         service.setClient(relatedEntites.client);

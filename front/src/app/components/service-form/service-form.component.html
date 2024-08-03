@@ -1,0 +1,57 @@
+<p-dialog 
+  header={{title}}
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '65vw'}" 
+  focusOnShow='false' >
+    <form [formGroup]="form">
+        <div class="row pt-5">        
+          <div [ngClass]="field.classList ? field.classList : 'col-12 col-md-6 gap-1 mb-5'" *ngFor="let field of fields">
+            <p-floatLabel>
+                <input *ngIf="isText(field.type)"
+                    pInputText
+                    [id]="field.controlName"
+                    [formControlName]="field.controlName"
+                    [type]="field.type"
+                    [placeholder]="field.placeholder"
+                    [style]="{ width: '100%'}"/>
+                <p-inputNumber *ngIf="isNumber(field.type)"
+                    [id]="field.controlName"
+                    [formControlName]="field.controlName"
+                    [useGrouping]="false"
+                    [style]="{ width: '100%'}"
+                    [placeholder]="field.placeholder"
+                    mode="currency" 
+                    currency="USD" 
+                    locale="en-US"
+                /> 
+                <p-dropdown *ngIf="isSelect(field.type)"
+                    [options]="field.selectList"
+                    [showClear]="true" 
+                    [formControlName]="field.controlName"
+                    [style]="{ width: '100%'}"
+                    scrollHeight="130px"
+                    [filter]="true"
+                    >
+                </p-dropdown>
+                <p-multiSelect *ngIf="isMultiSelect(field.type)"
+                    [options]="field.selectList"
+                    [formControlName]="field.controlName"
+                    [style]="{ width: '100%'}"
+                    scrollHeight="130px"
+                    [selectedItemsLabel]="'{0} ítems seleccionados'">
+                </p-multiSelect>
+                <label [for]="field.controlName"> {{ field.label }} </label>
+            </p-floatLabel>
+            <small *ngIf="hasError(field.controlName)" class="input-invalid"> {{ field.errorMessage }} </small>
+          </div>
+        </div>
+        <div class="text-end">
+            <p-button class="me-3" label="Cancelar" severity="secondary" (onClick)="visible = false" />
+            <p-button 
+                type="submit" 
+                label="Guardar" 
+                (onClick)="sendData()"/>
+        </div>
+    </form>
+</p-dialog>

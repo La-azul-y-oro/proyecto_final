@@ -13,6 +13,7 @@ import { FormArray } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { VehicleResponse, VehicleRequest, BrandResponse, BrandCategory } from '../../interfaces/model.interfaces';
 import { BrandService } from '../../services/brand.service';
+import { markAllAsTouched } from '../../util/formUtils';
 
 @Component({
   selector: 'app-vehicle-form',
@@ -169,7 +170,7 @@ export class VehicleFormComponent implements OnInit, OnChanges {
   }
 
   sendData(){
-    this.markAllAsTouched(this.form);
+    markAllAsTouched(this.form);
 
     if(this.form.valid){
       (this.isEditMode) ? this.onUpdate.emit({ id: this.idToUpdated!, vehicle: this.form.value }) : this.onSave.emit(this.form.value);
@@ -187,23 +188,5 @@ export class VehicleFormComponent implements OnInit, OnChanges {
     this.data = undefined;
     this.isEditMode = false;
     this.title = this.titleOnCreate;
-  }
-
-  markAllAsTouched(formGroup: FormGroup): void {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      control?.markAsTouched({ onlySelf: true });
-      control?.markAsDirty({ onlySelf: true });
-  
-      // Si el control es un FormGroup (anidado), marca todos sus campos también
-      if (control instanceof FormGroup) {
-        this.markAllAsTouched(control);
-      }
-  
-      // Si el control es un FormArray, marca todos sus campos también
-      if (control instanceof FormArray) {
-        control.controls.forEach(group => this.markAllAsTouched(group as FormGroup));
-      }
-    });
   }
 }

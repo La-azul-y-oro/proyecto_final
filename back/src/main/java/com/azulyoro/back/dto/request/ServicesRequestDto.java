@@ -25,7 +25,6 @@ public class ServicesRequestDto {
     @Min(value = 1, message = "{request.invalid.id_min}")
     private Long serviceTypeId;
 
-    private LocalDate startDate;
-    private LocalDate finalDate;
     private ServiceStatus status;
+    private Double price;
 }

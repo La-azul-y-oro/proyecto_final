@@ -68,12 +68,14 @@ export enum BrandCategory {
 export interface ServiceRequest{
     clientId: number;
     vehicleId: number;
-    sparePartsIds: number;
-    employeesIds: number;
+    sparePartsIds: number[];
+    employeesIds: number[];
     serviceTypeId: number;
     startDate: Date;
     finalDate: Date;
     status: StatusService;
+    price: number;
+    payDate: Date;
 }
 
 export enum StatusService{
@@ -102,13 +104,21 @@ export interface ServiceResponse{
     clientName: string
 }
 
+//  SERVICETYPE
+export interface ServiceTypeRequest{
+    name: string;
+    description: string;
+}
+
 export interface ServiceTypeResponse{
+    id: number;
     name: string;
     description: string;
     isDeleted: boolean;
 }
 
 export interface VehicleBasicResponse{
+    id: number;
     plate: string;
     model: string;
     mileage: number;
@@ -125,6 +135,13 @@ export interface ClientBasicResponse{
     email: string;
     businessName?: string;
     deleted?: boolean;
+}
+
+// SPAREPART
+export interface SparePartRequest {
+    name: string;
+    brandId: number;
+    madeIn: string;
 }
 
 export interface SparePartResponse {

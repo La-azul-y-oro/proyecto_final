@@ -47,9 +47,8 @@ public class ServicesMapper implements Mapper<Services, ServicesRequestDto, Serv
     @Override
     public Services dtoToEntity(ServicesRequestDto serviceRequestDto){
         return Services.builder()
-                .startDate(serviceRequestDto.getStartDate())
-                .startDate(serviceRequestDto.getFinalDate())
                 .status(serviceRequestDto.getStatus())
+                .price(serviceRequestDto.getPrice())
                 .build();
     }
 

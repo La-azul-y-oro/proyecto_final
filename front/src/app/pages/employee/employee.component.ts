@@ -194,7 +194,7 @@ export class EmployeeComponent {
   private processEmployee(employee : EmployeeResponse) : EmployeeResponse{
     const roleText = Role[employee.role as unknown as keyof typeof Role];
     const addr = employee.address;
-    const addressCompound = `${addr.street || ''} ${addr.number || ''} ${addr.floor || ''} ${addr.department || ''}`.trim();
+    const addressCompound = `${addr.street || ''} ${addr.number || ''} ${addr.floor ?? ''} ${addr.department ?? ''}`.trim();
 
     employee = {
         ...employee,
