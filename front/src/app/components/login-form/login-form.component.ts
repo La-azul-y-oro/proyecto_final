@@ -11,6 +11,7 @@ import { AuthService } from '../../auth/auth.service';
 import { EmployeeLogin } from '../../interfaces/model.interfaces';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { markAllAsTouched } from '../../util/formUtils';
 
 @Component({
   selector: 'app-login-form',
@@ -44,7 +45,7 @@ export class LoginFormComponent {
 
  
   sendData(){
-    this.markAllAsTouched(this.employeeForm);
+    markAllAsTouched(this.employeeForm);
 
     if(this.employeeForm.valid){
       let employee : EmployeeLogin = this.employeeForm.value;
@@ -64,24 +65,6 @@ export class LoginFormComponent {
         }
       })
     }
-  }
-
-  markAllAsTouched(formGroup: FormGroup): void {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      control?.markAsTouched({ onlySelf: true });
-      control?.markAsDirty({ onlySelf: true });
-  
-      // Si el control es un FormGroup (anidado), marca todos sus campos también
-      if (control instanceof FormGroup) {
-        this.markAllAsTouched(control);
-      }
-  
-      // Si el control es un FormArray, marca todos sus campos también
-      if (control instanceof FormArray) {
-        control.controls.forEach(group => this.markAllAsTouched(group as FormGroup));
-      }
-    });
   }
 
   hasError(nameField : any){

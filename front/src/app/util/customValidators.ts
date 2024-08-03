@@ -42,3 +42,30 @@ export function vehiclePlateValidator(control: AbstractControl): ValidationError
   }
   return null;
 }
+
+export function dateValidator(control: AbstractControl): ValidationErrors | null {
+  const regex = /^\d{4}-\d{2}-\d{2}$/;
+  const date = control.value as string;
+
+  if (!date) {
+    return null;
+  }
+
+  if (!regex.test(date)) {
+    return { 'invalidDate': true };
+  }
+
+  const parts = date.split('-');
+  const year = parseInt(parts[0], 10);
+  const month = parseInt(parts[1], 10) - 1;
+  const day = parseInt(parts[2], 10);
+
+  const dateObject = new Date(year, month, day);
+
+  const isValidDate =
+    dateObject.getFullYear() === year &&
+    dateObject.getMonth() === month &&
+    dateObject.getDate() === day;
+
+  return isValidDate ? null : { 'invalidDate': true };
+}

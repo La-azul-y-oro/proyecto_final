@@ -18,6 +18,7 @@ export interface FormField{
     min? : number;
     max? : number;
     maxLength? : number;
+    defaultValue? : any;
 }
 
 export enum TypeField{
@@ -25,7 +26,9 @@ export enum TypeField{
     NUMBER = 'number',
     SELECT = 'select',
     PASSWORD = 'password',
-    FORM = 'form'
+    FORM = 'form',
+    MULTISELECT = "multiselect",
+    CALENDAR = "calendar"
 }
 
 export interface CustomPage<T> {

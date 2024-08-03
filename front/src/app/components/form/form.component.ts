@@ -9,6 +9,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormField, TypeField } from '../../interfaces/components.interface';
+import { markAllAsTouched } from '../../util/formUtils';
 
 @Component({
   selector: 'app-form',
@@ -73,7 +74,7 @@ export class FormComponent implements OnChanges{
   }
 
   sendData(){
-    this.markAllAsTouched(this.form);
+    markAllAsTouched(this.form);
 
     if(this.form.valid){
       const form = this.groupFormFields();
@@ -107,24 +108,6 @@ export class FormComponent implements OnChanges{
     this.isEditMode = false;
     this.title = this.titleOnCreate;
     this.form.enable();
-  }
-
-  markAllAsTouched(formGroup: FormGroup): void {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      control?.markAsTouched({ onlySelf: true });
-      control?.markAsDirty({ onlySelf: true });
-  
-      // Si el control es un FormGroup (anidado), marca todos sus campos también
-      if (control instanceof FormGroup) {
-        this.markAllAsTouched(control);
-      }
-  
-      // Si el control es un FormArray, marca todos sus campos también
-      if (control instanceof FormArray) {
-        control.controls.forEach(group => this.markAllAsTouched(group as FormGroup));
-      }
-    });
   }
 
   private groupFormFields() {
