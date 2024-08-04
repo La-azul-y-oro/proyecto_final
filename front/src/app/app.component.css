@@ -8,3 +8,10 @@
   height: calc(100vh - 75px) !important;
   overflow: hidden;
 }
+
+body {
+  background-image: url('../assets/Background.png');
+  background-size: auto; /* This will ensure the image covers the entire container */
+  background-repeat: no-repeat; /* This prevents the image from repeating */
+  background-position: center; /* This centers the image */
+}
