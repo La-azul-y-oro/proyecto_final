@@ -3,3 +3,7 @@
 .input-invalid{
     color: #a94442;
 }
+
+html {
+    background-image: url('./assets/Background.png');
+}
