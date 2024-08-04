@@ -1,6 +1,11 @@
 <p-menubar [style]="menubarStyle">
     <ng-template pTemplate="start">
-        <span class="pi pi-bars px-2" (click)="toggle()"></span>
+        <div class="d-flex align-items-center">
+            <p-button [text]="true" severity="secondary" (click)="toggle()" class="button">
+                <span class="pi pi-bars fs-4"></span>
+            </p-button>
+            <img class="image" src="../../../assets/Logo2.png" alt="Logo La Azul y Oro">
+        </div>
     </ng-template>
     <ng-template pTemplate="end">
         <div class="px-2">

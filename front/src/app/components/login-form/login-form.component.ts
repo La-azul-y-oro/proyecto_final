@@ -45,7 +45,7 @@ export class LoginFormComponent {
       let employee : EmployeeLogin = this.employeeForm.value;
       this.authService.login(employee).subscribe({
         next: (token) => {
-          this.router.navigate(['/clientes']); // TODO HomeComponent
+          this.router.navigate(['/inicio']);
         },
         error: (error) => {
           console.error(error);
