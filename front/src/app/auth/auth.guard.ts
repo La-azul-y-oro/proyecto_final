@@ -28,7 +28,7 @@ export const authGuardNotLogin: CanActivateFn = (route, state) => {
     take(1),
     map((loggedIn: boolean) => {
       if (loggedIn) {
-        router.navigate(['/clientes']); // TODO HomeComponent
+        router.navigate(['/inicio']);
         return false;
       } else {
         return true;

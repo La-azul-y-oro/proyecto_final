@@ -20,7 +20,13 @@ export class SidebarComponent {
     width: '100%',
   };
 
-  items: MenuItem[] = [{
+  items: MenuItem[] = [
+  {
+    label: 'Inicio',
+    icon: 'pi pi-home',
+    path: 'inicio'
+  },
+  {
     label: 'Clientes',
     icon: 'pi pi-users',
     path: 'clientes'
