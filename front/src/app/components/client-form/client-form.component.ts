@@ -9,7 +9,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormField, TypeField } from '../../interfaces/components.interface';
 import { FormComponent } from '../form/form.component';
-import { emailCustomValidator, noWhitespaceValidator, nroCuitValidator, nroDniValidator,  } from '../../util/customValidators';
+import { emailCustomValidator, noWhitespaceValidator, nroDniCuitValidator } from '../../util/customValidators';
 
 @Component({
   selector: 'app-client-form',
@@ -75,7 +75,7 @@ export class ClientFormComponent {
         type: TypeField.NUMBER,
         placeholder: 'Ingrese su número de documento',
         errorMessage: 'Debe ingresar 8 digitos para DNI y 11 si es CUIT.',
-        validators: [Validators.required, nroDniValidator, nroCuitValidator]
+        validators: [Validators.required, nroDniCuitValidator]
       },
       {
         label: 'Email',

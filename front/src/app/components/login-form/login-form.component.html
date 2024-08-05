@@ -1,37 +1,49 @@
-<form [formGroup]="employeeForm" class="d-flex flex-column justify-content-center align-items-center vh-100">
-  <div class="mb-5">
-    <p-floatLabel>
-      <input 
-        pInputText
-        id="email"
-        formControlName="email"
-        type="text"
-        placeholder="Ingrese su email"
-      />
-      <label for="email">Email</label>
-    </p-floatLabel>
-    <small *ngIf="hasError('email')" class="input-invalid">
-      Email inválido.
-    </small>
-  </div>
+<div class="d-flex flex-column justify-content-center align-items-center vh-100">
+  <h2 class="mb-5">Iniciar sesión</h2>
 
-  <div class="mb-5">
-    <p-floatLabel>
-      <p-password 
-        id="password"
-        formControlName="password"
-        placeholder="Ingrese su contraseña"
-        toggleMask="true"
-        feedback="false"
-      />
-      <label for="password">Contraseña</label>
-    </p-floatLabel>
-    <small *ngIf="hasError('password')" class="input-invalid">
-      Contraseña obligatoria.
-    </small>
-  </div>
+  <form [formGroup]="employeeForm">
+    <div class="mb-5">
+      <p-floatLabel>
+        <input 
+          pInputText
+          id="email"
+          formControlName="email"
+          type="text"
+          placeholder="Ingrese su email"
+        />
+        <label for="email">Email</label>
+      </p-floatLabel>
+      <small *ngIf="hasError('email')" class="input-invalid">
+        Email inválido.
+      </small>
+    </div>
 
-  <div class="button-container">
-    <p-button type="submit" label="Ingresar" (onClick)="sendData()" class="w-100"/>
-  </div>
-</form>
+    <div class="mb-5">
+      <p-floatLabel>
+        <p-password 
+          id="password"
+          formControlName="password"
+          placeholder="Ingrese su contraseña"
+          toggleMask="true"
+          feedback="false"
+        />
+        <label for="password">Contraseña</label>
+      </p-floatLabel>
+      <small *ngIf="hasError('password')" class="input-invalid">
+        Contraseña obligatoria.
+      </small>
+    </div>
+
+    <div class="text-center">
+      <p-button 
+        type="submit" 
+        label="Ingresar"
+        (onClick)="sendData()"
+        class="w-100"
+        [loading]="loading" 
+        />
+    </div>
+  </form>
+
+  <p-toast position="bottom-center" [style]="{ minWidth: '30vw', 'font-size': '15px' }"/>
+</div>

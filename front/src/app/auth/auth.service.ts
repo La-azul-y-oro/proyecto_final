@@ -42,14 +42,18 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  private handleError(error:HttpErrorResponse) {
-    if(error.status===0) {
-      console.error('Se ha producido un error ', error.error);
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    let errorMessage: string;
+    if (error.error instanceof ErrorEvent) {
+      // Error del lado del cliente o de red
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Error del lado del servidor
+      errorMessage = `Error Status: ${error.status}\nMessage: ${error.message}`;
     }
-    else {
-      console.error('Backend retornó el código de estado ', error);
-    }
-    return throwError(()=> new Error('Algo falló. Por favor intente nuevamente.'));
+    // Aquí podemos también devolver el objeto de error original para su manejo más detallado
+    console.error(errorMessage);
+    return throwError(() => new Error(errorMessage));
   }
 
   private decodeToken(token: string) {
@@ -65,4 +69,11 @@ export class AuthService {
     return this.currentEmployeeData.value;
   }
 
+  get employeeData() {
+    if(this.currentEmployeeData.value){
+      return jwtDecode(this.currentEmployeeData.value);
+    } else{
+      return null;
+    }
+  }
 }

@@ -32,6 +32,7 @@ export class PageComponent {
   @Input() data : any [] = [];
   @Input() cols!: Column[];
   @Input() buttonConfig!: ActionButtonConfig[];
+  @Input() canCreate : boolean = false;
   
   @Output() onCreate = new EventEmitter;
 
@@ -46,6 +47,7 @@ export class PageComponent {
   };
 
   create(){
+    if(!this.canCreate) return;
     this.onCreate.emit();
   }
 

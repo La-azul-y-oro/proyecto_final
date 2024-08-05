@@ -37,6 +37,7 @@ export interface ActionButtonConfig {
   tooltip: string;
   severity: Severity;
   action: Function;
+  isDisabled?: boolean;
   data?: any;
 }
 

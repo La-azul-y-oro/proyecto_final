@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
 import { AuthService } from '../../auth/auth.service';
+import { Role } from '../../interfaces/model.interfaces';
 
 @Component({
   selector: 'app-user-info',
@@ -22,7 +23,7 @@ export class UserInfoComponent {
   };
 
   items: MenuItem[] = [{
-    label: 'Juan Carlos',
+    label: this.getUserInfo(),
     icon: 'pi pi-user',
     items:[
       {
@@ -32,4 +33,14 @@ export class UserInfoComponent {
       }
     ]
   }];
+
+  private getUserInfo() : string{
+    const userInfo = this.authService?.employeeData as any;
+    const name = userInfo?.name;
+    const lastName = userInfo?.lastName;
+    const role = (userInfo?.role) ? `- ${Role[userInfo.role as keyof typeof Role]}` : "";
+
+    return `${name} ${lastName} ${role}`;
+  }
+
 }

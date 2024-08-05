@@ -12,6 +12,8 @@ import { CommonModule } from '@angular/common';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { VehicleFormComponent } from '../../components/vehicle-form/vehicle-form.component';
 import { BrandService } from '../../services/brand.service';
+import { AuthService } from '../../auth/auth.service';
+import { hasValidRoles } from '../../util/rolesUtil';
 
 @Component({
   selector: 'app-vehicle',
@@ -32,6 +34,10 @@ export class VehicleComponent implements OnInit {
   vehicleList: VehicleResponse[] = [];
   brandList: BrandResponse[] = [];
   dataVehicle?: VehicleRequest;
+
+  canCreate : boolean = hasValidRoles(this.authService.employeeData, ["ROLE_ADMIN", "ROLE_ADMINISTRATIVE"]);
+  canEdit : boolean = hasValidRoles(this.authService.employeeData, ["ROLE_ADMIN", "ROLE_ADMINISTRATIVE"]);
+  canRemove : boolean = hasValidRoles(this.authService.employeeData, ["ROLE_ADMIN"]);
 
   columns: Column[] = [
     {
@@ -72,17 +78,23 @@ export class VehicleComponent implements OnInit {
       icon: 'pi pi-pencil', 
       tooltip: 'Editar registro', 
       severity: 'success', 
-      action: (data: any) => this.openFormEdit(data) 
+      isDisabled: !this.canEdit,
+      action: (data: any) => this.canEdit ? this.openFormEdit(data) : null 
     },
     { 
       icon: 'pi pi-trash', 
       tooltip: 'Borrar registro', 
       severity: 'danger', 
-      action: (data: any) => this.openConfirmDialog(data)
+      isDisabled: !this.canRemove,
+      action: (data: any) => this.canRemove ? this.openConfirmDialog(data) : null
     }
   ];
 
-  constructor(private vehicleService: VehicleService, private brandService: BrandService) {}
+  constructor(
+    private vehicleService: VehicleService, 
+    private brandService: BrandService,
+    private authService : AuthService
+  ) {}
 
   ngOnInit() {
     this.loadVehicles();

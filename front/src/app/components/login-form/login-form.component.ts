@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, Output, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
@@ -9,6 +9,8 @@ import { emailCustomValidator } from '../../util/customValidators';
 import { PasswordModule } from 'primeng/password';
 import { AuthService } from '../../auth/auth.service';
 import { EmployeeLogin } from '../../interfaces/model.interfaces';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login-form',
@@ -20,16 +22,19 @@ import { EmployeeLogin } from '../../interfaces/model.interfaces';
     CommonModule,
     ReactiveFormsModule,
     PasswordModule,
+    ToastModule
 ],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.css'
 })
 export class LoginFormComponent {
-  
+  loading : boolean = false;
+
   constructor(
     private authService : AuthService,
     private fb : FormBuilder,
-    private router : Router
+    private router : Router,
+    private messageService: MessageService
   ){}
 
   employeeForm : FormGroup = this.fb.group({
@@ -43,12 +48,19 @@ export class LoginFormComponent {
 
     if(this.employeeForm.valid){
       let employee : EmployeeLogin = this.employeeForm.value;
+      this.loading = true;
       this.authService.login(employee).subscribe({
         next: (token) => {
           this.router.navigate(['/inicio']);
         },
         error: (error) => {
-          console.error(error);
+          this.loading = false;
+          const errorMsg = error.message;
+          if (error.message?.includes('Error Status: 4')) {
+            this.showToastError('Woooo, las credenciales son inválidas 🥴');
+          } else{
+            this.showToastError('Ha ocurrido un error. Intente nuevamente o ponganse en contacto con el administrador.');
+          }
         }
       })
     }
@@ -77,4 +89,11 @@ export class LoginFormComponent {
     return (field?.dirty || field?.touched) && field?.invalid;
   }
 
+  showToastError(message : string) {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: message
+    });
+  }
 } 

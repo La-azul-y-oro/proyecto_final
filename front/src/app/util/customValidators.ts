@@ -16,13 +16,13 @@ export function nroDniValidator(control: AbstractControl): ValidationErrors | nu
   return isValid ? null : { 'invalidDigits': { value: control.value } };
 }
 
-export function nroCuitValidator(control: AbstractControl): ValidationErrors | null {
+export function nroDniCuitValidator(control: AbstractControl): ValidationErrors | null {
   const value = control.value;
   if (!value) {
     return null;
   }
 
-  const isValid = /^\d{11}$/.test(value);
+  const isValid = /^\d{8}$/.test(value) || /^\d{11}$/.test(value);
   return isValid ? null : { 'invalidDigits': { value: control.value } };
 }
 
