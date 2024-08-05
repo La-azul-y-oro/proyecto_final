@@ -199,6 +199,8 @@ export enum Role {
     ROLE_ADMIN = 'Admin'
 }
 
+type RoleKey = "ROLE_ADMINISTRATIVE" | "ROLE_MECHANIC" | "ROLE_ADMIN"
+
 export interface EmployeeLogin {
     email:string,
     password:string

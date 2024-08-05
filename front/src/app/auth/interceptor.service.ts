@@ -7,7 +7,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
     let token = authService.employeeToken;
 
-    if (token != "") {
+    if (token) {
         req = req.clone({
             setHeaders: {
                 'Content-Type': 'application/json; charset=utf-8',
