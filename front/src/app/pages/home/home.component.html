@@ -1,17 +1,22 @@
-<div class="text-center">
+<div class="text-center mb-3">
     <h1 class="welcome">{{ welcome }}, bienvenido al taller mecánico!</h1>
     <img src="../../../assets/Logo.png" class="image" alt="Imagen de La Azul y Oro">
 </div>
-<p-card class="p-5">
+<p-card class="mb-2">
     <div class="text-center">
         <h1 class="title">Servicios actuales</h1>
-        <p-carousel [value]="serviceList" [numVisible]="3" [numScroll]="3" [circular]="true" autoplayInterval="3000">
+        <p-carousel 
+            [value]="serviceList"
+            [numVisible]="3" 
+            [numScroll]="3" 
+            [circular]="true" 
+            autoplayInterval="5000">
             <ng-template let-service pTemplate="item">
                 <div class="border-1 surface-border border-round">
                     <div class="mb-3">
-                        <h2> {{service.vehicleCompound}} </h2>
-                        <h4> {{ service.serviceType.name }} </h4>
-                        <h4> {{ service.showedStatus }} </h4>
+                        <h5> {{service.vehicleCompound}} </h5>
+                        <p> {{ service.serviceType.name }} </p>
+                        <p> {{ service.showedStatus }} </p>
                     </div>
                 </div>
             </ng-template>

@@ -3,13 +3,14 @@
       <p-button
         pRipple
         [icon]="button.icon"
-        [pTooltip]="button.tooltip"
+        [pTooltip]="button.isDisabled ? 'No permitido':button.tooltip"
         [rounded]="true"
         [outlined]="true"
         [severity]="button.severity"
         size="small"
         [style]="actionButtons"
         (onClick)="onClick(button.action, data)"
-      ></p-button>
+        [ngClass]="{ 'disableItem': button.isDisabled }">
+      </p-button>
     </ng-container>
   </div>

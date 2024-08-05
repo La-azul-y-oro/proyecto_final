@@ -12,6 +12,8 @@ import { ToastComponent } from '../../components/toast/toast.component';
 import { ClientFormComponent } from '../../components/client-form/client-form.component';
 import { TooltipModule } from 'primeng/tooltip';
 import { ActionButtonConfig } from '../../components/action-buttons/action-buttons.component';
+import { AuthService } from '../../auth/auth.service';
+import { hasValidRoles } from '../../util/rolesUtil';
 
 @Component({
   selector: 'app-client',
@@ -39,6 +41,10 @@ export class ClientComponent {
   status! : boolean;
   idToUpdated? : number;
   clientList : ClientResponse[] = [];
+
+  canCreate : boolean = hasValidRoles(this.authService.employeeData, ["ROLE_ADMIN", "ROLE_ADMINISTRATIVE"]);
+  canEdit : boolean = hasValidRoles(this.authService.employeeData, ["ROLE_ADMIN", "ROLE_ADMINISTRATIVE"]);
+  canRemove : boolean = hasValidRoles(this.authService.employeeData, ["ROLE_ADMIN"]);
 
   columns : Column []= [
     {
@@ -77,27 +83,30 @@ export class ClientComponent {
     { 
       icon: 'pi pi-link', 
       tooltip: 'Ver elementos relacionados', 
-      severity: 'info', 
+      severity: 'info',
       action: (data: any) => this.linkClient(data) 
     },
     { 
       icon: 'pi pi-pencil', 
       tooltip: 'Editar registro', 
       severity: 'success', 
-      action: (data: any) => this.openFormEdit(data) 
+      isDisabled: !this.canEdit,
+      action: (data: any) => this.canEdit ? this.openFormEdit(data) : null 
     },
     { 
       icon: 'pi pi-trash', 
       tooltip: 'Borrar registro', 
-      severity: 'danger', 
-      action: (data: any) => this.openConfirmDialog(data)
+      severity: 'danger',
+      isDisabled: !this.canRemove,
+      action: (data: any) => this.canRemove ? this.openConfirmDialog(data) : null
     }
   ];
 
   dataClient? : ClientRequest;
 
   constructor(
-    private clientService : ClientService
+    private clientService : ClientService,
+    private authService : AuthService
   ){}
 
   ngOnInit(){

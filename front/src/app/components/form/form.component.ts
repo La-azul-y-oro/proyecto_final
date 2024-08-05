@@ -48,15 +48,10 @@ export class FormComponent implements OnChanges{
   ngOnInit(){
     this.form = this.fb.group({});
     this.fields?.forEach(f => {
-      // const disabledField : boolean = (this.isEditMode && f.disabledOnUpdate) ? f.disabledOnUpdate : false; 
-      // const control = new FormControl({value: null, disabled: disabledField }, f.validators);
-
       const control = new FormControl(null, f.validators);
 
       this.form.addControl(f.controlName, control);
     });
-
-    console.log(this.form);
   }
 
   ngOnChanges(): void {

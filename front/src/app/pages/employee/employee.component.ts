@@ -8,6 +8,8 @@ import { EmployeeService } from '../../services/employee.service';
 import { EmployeeFormComponent } from '../../components/employee-form/employee-form.component';
 import { PageComponent } from '../../components/page/page.component';
 import { ToastModule } from 'primeng/toast';
+import { hasValidRoles } from '../../util/rolesUtil';
+import { AuthService } from '../../auth/auth.service';
 
 
 @Component({
@@ -33,6 +35,10 @@ export class EmployeeComponent {
   status! : boolean;
   idToUpdated? : number;
   employeeList : EmployeeResponse[] = [];
+
+  canCreate : boolean = hasValidRoles(this.authService.employeeData, ["ROLE_ADMIN"]);
+  canEdit : boolean = hasValidRoles(this.authService.employeeData, ["ROLE_ADMIN"]);
+  canRemove : boolean = hasValidRoles(this.authService.employeeData, ["ROLE_ADMIN"]);
 
   columns : Column []= [
     {
@@ -72,20 +78,23 @@ export class EmployeeComponent {
       icon: 'pi pi-pencil', 
       tooltip: 'Editar registro', 
       severity: 'success', 
-      action: (data: any) => this.openFormEdit(data) 
+      isDisabled: !this.canEdit,
+      action: (data: any) => this.canEdit ? this.openFormEdit(data) : null 
     },
     { 
       icon: 'pi pi-trash', 
       tooltip: 'Borrar registro', 
       severity: 'danger', 
-      action: (data: any) => this.openConfirmDialog(data)
+      isDisabled: !this.canRemove,
+      action: (data: any) => this.canRemove ? this.openConfirmDialog(data) : null
     }
   ];
 
   dataEmployee? : EmployeeRequest;
 
   constructor(
-    private employeeService : EmployeeService
+    private employeeService : EmployeeService,
+    private authService : AuthService
   ){}
 
   ngOnInit(){
