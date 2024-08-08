@@ -15,9 +15,6 @@
                   [formControlName]="field.controlName"
                   [type]="field.type"
                   [placeholder]="field.placeholder"/>
-                <label [for]="field.controlName">
-                  {{ field.label }}
-                </label>
 
                 <p-inputNumber *ngIf="isFieldType(field.type, 'number')"
                   [id]="field.controlName"
@@ -26,6 +23,7 @@
                   [min]="field.min || null"
                   [max]="field.max || null"
                   [maxlength]="field.maxLength || null"
+                  [placeholder]="field.placeholder"
                   [style]="{ width: '100%'}"/> 
 
                 <p-dropdown *ngIf="isFieldType(field.type, 'select')"

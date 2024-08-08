@@ -132,6 +132,7 @@ export class ServiceFormComponent implements OnInit, OnChanges {
         selectList: this.statusOptions,
         errorMessage: 'Indique un estado',
         validators: [Validators.required],
+        disabledOnCreate: true
       },
       {
         label: 'Precio',
@@ -144,11 +145,7 @@ export class ServiceFormComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.form = this.fb.group({});
-    this.fields?.forEach(f => {
-      const control = new FormControl(null, f.validators);
-      this.form.addControl(f.controlName, control);
-    })
+    this.initForm();
     
     this.getServicesTypes();
     this.getVehicles();
@@ -157,6 +154,16 @@ export class ServiceFormComponent implements OnInit, OnChanges {
     this.getMechanics();
   }
 
+  private initForm() {
+    this.form = this.fb.group({});
+    this.fields?.forEach(f => {
+      const control = new FormControl(null, f.validators);
+      this.form.addControl(f.controlName, control);
+      if (f.disabledOnCreate) {
+        this.form.get(f.controlName)?.disable();
+      }
+    });
+  }
 
   ngOnChanges(): void {
     if(this.data){
@@ -176,6 +183,7 @@ export class ServiceFormComponent implements OnInit, OnChanges {
       this.title = this.titleOnUpdate;
       this.isEditMode = true;
 
+      this.form.enable();
       this.fields?.forEach(field => {
         if (field.disabledOnUpdate) {
           this.form.get(field.controlName)?.disable();
@@ -197,14 +205,11 @@ export class ServiceFormComponent implements OnInit, OnChanges {
 
   showForm(){
     this.visible = true;
-    this.form.reset();
+    this.resetAll();
   }
 
   resetAndHideForm(){
-    this.form.reset();
-    this.data = undefined;
-    this.isEditMode = false;
-    this.title = this.titleOnCreate;
+    this.resetAll()
     this.visible = false;
   }
 
@@ -232,7 +237,7 @@ export class ServiceFormComponent implements OnInit, OnChanges {
     markAllAsTouched(this.form);
 
     if(this.form.valid){
-      (this.isEditMode) ? this.onUpdate.emit(this.form.value ) : this.onSave.emit(this.form.value);
+      (this.isEditMode) ? this.onUpdate.emit(this.form.value) : this.onSave.emit(this.form.value);
     }
   }
 
@@ -242,7 +247,7 @@ export class ServiceFormComponent implements OnInit, OnChanges {
   }
 
   resetAll(){
-    this.form.reset();
+    this.initForm();
     this.data = undefined;
     this.isEditMode = false;
     this.title = this.titleOnCreate;
