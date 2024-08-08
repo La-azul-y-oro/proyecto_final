@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -9,7 +9,6 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormField, TypeField } from '../../interfaces/components.interface';
 import { noWhitespaceValidator, vehiclePlateValidator } from '../../util/customValidators';
 import { FormComponent } from '../form/form.component';
-import { FormArray } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { VehicleResponse, VehicleRequest, BrandResponse, BrandCategory } from '../../interfaces/model.interfaces';
 import { BrandService } from '../../services/brand.service';

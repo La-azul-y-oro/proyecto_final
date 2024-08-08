@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { FormComponent } from '../form/form.component';
 import { FormField, TypeField } from '../../interfaces/components.interface';
-import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ServiceTypeService } from '../../services/serviceType.service';
 import { VehicleService } from '../../services/vehicle.service';
 import { ClientService } from '../../services/client.service';
 import { EmployeeService } from '../../services/employee.service';
-import { ClientResponse, EmployeeBasicResponse, EmployeeResponse, Role, ServiceRequest, ServiceResponse, ServiceTypeResponse, SparePartResponse, StatusService, VehicleResponse } from '../../interfaces/model.interfaces';
+import { ClientResponse, EmployeeBasicResponse, EmployeeResponse, ServiceResponse, ServiceTypeResponse, SparePartResponse, StatusService, VehicleResponse } from '../../interfaces/model.interfaces';
 import { SparePartService } from '../../services/sparePart.service';
 import { DialogModule } from 'primeng/dialog';
 import { FloatLabelModule } from 'primeng/floatlabel';

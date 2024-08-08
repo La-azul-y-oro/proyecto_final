@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
 import { CarouselModule } from 'primeng/carousel';
-import { EmployeeBasicResponse, ServiceResponse, SparePartResponse, StatusService, VehicleBasicResponse } from '../../interfaces/model.interfaces';
+import { ServiceResponse, StatusService, VehicleBasicResponse } from '../../interfaces/model.interfaces';
 import { ButtonModule } from 'primeng/button';
 import { ServicesService } from '../../services/services.service';
 import { Router } from '@angular/router';

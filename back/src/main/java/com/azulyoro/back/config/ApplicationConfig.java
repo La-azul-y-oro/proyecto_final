@@ -1,6 +1,9 @@
 package com.azulyoro.back.config;
 
 import com.azulyoro.back.exception.UserNotFoundException;
+import com.azulyoro.back.repository.EmployeeRepository;
+import com.azulyoro.back.util.MessageUtil;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,12 +13,6 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import com.azulyoro.back.repository.EmployeeRepository;
-import com.azulyoro.back.util.MessageUtil;
-
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
