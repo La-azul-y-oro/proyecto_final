@@ -91,8 +91,8 @@ export interface ServiceResponse{
     status: StatusService;
     payDate: Date;
     price: number;
-    startDate: Date;
-    finalDate: Date;
+    startDate: string;
+    finalDate: string;
     vehicle: VehicleBasicResponse;
     client: ClientBasicResponse;
     employees: EmployeeBasicResponse[];
@@ -100,8 +100,11 @@ export interface ServiceResponse{
     vehicleCompound: string;
     sparePartsCompound: string;
     employeesCompound: string;
-    showedStatus: string,
-    clientName: string
+    showedStatus: string;
+    clientName: string;
+    startDateEs: string;
+    finalDateEs?: string;
+    priceCurrency?: string;
 }
 
 //  SERVICETYPE
