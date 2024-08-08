@@ -2,3 +2,8 @@
 p-inputnumber.p-element.p-inputwrapper{
     width: 100%;
 }
+
+::ng-deep p-multiselectitem li,
+::ng-deep p-dropdownitem li{
+    font-size: 14px;
+}

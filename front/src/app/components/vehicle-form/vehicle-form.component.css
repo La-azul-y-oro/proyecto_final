@@ -1,3 +1,7 @@
 #mileage{
     width: 100%;
 }
+
+::ng-deep p-inputnumber span input{
+    width: 100%;
+}

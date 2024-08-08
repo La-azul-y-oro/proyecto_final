@@ -14,6 +14,7 @@ export interface FormField{
     selectList? : any[];
     classList?: string;
     groupBy?: string;
+    disabledOnCreate?: boolean;
     disabledOnUpdate?: boolean;
     min? : number;
     max? : number;

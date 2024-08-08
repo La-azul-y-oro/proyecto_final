@@ -119,7 +119,7 @@ export class VehicleFormComponent implements OnInit, OnChanges {
 
   showForm(){
     this.visible = true;
-    this.form.reset();
+    this.resetAll();
   }
 
   showFormEdit(vehicle: any){
@@ -141,10 +141,7 @@ export class VehicleFormComponent implements OnInit, OnChanges {
   }
 
   resetAndHideForm(){
-    this.form.reset();
-    this.data = undefined;
-    this.isEditMode = false;
-    this.title = this.titleOnCreate;
+    this.resetAll();
     this.visible = false;
   }
 
