@@ -49,7 +49,6 @@ public class Services {
 
     private Double price;
 
-    @CreationTimestamp
     private LocalDate startDate;
 
     private LocalDate finalDate;

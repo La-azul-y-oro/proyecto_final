@@ -192,11 +192,19 @@ public class ServicesService implements EntityService<ServicesRequestDto, Servic
     private ServicesResponseDto saveAndGetResponseDto(Long id, ServicesRequestDto requestDto){
         Services service = servicesMapper.dtoToEntity(requestDto);
         service.setId(id);
-        LocalDate startDate = servicesRepository.findStartDateById(id);
-        service.setStartDate(startDate);
 
-        if(requestDto.getStatus() == ServiceStatus.FINISHED)
+        LocalDate startDate = servicesRepository.findStartDateById(id);
+        if(requestDto.getStatus() == ServiceStatus.IN_PROGRESS && startDate == null){
+            service.setStartDate(LocalDate.now());
+        } else{
+            service.setStartDate(startDate);
+        }
+
+        if(requestDto.getStatus() == ServiceStatus.FINISHED){
             service.setFinalDate(LocalDate.now());
+        } else {
+            service.setFinalDate(null);
+        }
 
         RelatedEntites relatedEntites = validateRelatedEntities(requestDto);
         service.setClient(relatedEntites.client);
