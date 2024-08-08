@@ -61,17 +61,17 @@ export class ServicesComponent implements OnInit {
     },
     {
       header: "Inicio",
-      field: "startDate",
-      sortable: false
+      field: "startDateEs",
+      sortable: true
     },
     {
       header: "Fin",
-      field: "finalDate",
-      sortable: false
+      field: "finalDateEs",
+      sortable: true
     },
     {
       header: "Precio",
-      field: "price",
+      field: "priceCurrency",
       sortable: true
     },
     {
@@ -217,7 +217,10 @@ export class ServicesComponent implements OnInit {
       sparePartsCompound,
       employeesCompound,
       showedStatus,
-      clientName
+      clientName,
+      startDateEs: this.formatDate(service.startDate),
+      finalDateEs: this.formatDate(service.finalDate),
+      priceCurrency: (service.price) ? `$ ${service.price}` : '' 
     }
 
     return service;
@@ -236,4 +239,14 @@ export class ServicesComponent implements OnInit {
   linkService(service: ServiceResponse){
     alert("TODO relacionadas sin implementar");
   }
+
+  private formatDate(date : string): string {
+    if(date){
+      const [year, month, day] = date.split('-');
+      return `${day}-${month}-${year}`;
+    } else{
+      return '';
+    }
+  }
+
 }
