@@ -47,7 +47,7 @@ public class ServiceTypeService implements EntityService<ServiceTypeRequestDto, 
 
             ServiceType serviceTypeUpdated = serviceTypeRepository.save(serviceType);
             return serviceTypeMapper.entityToDto(serviceTypeUpdated);
-        } {
+        } else {
            throw new EntityNotFoundException(MessageUtil.entityNotFound(id));
         }
     }

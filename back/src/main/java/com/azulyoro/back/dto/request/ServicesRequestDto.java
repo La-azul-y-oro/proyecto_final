@@ -1,10 +1,9 @@
 package com.azulyoro.back.dto.request;
 
 import com.azulyoro.back.model.ServiceStatus;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Min;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Getter

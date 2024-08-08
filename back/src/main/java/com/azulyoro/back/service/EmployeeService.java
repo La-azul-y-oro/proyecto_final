@@ -2,7 +2,6 @@ package com.azulyoro.back.service;
 
 import com.azulyoro.back.dto.CustomPage;
 import com.azulyoro.back.dto.request.RegisterRequest;
-import com.azulyoro.back.dto.response.ClientResponseDto;
 import com.azulyoro.back.dto.response.EmployeeResponseDto;
 import com.azulyoro.back.dto.response.ServicesBasicResponseDto;
 import com.azulyoro.back.exception.CannotDeleteEntityException;
@@ -11,23 +10,16 @@ import com.azulyoro.back.exception.UserAlreadyRegistered;
 import com.azulyoro.back.mapper.EmployeeMapper;
 import com.azulyoro.back.mapper.PageMapper;
 import com.azulyoro.back.mapper.ServicesMapper;
-import com.azulyoro.back.model.Brand;
-import com.azulyoro.back.model.Client;
 import com.azulyoro.back.model.Employee;
 import com.azulyoro.back.repository.EmployeeRepository;
 import com.azulyoro.back.util.MessageUtil;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.BindException;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.Collections;
 import java.util.List;
@@ -151,9 +143,7 @@ public class EmployeeService implements IEmployeeService{
         if (employeeRepository.existsByIdentificationNumberExcludingId(id, idNumber))
             throw new UserAlreadyRegistered(MessageUtil.idNumberAlreadyRegistered(idNumber));
 
-        Employee employee = employeeMapper.dtoToEntity(registerRequest);
-
-        return employee;
+        return employeeMapper.dtoToEntity(registerRequest);
     }
 
     public Employee createEmployee(RegisterRequest registerRequest) {
