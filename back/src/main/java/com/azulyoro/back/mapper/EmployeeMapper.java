@@ -3,14 +3,9 @@ package com.azulyoro.back.mapper;
 import com.azulyoro.back.dto.request.RegisterRequest;
 import com.azulyoro.back.dto.response.EmployeeBasicResponseDto;
 import com.azulyoro.back.dto.response.EmployeeResponseDto;
-import com.azulyoro.back.dto.response.ServicesBasicResponseDto;
-import com.azulyoro.back.model.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.azulyoro.back.model.Employee;
+import com.azulyoro.back.model.IdentificationType;
 import org.springframework.stereotype.Component;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
 
 @Component
 public class EmployeeMapper implements Mapper<Employee, RegisterRequest, EmployeeResponseDto>{

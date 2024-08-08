@@ -23,44 +23,52 @@ export const authGuard: CanActivateFn = (route, state) => {
 
 export const clientGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
+  const router = inject(Router);
 
   return authService.currentEmployeeLoginOn.pipe(
     take(1),
     map((loggedIn: boolean) => {
-      return loggedIn && hasValidRoles(authService.employeeData, ["ROLE_ADMIN", "ROLE_ADMINISTRATIVE"]);
+      if(!loggedIn) router.navigate(['/login']);
+      return hasValidRoles(authService.employeeData, ["ROLE_ADMIN", "ROLE_ADMINISTRATIVE"]);
     })
   );
 };
 
 export const servicesGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
+  const router = inject(Router);
 
   return authService.currentEmployeeLoginOn.pipe(
     take(1),
     map((loggedIn: boolean) => {
-      return (loggedIn && hasValidRoles(authService.employeeData, ["ROLE_ADMIN", "ROLE_ADMINISTRATIVE", "ROLE_MECHANIC"]));
+      if(!loggedIn) router.navigate(['/login']);
+      return hasValidRoles(authService.employeeData, ["ROLE_ADMIN", "ROLE_ADMINISTRATIVE", "ROLE_MECHANIC"]);
     })
   );
 };
 
 export const vehiclesGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
+  const router = inject(Router);
 
   return authService.currentEmployeeLoginOn.pipe(
     take(1),
     map((loggedIn: boolean) => {
-      return (loggedIn && hasValidRoles(authService.employeeData, ["ROLE_ADMIN", "ROLE_ADMINISTRATIVE"]));
+      if(!loggedIn) router.navigate(['/login']);
+      return hasValidRoles(authService.employeeData, ["ROLE_ADMIN", "ROLE_ADMINISTRATIVE"]);
     })
   );
 };
 
 export const employeeGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
+  const router = inject(Router);
 
   return authService.currentEmployeeLoginOn.pipe(
     take(1),
     map((loggedIn: boolean) => {
-      return (loggedIn && hasValidRoles(authService.employeeData, ["ROLE_ADMIN"]));
+      if(!loggedIn) router.navigate(['/login']);
+      return hasValidRoles(authService.employeeData, ["ROLE_ADMIN"]);
     })
   );
 };

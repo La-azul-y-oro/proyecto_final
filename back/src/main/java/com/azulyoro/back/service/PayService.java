@@ -124,11 +124,12 @@ public class PayService implements EntityService<PayRequestDto, PayResponseDto>{
             if(service.getStatus() == ServiceStatus.CANCELLED){
                 throw new EntityNotFoundOrInactiveException(MessageUtil.entityNotFoundOrInactive(servicesId));
             }
-            //TODO
-            //El pago ya asociado va a traer conflictos en el update, ajustar luego
-            //if(service.getPay() != null){
-            //    throw new EntityNotFoundOrInactiveException(MessageUtil.entityNotFoundOrInactive(servicesId));
-            //}
+            /*TODO
+                El pago ya asociado va a traer conflictos en el update, ajustar luego
+                if(service.getPay() != null){
+                throw new EntityNotFoundOrInactiveException(MessageUtil.entityNotFoundOrInactive(servicesId));
+            }
+            */
         }
     }
 

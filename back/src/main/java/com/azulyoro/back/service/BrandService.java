@@ -91,8 +91,6 @@ public class BrandService implements EntityService<BrandRequestDto, BrandRespons
     }
 
     public Optional<Brand> getBrandEntity(Long id) {
-        Optional<Brand> brand = brandRepository.findById(id);
-
-        return brand;
+        return brandRepository.findById(id);
     }
 }

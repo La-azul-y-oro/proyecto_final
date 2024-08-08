@@ -88,8 +88,6 @@ public class SupplierService implements EntityService<SupplierRequestDto, Suppli
     }
 
     public Optional<Supplier> getSupplierEntity(Long id) {
-        Optional<Supplier> supplier = supplierRepository.findById(id);
-
-        return supplier;
+        return supplierRepository.findById(id);
     }
 }

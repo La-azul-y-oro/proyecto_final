@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
@@ -56,7 +56,6 @@ export class LoginFormComponent {
         },
         error: (error) => {
           this.loading = false;
-          const errorMsg = error.message;
           if (error.message?.includes('Error Status: 4')) {
             this.showToastError('Woooo, las credenciales son inválidas 🥴');
           } else{
